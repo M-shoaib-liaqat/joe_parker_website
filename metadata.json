@@ -1,0 +1,7 @@
+{
+  "name": "Parker Electrical Solutions",
+  "description": "High-converting, professional website for Parker Electrical Solutions, a NICEIC-approved electrical contractor serving Essex and London.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
