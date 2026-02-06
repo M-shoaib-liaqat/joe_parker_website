@@ -10,7 +10,6 @@ import AreasPage from './pages/AreasPage';
 import GalleryPage from './pages/GalleryPage';
 import Chatbot from './components/Chatbot';
 import { BUSINESS_INFO, SERVICES } from './constants';
-import logoImage from './assets/logo/logo.png';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -43,7 +42,7 @@ const Header = () => {
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logoImage} alt="Parker Electrical logo" className="h-12 w-auto object-contain" />
+          <img src="/assets/logo/logo.png" alt="Parker Electrical logo" className="h-12 w-auto object-contain" />
           <div className="flex flex-col hidden sm:flex">
             <span className={`font-bold text-xl leading-tight ${scrolled ? 'text-brand-deep' : 'text-brand-deep'}`}>
               PARKER

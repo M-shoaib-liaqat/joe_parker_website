@@ -43,7 +43,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <img
-              src="/assets/logo.png"
+              src="/assets/logo/logo.png"
               className="rounded-3xl shadow-2xl h-[500px] w-full object-contain bg-white p-8"
               alt="Joe Parker Electrical logo"
             />
