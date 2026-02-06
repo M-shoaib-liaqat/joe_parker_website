@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Star, Shield, ArrowRight, Phone, Clock, MapPin, Award, Image as ImageIcon } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES, REVIEWS, GALLERY_IMAGES, getIcon } from '../constants';
+import logoImage from '../assets/logo/logo.png';
 
 const Hero = () => (
   <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden bg-brand-deep">
@@ -190,7 +191,7 @@ const WhyChooseUs = () => (
         <div className="relative">
           <div className="absolute -inset-6 bg-brand-electric/10 rounded-3xl -rotate-2 -z-10"></div>
           <img
-            src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=1200"
+            src={logoImage}
             className="rounded-3xl shadow-2xl w-full object-cover h-[500px] brightness-105"
             alt="Lead Electrician Joe Parker"
           />

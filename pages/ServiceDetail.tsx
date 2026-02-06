@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft, Phone, ShieldCheck } from 'lucide-react';
 import { SERVICES, BUSINESS_INFO, getIcon } from '../constants';
+import logoImage from '../assets/logo.png';
 
 const ServiceDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,7 +22,7 @@ const ServiceDetail: React.FC = () => {
       case 'commercial': return 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=800';
       case 'ev': return 'https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&q=80&w=800';
       case 'rewiring': return 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=800';
-      default: return 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=800';
+      default: return logoImage;
     }
   };
 

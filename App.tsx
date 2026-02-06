@@ -41,11 +41,9 @@ const Header = () => {
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="bg-brand-deep p-2 rounded">
-            <ShieldCheck className="text-white w-6 h-6" />
-          </div>
-          <div className="flex flex-col">
+        <Link to="/" className="flex items-center gap-3">
+          <img src="/assets/logo.png" alt="Parker Electrical logo" className="h-12 w-auto object-contain" />
+          <div className="flex flex-col hidden sm:flex">
             <span className={`font-bold text-xl leading-tight ${scrolled ? 'text-brand-deep' : 'text-brand-deep'}`}>
               PARKER
             </span>

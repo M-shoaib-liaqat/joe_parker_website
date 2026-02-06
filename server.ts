@@ -1,0 +1,163 @@
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import sgMail from '@sendgrid/mail';
+
+dotenv.config({ path: '.env.local' });
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Initialize SendGrid
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+
+if (!SENDGRID_API_KEY) {
+  console.error('Error: SENDGRID_API_KEY environment variable is not set');
+  process.exit(1);
+}
+
+sgMail.setApiKey(SENDGRID_API_KEY);
+
+// Types
+interface ContactRequest {
+  fullName?: string;
+  phone?: string;
+  email?: string;
+  serviceNeeded?: string;
+  message?: string;
+}
+
+interface ValidationError {
+  field: string;
+  error: string;
+}
+
+// Validation function
+function validateContactForm(data: ContactRequest): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  if (!data.fullName || data.fullName.trim() === '') {
+    errors.push({ field: 'fullName', error: 'Full name is required' });
+  }
+
+  if (!data.phone || data.phone.trim() === '') {
+    errors.push({ field: 'phone', error: 'Phone number is required' });
+  }
+
+  if (!data.email || data.email.trim() === '') {
+    errors.push({ field: 'email', error: 'Email address is required' });
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push({ field: 'email', error: 'Invalid email address format' });
+  }
+
+  if (!data.serviceNeeded || data.serviceNeeded.trim() === '') {
+    errors.push({ field: 'serviceNeeded', error: 'Service needed is required' });
+  }
+
+  if (!data.message || data.message.trim() === '') {
+    errors.push({ field: 'message', error: 'Message is required' });
+  }
+
+  return errors;
+}
+
+// Helper function to construct email HTML
+function formatEmailBody(data: ContactRequest): string {
+  return `
+    <h2>New Quote Request</h2>
+    <p><strong>Full Name:</strong> ${sanitizeHtml(data.fullName || '')}</p>
+    <p><strong>Phone:</strong> ${sanitizeHtml(data.phone || '')}</p>
+    <p><strong>Email:</strong> ${sanitizeHtml(data.email || '')}</p>
+    <p><strong>Service Needed:</strong> ${sanitizeHtml(data.serviceNeeded || '')}</p>
+    <p><strong>Message:</strong></p>
+    <p>${sanitizeHtml(data.message || '').replace(/\n/g, '<br>')}</p>
+  `;
+}
+
+// Basic HTML sanitization to prevent injection
+function sanitizeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
+
+// Contact endpoint
+app.post('/api/contact', async (req: Request, res: Response) => {
+  try {
+    const { fullName, phone, email, serviceNeeded, message } = req.body as ContactRequest;
+
+    // Validate fields
+    const validationErrors = validateContactForm(req.body);
+    if (validationErrors.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: validationErrors,
+      });
+    }
+
+    // Prepare email content
+    const htmlContent = formatEmailBody({
+      fullName,
+      phone,
+      email,
+      serviceNeeded,
+      message,
+    });
+
+    // Send email using SendGrid
+    const msg = {
+      to: 'info@parkerelectricalsolutions.uk',
+      from: 'Parker Electrical Solutions <info@parkerelectricalsolutions.uk>',
+      replyTo: email!,
+      subject: 'New Quote Request – Parker Electrical Solutions',
+      html: htmlContent,
+      text: `
+Full Name: ${fullName}
+Phone: ${phone}
+Email: ${email}
+Service Needed: ${serviceNeeded}
+Message: ${message}
+      `,
+    };
+
+    await sgMail.send(msg);
+
+    res.status(200).json({
+      success: true,
+      message: 'Your contact request has been sent successfully. We will get back to you soon.',
+    });
+  } catch (error) {
+    // Log error with full details for debugging
+    if (error instanceof Error) {
+      console.error('Error sending contact email:', error.message);
+      console.error('Error stack:', error.stack);
+    } else {
+      console.error('Unknown error:', error);
+    }
+
+    // Return generic error message
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing your request. Please try again later.',
+    });
+  }
+});
+
+// Health check endpoint
+app.get('/api/health', (req: Request, res: Response) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Contact endpoint available at POST http://localhost:${PORT}/api/contact`);
+});

@@ -6,7 +6,7 @@ import { Service, Review } from './types';
 export const BUSINESS_INFO = {
   name: 'Parker Electrical Solutions',
   phone: '07737447302',
-  email: 'info@parkerelectricalsolutions.uk',
+  email: 'Pesolutionsltd@hotmail.com',
   areas: ['Brentwood', 'Harlow', 'Chelmsford', 'Basildon', 'Southend', 'Romford', 'Ilford'],
   established: 2014,
   niceic: true
@@ -20,53 +20,366 @@ export interface GalleryImage {
 }
 
 export const GALLERY_IMAGES: GalleryImage[] = [
+  // DOMESTIC INSTALLATIONS
   { 
-    url: 'https://plus.unsplash.com/premium_photo-1729604037995-91aff3add249?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-    title: 'High-End Kitchen LED Install', 
-    category: 'Lighting',
-    description: 'Precision under-cabinet LED strip lighting for a modern residential kitchen.'
-  },
-  { 
-    url: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Industrial Fuse Board Upgrade', 
-    category: 'Commercial',
-    description: 'Full distribution board replacement and labeling for a commercial unit.'
-  },
-  { 
-    url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Smart Home Lighting Controls', 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (20).jpeg', 
+    title: 'Professional Domestic Electrical Installation', 
     category: 'Domestic',
-    description: 'Installation of Lutron lighting systems for customized home scenes.'
+    description: 'Professional domestic electrical installation with attention to detail.'
   },
   { 
-    url: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Accent Brick Wall Lighting', 
-    category: 'Lighting',
-    description: 'Warm upward lighting highlights original brickwork in a period property.'
-  },
-  { 
-    url: 'https://images.unsplash.com/photo-1600490819734-6311c5c6f517?q=80&w=869&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
-    title: 'Rapid EV Charging Point', 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (21).jpeg', 
+    title: 'Quality Residential Electrical Work', 
     category: 'Domestic',
-    description: 'Certified Easee One home charger installation.'
+    description: 'Quality residential electrical work completed to standard.'
   },
   { 
-    url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Pendant & Mood Lighting', 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (22).jpeg', 
+    title: 'Expert Home Electrical Solutions', 
+    category: 'Domestic',
+    description: 'Expert electrical solutions for your home.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (26).jpeg', 
+    title: 'Professional Home Electrical Work', 
+    category: 'Domestic',
+    description: 'Professional domestic electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (29).jpeg', 
+    title: 'Quality Home Electrical Installation', 
+    category: 'Domestic',
+    description: 'Quality home electrical installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (32).jpeg', 
+    title: 'Reliable Residential Electrical Services', 
+    category: 'Domestic',
+    description: 'Reliable residential electrical services.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (8).jpeg', 
+    title: 'Expert Home Electrical Services', 
+    category: 'Domestic',
+    description: 'Expert home electrical solutions.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.04.18 PM (1).jpeg', 
+    title: 'Professional Residential Electrical Work', 
+    category: 'Domestic',
+    description: 'Professional residential electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.04.18 PM (2).jpeg', 
+    title: 'Quality Domestic Electrical Installation', 
+    category: 'Domestic',
+    description: 'Quality domestic electrical installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.04.18 PM (4).jpeg', 
+    title: 'Professional Home Electrical Services', 
+    category: 'Domestic',
+    description: 'Professional home electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.24 AM (7).jpeg', 
+    title: 'Expert Residential Electrical Services', 
+    category: 'Domestic',
+    description: 'Expert residential electrical services.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.24 AM (8).jpeg', 
+    title: 'Quality Home Electrical Work', 
+    category: 'Domestic',
+    description: 'Quality home electrical installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.24 AM (9).jpeg', 
+    title: 'Professional Domestic Electrical Work', 
+    category: 'Domestic',
+    description: 'Professional domestic electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.25 AM (12).jpeg', 
+    title: 'Reliable Residential Electrical Installing', 
+    category: 'Domestic',
+    description: 'Reliable residential electrical services.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.26 AM (5).jpeg', 
+    title: 'Expert Home Electrical Installation', 
+    category: 'Domestic',
+    description: 'Expert home electrical solutions.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.26 AM (8).jpeg', 
+    title: 'Quality Domestic Electrical Work', 
+    category: 'Domestic',
+    description: 'Quality domestic electrical installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.26 AM (9).jpeg', 
+    title: 'Professional Residential Electrical Services', 
+    category: 'Domestic',
+    description: 'Professional residential electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM (1).jpeg', 
+    title: 'Expert Domestic Electrical Services', 
+    category: 'Domestic',
+    description: 'Expert domestic electrical services.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM (2).jpeg', 
+    title: 'Quality Home Electrical Services', 
+    category: 'Domestic',
+    description: 'Quality home electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM (3).jpeg', 
+    title: 'Professional Residential Installation', 
+    category: 'Domestic',
+    description: 'Professional residential installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM (4).jpeg', 
+    title: 'Reliable Home Electrical Solutions', 
+    category: 'Domestic',
+    description: 'Reliable home electrical solutions.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM (5).jpeg', 
+    title: 'Expert Domestic Electrical Installation', 
+    category: 'Domestic',
+    description: 'Expert domestic electrical installation.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.55 AM.jpeg', 
+    title: 'Quality Residential Electrical Installation', 
+    category: 'Domestic',
+    description: 'Quality residential electrical work.'
+  },
+  { 
+    url: '/assets/domestic/WhatsApp Image 2026-02-02 at 2.03.56 AM.jpeg', 
+    title: 'Professional Home Electrical Installation', 
+    category: 'Domestic',
+    description: 'Professional home electrical installation.'
+  },
+
+  // KITCHEN LIGHTING INSTALLATIONS
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.32 PM.jpeg', 
+    title: 'Kitchen LED Strip Lighting', 
     category: 'Lighting',
-    description: 'Architectural pendant install over a central dining island.'
+    description: 'Under-cabinet LED lighting for modern kitchens.'
   },
   { 
-    url: 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Commercial Restaurant Lighting', 
-    category: 'Commercial',
-    description: 'Full electrical fit-out for a new hospitality venue.'
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (1).jpeg', 
+    title: 'Kitchen Task Lighting', 
+    category: 'Lighting',
+    description: 'Bright task lighting over kitchen work areas.'
   },
   { 
-    url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200', 
-    title: 'Office LED Panel Refit', 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (10).jpeg', 
+    title: 'Kitchen Pendant Lights', 
+    category: 'Lighting',
+    description: 'Stylish pendant lighting for kitchen islands.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (12).jpeg', 
+    title: 'Kitchen Accent Lighting', 
+    category: 'Lighting',
+    description: 'Accent lighting for kitchen display areas.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (14).jpeg', 
+    title: 'Kitchen Ceiling Lights', 
+    category: 'Lighting',
+    description: 'Recessed ceiling lighting for kitchens.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (15).jpeg', 
+    title: 'Kitchen Efficiency Lighting', 
+    category: 'Lighting',
+    description: 'Energy-efficient kitchen lighting solutions.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (16).jpeg', 
+    title: 'Kitchen Ambient Lighting', 
+    category: 'Lighting',
+    description: 'Ambient lighting for warm kitchen atmosphere.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (2).jpeg', 
+    title: 'Professional Kitchen Lighting Design', 
+    category: 'Lighting',
+    description: 'Professional kitchen lighting design.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (24).jpeg', 
+    title: 'Modern Kitchen Lighting Solutions', 
+    category: 'Lighting',
+    description: 'Modern kitchen lighting solutions.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (25).jpeg', 
+    title: 'Premium Kitchen Lighting', 
+    category: 'Lighting',
+    description: 'Premium kitchen lighting installation.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (27).jpeg', 
+    title: 'Residential Kitchen Lighting', 
+    category: 'Lighting',
+    description: 'Kitchen lighting for residential use.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (28).jpeg', 
+    title: 'Expert Kitchen Electrical Work', 
+    category: 'Lighting',
+    description: 'Expert kitchen electrical installation.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (3).jpeg', 
+    title: 'Quality Kitchen Lighting Fixtures', 
+    category: 'Lighting',
+    description: 'Quality kitchen lighting fixtures.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (30).jpeg', 
+    title: 'Professional Kitchen Setup', 
+    category: 'Lighting',
+    description: 'Professional kitchen lighting setup.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (31).jpeg', 
+    title: 'Modern Kitchen Electrical Upgrade', 
+    category: 'Lighting',
+    description: 'Modern kitchen electrical work.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (5).jpeg', 
+    title: 'Quality Kitchen Lighting', 
+    category: 'Lighting',
+    description: 'Quality kitchen lighting solutions.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (7).jpeg', 
+    title: 'Expert Kitchen Lighting Installation', 
+    category: 'Lighting',
+    description: 'Expert kitchen lighting installation.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-01 at 2.01.33 PM (9).jpeg', 
+    title: 'Professional Kitchen Lighting Fixtures', 
+    category: 'Lighting',
+    description: 'Professional kitchen lighting design.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.24 AM (5).jpeg', 
+    title: 'Modern Kitchen Lighting Systems', 
+    category: 'Lighting',
+    description: 'Modern kitchen lighting systems.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (2).jpeg', 
+    title: 'Quality Residential Kitchen Lighting', 
+    category: 'Lighting',
+    description: 'Quality residential kitchen lighting.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (3).jpeg', 
+    title: 'Professional Kitchen Electrical Services', 
+    category: 'Lighting',
+    description: 'Professional kitchen electrical services.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (4).jpeg', 
+    title: 'Expert Kitchen Lighting Design', 
+    category: 'Lighting',
+    description: 'Expert kitchen lighting solutions.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (5).jpeg', 
+    title: 'Premium Kitchen Lighting Design', 
+    category: 'Lighting',
+    description: 'Premium kitchen lighting installation.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (6).jpeg', 
+    title: 'Modern Residential Kitchen Lighting', 
+    category: 'Lighting',
+    description: 'Modern residential kitchen lighting.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (8).jpeg', 
+    title: 'Quality Kitchen Electrical Work', 
+    category: 'Lighting',
+    description: 'Quality kitchen electrical installation.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.25 AM (9).jpeg', 
+    title: 'Professional Kitchen Lighting Fixtures', 
+    category: 'Lighting',
+    description: 'Professional kitchen lighting fixtures.'
+  },
+  { 
+    url: '/assets/kitchen/WhatsApp Image 2026-02-02 at 2.03.26 AM (6).jpeg', 
+    title: 'Expert Kitchen Installation', 
+    category: 'Lighting',
+    description: 'Expert residential kitchen installation.'
+  },
+
+  // INDUSTRIAL INSTALLATIONS
+  { 
+    url: '/assets/industrial/WhatsApp Image 2026-02-01 at 2.01.33 PM (18).jpeg', 
+    title: 'Industrial Distribution Board', 
     category: 'Commercial',
-    description: 'Energy-efficient workspace lighting upgrade.'
+    description: 'Heavy-duty industrial electrical distribution system.'
+  },
+  { 
+    url: '/assets/industrial/WhatsApp Image 2026-02-01 at 2.01.33 PM (19).jpeg', 
+    title: 'Industrial Three-Phase Installation', 
+    category: 'Commercial',
+    description: 'Professional three-phase electrical system installation.'
+  },
+  { 
+    url: '/assets/industrial/WhatsApp Image 2026-02-01 at 2.07.39 PM (1).jpeg', 
+    title: 'Industrial Control Panel', 
+    category: 'Commercial',
+    description: 'Precision industrial control panel installation.'
+  },
+  { 
+    url: '/assets/industrial/WhatsApp Image 2026-02-01 at 2.07.39 PM (2).jpeg', 
+    title: 'Industrial Cable Management', 
+    category: 'Commercial',
+    description: 'Professional cable management and organization.'
+  },
+  { 
+    url: '/assets/industrial/WhatsApp Image 2026-02-02 at 2.03.25 AM (1).jpeg', 
+    title: 'Industrial Installation 5', 
+    category: 'Commercial',
+    description: 'Commercial-grade electrical installation.'
+  },
+
+  // RESTAURANT/HOSPITALITY INSTALLATIONS
+  { 
+    url: '/assets/resturents/WhatsApp Image 2026-02-02 at 2.03.24 AM (2).jpeg', 
+    title: 'Restaurant Kitchen Electrical', 
+    category: 'Commercial',
+    description: 'Professional electrical installation for commercial kitchens.'
+  },
+  { 
+    url: '/assets/resturents/WhatsApp Image 2026-02-02 at 2.03.24 AM (3).jpeg', 
+    title: 'Restaurant Ambient Lighting', 
+    category: 'Commercial',
+    description: 'Custom lighting design for hospitality venues.'
+  },
+  { 
+    url: '/assets/resturents/WhatsApp Image 2026-02-02 at 2.03.24 AM.jpeg', 
+    title: 'Restaurant Installation Complete', 
+    category: 'Commercial',
+    description: 'Full electrical fit-out for hospitality establishments.'
   }
 ];
 

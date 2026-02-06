@@ -8,7 +8,7 @@ const AboutPage: React.FC = () => {
     <div className="bg-white">
       <section className="bg-brand-deep py-32 text-white">
         <div className="container mx-auto px-4 text-center space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold">About Parker Electrical</h1>
+            <h1 className="text-5xl md:text-7xl font-bold">About Parker Electrical</h1>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
             A family-run electrical contracting business serving Essex and London with excellence since {BUSINESS_INFO.established}.
           </p>
@@ -42,7 +42,11 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=800" className="rounded-3xl shadow-2xl h-[500px] w-full object-cover" alt="Our professional team" />
+            <img
+              src="/assets/logo.png"
+              className="rounded-3xl shadow-2xl h-[500px] w-full object-contain bg-white p-8"
+              alt="Joe Parker Electrical logo"
+            />
           </div>
         </div>
       </section>

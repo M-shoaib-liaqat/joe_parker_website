@@ -1,14 +1,69 @@
 
 import React, { useState } from 'react';
-import { Phone, Mail, Clock, MapPin, CheckCircle2 } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, CheckCircle2, Loader } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 
 const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'General Inquiry',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+
+    try {
+      // Send email using backend API
+      const response = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          serviceNeeded: formData.service,
+          message: formData.message
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        service: 'General Inquiry',
+        message: ''
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again or call us directly.');
+      console.error('API error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -41,9 +96,9 @@ const ContactPage: React.FC = () => {
                 <div className="bg-white/10 p-3 rounded-xl">
                   <Mail className="text-brand-orange" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-white/60 text-sm">Email Us</p>
-                  <a href={`mailto:${BUSINESS_INFO.email}`} className="text-xl font-bold hover:text-brand-electric">{BUSINESS_INFO.email}</a>
+                  <a href={`mailto:${BUSINESS_INFO.email}`} className="text-xl font-bold hover:text-brand-electric break-all">{BUSINESS_INFO.email}</a>
                 </div>
               </div>
 
@@ -97,24 +152,62 @@ const ContactPage: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
+                    {error}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700">Full Name</label>
-                    <input type="text" required placeholder="John Doe" className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" />
+                    <label htmlFor="name" className="text-sm font-bold text-gray-700">Full Name</label>
+                    <input 
+                      id="name" 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required 
+                      placeholder="John Doe" 
+                      className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" 
+                    />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700">Phone Number</label>
-                    <input type="tel" required placeholder="07123 456789" className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" />
+                    <label htmlFor="phone" className="text-sm font-bold text-gray-700">Phone Number</label>
+                    <input 
+                      id="phone" 
+                      type="tel" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required 
+                      placeholder="07123 456789" 
+                      className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" 
+                    />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700">Email Address</label>
-                    <input type="email" required placeholder="john@example.com" className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" />
+                    <label htmlFor="email" className="text-sm font-bold text-gray-700">Email Address</label>
+                    <input 
+                      id="email" 
+                      type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required 
+                      placeholder="john@example.com" 
+                      className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric" 
+                    />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700">Service Needed</label>
-                    <select className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric">
+                    <label htmlFor="service" className="text-sm font-bold text-gray-700">Service Needed</label>
+                    <select 
+                      id="service" 
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric"
+                    >
                       <option>General Inquiry</option>
                       <option>EICR Certificate</option>
                       <option>Emergency Call Out</option>
@@ -125,11 +218,30 @@ const ContactPage: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700">Message / Project Details</label>
-                  <textarea rows={5} placeholder="Tell us about your requirements..." className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric"></textarea>
+                  <label htmlFor="message" className="text-sm font-bold text-gray-700">Message / Project Details</label>
+                  <textarea 
+                    id="message" 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={5} 
+                    placeholder="Tell us about your requirements..." 
+                    className="w-full p-4 rounded-xl bg-brand-light border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-electric"
+                  ></textarea>
                 </div>
-                <button type="submit" className="w-full bg-brand-orange hover:bg-orange-600 text-white p-6 rounded-xl font-bold text-xl transition-all shadow-xl shadow-orange-100 flex items-center justify-center gap-3">
-                  Submit Request
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full bg-brand-orange hover:bg-orange-600 disabled:opacity-50 text-white p-6 rounded-xl font-bold text-xl transition-all shadow-xl shadow-orange-100 flex items-center justify-center gap-3"
+                >
+                  {loading ? (
+                    <>
+                      <Loader className="animate-spin" size={20} />
+                      Sending...
+                    </>
+                  ) : (
+                    'Submit Request'
+                  )}
                 </button>
                 <p className="text-center text-sm text-gray-500">
                   By submitting this form, you agree to our privacy policy. Your data is secure.
