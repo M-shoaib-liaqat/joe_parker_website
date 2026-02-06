@@ -5,7 +5,8 @@ import React from 'react';
  * Direct import works perfectly with Vite
  * The logo will be bundled as a static asset
  */
-import logo from '../assets/logo/logo.png';
+// Use public path for deployed assets
+// logo is served from /assets/logo/logo.png in production (public folder)
 
 /**
  * Alternative approaches for other setups are commented below
@@ -19,7 +20,7 @@ export const Header: React.FC = () => {
           {/* APPROACH 1: Vite/React - Direct Import (RECOMMENDED FOR YOUR PROJECT) */}
           <div className="flex-shrink-0">
             <img
-              src={logo}
+              src="/assets/logo/logo.png"
               alt="Logo"
               className="h-10 w-auto"
             />
