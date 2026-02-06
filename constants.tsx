@@ -6,7 +6,7 @@ import { Service, Review } from './types';
 export const BUSINESS_INFO = {
   name: 'Parker Electrical Solutions',
   phone: '+447737447302',
-  email: 'pesolutionsltd@hotmail.co',
+  email: 'Pesolutions.ltd@hotmail.com',
   areas: ['Brentwood', 'Harlow', 'Chelmsford', 'Basildon', 'Southend', 'Romford', 'Ilford'],
   established: 2014,
   niceic: true

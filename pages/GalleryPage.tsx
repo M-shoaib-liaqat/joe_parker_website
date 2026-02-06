@@ -90,7 +90,7 @@ const GalleryPage: React.FC = () => {
               >
                 <div className="h-80 overflow-hidden relative">
                   <img 
-                    src={encodeURI(img.url)} 
+                    src={img.url} 
                     alt={img.title}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 transition-all duration-700"
@@ -145,7 +145,7 @@ const GalleryPage: React.FC = () => {
           <div className="max-w-6xl w-full h-full flex flex-col items-center justify-center gap-6" onClick={(e) => e.stopPropagation()}>
             <div className="relative w-full h-[70vh] flex items-center justify-center">
               <img 
-                src={encodeURI(GALLERY_IMAGES[selectedImageIndex].url)} 
+                src={GALLERY_IMAGES[selectedImageIndex].url} 
                 className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500"
                 alt={GALLERY_IMAGES[selectedImageIndex].title}
               />
