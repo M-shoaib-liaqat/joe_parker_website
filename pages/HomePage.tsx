@@ -137,7 +137,7 @@ const GalleryHighlights = () => (
         {GALLERY_IMAGES.slice(0, 4).map((img, i) => (
           <div key={i} className="group relative h-[400px] overflow-hidden rounded-3xl shadow-xl border border-gray-100">
             <img 
-              src={img.url} 
+              src={encodeURI(img.url)} 
               className="w-full h-full object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 transition-all duration-700" 
               alt={img.title} 
             />
