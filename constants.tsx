@@ -22,7 +22,7 @@ export interface GalleryImage {
 export const GALLERY_IMAGES: GalleryImage[] = [
   // DOMESTIC INSTALLATIONS
   { 
-    url: '/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (20).jpeg', 
+    url: '/public/assets/domestic/WhatsApp Image 2026-02-01 at 2.01.33 PM (20).jpeg', 
     title: 'Professional Domestic Electrical Installation', 
     category: 'Domestic',
     description: 'Professional domestic electrical installation with attention to detail.'
