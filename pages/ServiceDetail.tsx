@@ -3,7 +3,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft, Phone, ShieldCheck } from 'lucide-react';
 import { SERVICES, BUSINESS_INFO, getIcon } from '../constants';
-import logoImage from '../assets/logo.png';
+import logoImage from '../assets/logo/logo.png';
 
 const ServiceDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
