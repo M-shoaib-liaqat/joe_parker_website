@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { MessageSquare, X, Send, Bot, User, Loader2, Phone, Calendar, Info } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
 import { BUSINESS_INFO, SERVICES } from '../constants';
 
 interface Message {
@@ -17,7 +16,6 @@ const Chatbot: React.FC = () => {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const chatInstance = useRef<any>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,34 +25,6 @@ const Chatbot: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const initChat = () => {
-    if (!chatInstance.current) {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-      const systemInstruction = `
-        You are "Sparky", the friendly and professional AI assistant for Parker Electrical Solutions.
-        The lead electrician is Joe Parker.
-        The business is NICEIC approved and has been running since ${BUSINESS_INFO.established}.
-        We serve: ${BUSINESS_INFO.areas.join(', ')}.
-        Phone: ${BUSINESS_INFO.phone}.
-        Services we offer: ${SERVICES.map(s => s.title).join(', ')}.
-        
-        Your goals:
-        1. Be human-like, helpful, and polite.
-        2. If a user wants to book, ask for their name, phone number, and what service they need. Tell them Joe will call them back personally.
-        3. If it's an emergency, advise them to call ${BUSINESS_INFO.phone} immediately for a <60 min response.
-        4. Answer technical questions about EICRs, EV chargers, and domestic wiring based on our expertise.
-        5. Keep responses concise and engaging. Use UK English.
-      `;
-
-      chatInstance.current = ai.chats.create({
-        model: 'gemini-3-flash-preview',
-        config: {
-          systemInstruction,
-        },
-      });
-    }
-  };
-
   const handleSend = async (forcedText?: string) => {
     const textToSend = forcedText || input;
     if (!textToSend.trim() || isTyping) return;
@@ -63,22 +33,45 @@ const Chatbot: React.FC = () => {
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
-    initChat();
 
     try {
-      const responseStream = await chatInstance.current.sendMessageStream({ message: textToSend });
-      
-      let fullText = '';
-      setMessages(prev => [...prev, { role: 'model', text: '' }]);
+      // Call the backend API endpoint
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          message: textToSend,
+          // Optional: can send custom system instruction if needed
+        }),
+      });
 
-      for await (const chunk of responseStream) {
-        const chunkText = chunk.text;
-        fullText += chunkText;
-        setMessages(prev => {
-          const updated = [...prev];
-          updated[updated.length - 1] = { role: 'model', text: fullText };
-          return updated;
-        });
+      if (!response.ok) {
+        throw new Error(`API error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.success && data.response) {
+        // Simulate streaming effect for UX by adding the response char by char
+        const responseText = data.response;
+        setMessages(prev => [...prev, { role: 'model', text: '' }]);
+
+        // Add response with a small delay per character for visual effect
+        for (let i = 0; i < responseText.length; i++) {
+          await new Promise(resolve => setTimeout(resolve, 10));
+          setMessages(prev => {
+            const updated = [...prev];
+            updated[updated.length - 1] = { 
+              role: 'model', 
+              text: responseText.slice(0, i + 1) 
+            };
+            return updated;
+          });
+        }
+      } else {
+        throw new Error(data.message || 'Failed to get response from API');
       }
     } catch (error) {
       console.error("Chat Error:", error);
@@ -99,7 +92,7 @@ const Chatbot: React.FC = () => {
       {/* Floating Toggle Button */}
       {!isOpen && (
         <button
-          onClick={() => { setIsOpen(true); initChat(); }}
+          onClick={() => { setIsOpen(true); }}
           className="fixed bottom-6 right-6 z-50 bg-brand-deep text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center gap-2 group border-4 border-white"
         >
           <MessageSquare size={28} />

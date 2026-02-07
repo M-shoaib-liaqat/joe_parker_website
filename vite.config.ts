@@ -12,8 +12,7 @@ export default defineConfig(({ mode }) => {
       plugins: [react()],
       assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.webp'],
       define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        // Do not expose API keys to the frontend
       },
       resolve: {
         alias: {
