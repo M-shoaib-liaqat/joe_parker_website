@@ -29,8 +29,8 @@ const ContactPage: React.FC = () => {
     setError('');
 
     try {
-      // Send email using backend API
-      const response = await fetch('http://localhost:3001/api/contact', {
+      // Send email using backend API (use relative path so it works on Vercel)
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
