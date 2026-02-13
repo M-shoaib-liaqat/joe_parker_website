@@ -44,10 +44,23 @@ const ContactPage: React.FC = () => {
         })
       });
 
-      const data = await response.json();
+      // guard against empty or non-JSON responses
+      let data: any = {};
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        try {
+          data = await response.json();
+        } catch {
+          // parsing failed; leave data empty
+        }
+      } else {
+        // try reading text for debugging
+        const text = await response.text();
+        console.error('Non-JSON response from /api/contact:', text);
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to send message');
+        throw new Error((data && data.message) || 'Failed to send message');
       }
 
       setSubmitted(true);
@@ -72,7 +85,7 @@ const ContactPage: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h1 className="text-5xl font-bold text-brand-deep">Get Your Free Quote</h1>
           <p className="text-xl text-gray-600">
-            Professional electrical services for your home or business. We respond to all inquiries within 2 hours.
+            Professional electrical services for your home or business. We respond to all inquiries within 2 hours. You will also receive an email copy of your submission (check your inbox/spam).
           </p>
         </div>
 

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parker Electrical - System Diagnostics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+        }
+        
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .status.healthy {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status.unhealthy {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .error, .warning, .success {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+        
+        .severity {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .severity.critical {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .severity.high {
+            background: #fd7e14;
+            color: white;
+        }
+        
+        .fix-steps {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .fix-steps ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .fix-steps li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        
+        .data-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .data-value {
+            color: #333;
+            font-size: 16px;
+            word-break: break-all;
+        }
+        
+        .true { color: #28a745; font-weight: bold; }
+        .false { color: #dc3545; font-weight: bold; }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Parker Electrical Solutions</h1>
+            <p class="subtitle">System Diagnostics Dashboard</p>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Running diagnostics...</p>
+        </div>
+        
+        <div id="results" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function runDiagnostics() {
+            try {
+                const response = await fetch('/api/diagnose', {
+                    method: 'GET'
+                });
+                
+                const data = await response.json();
+                displayResults(data);
+            } catch (error) {
+                document.getElementById('loading').innerHTML = `
+                    <div class="card error">
+                        <h2>❌ Fatal Error</h2>
+                        <p><strong>Could not connect to diagnostic API</strong></p>
+                        <p>Error: ${error.message}</p>
+                        <div class="fix-steps">
+                            <p><strong>Possible causes:</strong></p>
+                            <ol>
+                                <li>The file <code>api/diagnose.ts</code> is not in your project</li>
+                                <li>Your development server is not running</li>
+                                <li>There's a build error in your project</li>
+                            </ol>
+                            <p style="margin-top: 15px;"><strong>Quick fix:</strong> Make sure you placed <code>diagnose.ts</code> in your <code>api/</code> or <code>pages/api/</code> folder and restart your dev server.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function displayResults(data) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+            
+            const diagnostics = data.diagnostics;
+            const resultsDiv = document.getElementById('results');
+            
+            let html = '';
+            
+            // Summary Card
+            html += `
+                <div class="card">
+                    <h2>📊 Summary
+                        <span class="status ${diagnostics.summary.status.toLowerCase()}">${diagnostics.summary.status}</span>
+                    </h2>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <div class="data-label">Can Chatbot Work?</div>
+                            <div class="data-value ${diagnostics.summary.canChatbotWork}">${diagnostics.summary.canChatbotWork ? '✅ YES' : '❌ NO'}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Critical Errors</div>
+                            <div class="data-value">${diagnostics.summary.criticalErrors}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Total Errors</div>
+                            <div class="data-value">${diagnostics.summary.totalErrors}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Warnings</div>
+                            <div class="data-value">${diagnostics.summary.totalWarnings}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Errors
+            if (diagnostics.errors.length > 0) {
+                html += '<div class="card">';
+                html += '<h2>🚨 Errors</h2>';
+                diagnostics.errors.forEach(error => {
+                    html += `
+                        <div class="error">
+                            <div>
+                                <span class="severity ${error.severity.toLowerCase()}">${error.severity}</span>
+                                <strong>${error.type}</strong>
+                            </div>
+                            <p style="margin: 10px 0;">${error.message}</p>
+                            ${error.fix ? `<div class="fix-steps"><strong>How to fix:</strong><p style="margin-top: 8px;">${error.fix}</p></div>` : ''}
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            // Warnings
+            if (diagnostics.warnings.length > 0) {
+                html += '<div class="card">';
+                html += '<h2>⚠️ Warnings</h2>';
+                diagnostics.warnings.forEach(warning => {
+                    html += `
+                        <div class="warning">
+                            <div><strong>${warning.type}</strong></div>
+                            <p style="margin: 10px 0;">${warning.message}</p>
+                            ${warning.fix ? `<div class="fix-steps"><strong>How to fix:</strong><p style="margin-top: 8px;">${warning.fix}</p></div>` : ''}
+                        </div>
+                    `;
+                });
+                html += '</div>';
+            }
+            
+            // Recommendations
+            if (diagnostics.recommendations.length > 0) {
+                html += '<div class="card">';
+                html += '<h2>💡 Recommendations</h2>';
+                diagnostics.recommendations.forEach(rec => {
+                    const className = rec.type === 'SUCCESS' ? 'success' : 'warning';
+                    html += `<div class="${className}">`;
+                    if (rec.message) {
+                        html += `<p><strong>${rec.message}</strong></p>`;
+                    }
+                    if (rec.action) {
+                        html += `<p style="margin: 10px 0;"><strong>Action: ${rec.action}</strong></p>`;
+                    }
+                    if (rec.steps) {
+                        html += '<div class="fix-steps"><ol>';
+                        rec.steps.forEach(step => {
+                            html += `<li>${step}</li>`;
+                        });
+                        html += '</ol></div>';
+                    }
+                    html += '</div>';
+                });
+                html += '</div>';
+            }
+            
+            // Environment
+            html += `
+                <div class="card">
+                    <h2>🌍 Environment</h2>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <div class="data-label">Node Environment</div>
+                            <div class="data-value">${diagnostics.environment.NODE_ENV}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Platform</div>
+                            <div class="data-value">${diagnostics.environment.platform}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Node Version</div>
+                            <div class="data-value">${diagnostics.environment.nodeVersion}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Vercel Env</div>
+                            <div class="data-value">${diagnostics.environment.vercelEnv}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Has Gemini Key</div>
+                            <div class="data-value ${diagnostics.environment.hasGeminiKey}">${diagnostics.environment.hasGeminiKey ? '✅ YES' : '❌ NO'}</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Key Length</div>
+                            <div class="data-value">${diagnostics.environment.geminiKeyLength} characters</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Packages
+            html += '<div class="card">';
+            html += '<h2>📦 Packages</h2>';
+            html += '<div class="data-grid">';
+            Object.keys(diagnostics.packages).forEach(pkg => {
+                const pkgData = diagnostics.packages[pkg];
+                html += `
+                    <div class="data-item">
+                        <div class="data-label">${pkg}</div>
+                        <div class="data-value ${pkgData.installed}">${pkgData.installed ? '✅ Installed' : '❌ Missing'}</div>
+                        ${pkgData.error ? `<p style="color: #dc3545; font-size: 12px; margin-top: 5px;">${pkgData.error}</p>` : ''}
+                    </div>
+                `;
+            });
+            html += '</div></div>';
+            
+            // API Tests
+            if (diagnostics.apiTests.gemini) {
+                html += '<div class="card">';
+                html += '<h2>🧪 API Tests</h2>';
+                const gemini = diagnostics.apiTests.gemini;
+                html += `
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <div class="data-label">Gemini API</div>
+                            <div class="data-value ${gemini.success}">${gemini.success ? '✅ Working' : '❌ Failed'}</div>
+                        </div>
+                        ${gemini.testResponse ? `
+                        <div class="data-item">
+                            <div class="data-label">Test Response</div>
+                            <div class="data-value">${gemini.testResponse}</div>
+                        </div>
+                        ` : ''}
+                        ${gemini.error ? `
+                        <div class="data-item" style="grid-column: 1/-1;">
+                            <div class="data-label">Error</div>
+                            <div class="data-value" style="color: #dc3545;">${gemini.error}</div>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+                html += '</div>';
+            }
+            
+            // Refresh button
+            html += `
+                <div class="card" style="text-align: center;">
+                    <button onclick="location.reload()">🔄 Run Diagnostics Again</button>
+                </div>
+            `;
+            
+            resultsDiv.innerHTML = html;
+        }
+        
+        // Run on page load
+        runDiagnostics();
+    </script>
+</body>
+</html>

@@ -1,7 +1,16 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import sgMail from '@sendgrid/mail';
+import * as brevo from '@getbrevo/brevo';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
@@ -14,13 +23,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ success: false, message: 'Missing required fields' });
     }
 
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-    if (!SENDGRID_API_KEY) {
-      console.error('SENDGRID_API_KEY is not configured in environment');
-      return res.status(500).json({ success: false, message: 'Server configuration error' });
+    const BREVO_API_KEY = process.env.BREVO_API_KEY;
+    if (!BREVO_API_KEY) {
+      console.error('BREVO_API_KEY is not configured in environment');
+      return res.status(503).json({
+        success: false,
+        message: 'Email service is temporarily unavailable. Please try again later or call us directly.',
+      });
     }
 
-    sgMail.setApiKey(SENDGRID_API_KEY);
+    // Initialize Brevo API
+    const apiInstance = new brevo.TransactionalEmailsApi();
+    apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, BREVO_API_KEY);
 
     const sanitized = (text: string) =>
       String(text || '')
@@ -40,20 +54,61 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       <p>${sanitized(message).replace(/\n/g, '<br>')}</p>
     `;
 
-    const msg = {
-      to: 'info@parkerelectricalsolutions.uk',
-      from: 'Parker Electrical Solutions <info@parkerelectricalsolutions.uk>',
-      replyTo: email,
-      subject: 'New Quote Request – Parker Electrical Solutions',
-      html: htmlContent,
-      text: `Full Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceNeeded}\nMessage: ${message}`,
-    } as any;
+    const businessRecipient = 'shoaibliaqat318@gmail.com';
 
-    await sgMail.send(msg);
+    // Email to business
+    const businessEmail = new brevo.SendSmtpEmail();
+    businessEmail.to = [{ email: businessRecipient }];
+    businessEmail.sender = { name: 'Parker Electrical Solutions', email: 'info@parkerelectricalsolutions.uk' };
+    businessEmail.replyTo = { email: email };
+    businessEmail.subject = 'New Quote Request – Parker Electrical Solutions';
+    businessEmail.htmlContent = htmlContent;
+    businessEmail.textContent = `Full Name: ${fullName}\nPhone: ${phone}\nEmail: ${email}\nService: ${serviceNeeded}\nMessage: ${message}`;
 
-    return res.status(200).json({ success: true, message: 'Message sent' });
+    await apiInstance.sendTransacEmail(businessEmail);
+
+    // Confirmation email to customer
+    const customerEmail = new brevo.SendSmtpEmail();
+    customerEmail.to = [{ email: email }];
+    customerEmail.sender = { name: 'Parker Electrical Solutions', email: 'info@parkerelectricalsolutions.uk' };
+    customerEmail.subject = 'We've received your quote request – Parker Electrical Solutions';
+    customerEmail.htmlContent = `
+      <h2>Thanks for getting in touch, ${sanitized(fullName)}!</h2>
+      <p>We've received your quote request and will get back to you as soon as possible.</p>
+      <h3>Your details</h3>
+      <p><strong>Phone:</strong> ${sanitized(phone)}</p>
+      <p><strong>Email:</strong> ${sanitized(email)}</p>
+      <p><strong>Service Needed:</strong> ${sanitized(serviceNeeded)}</p>
+      <p><strong>Message:</strong></p>
+      <p>${sanitized(message).replace(/\n/g, '<br>')}</p>
+      <p style="margin-top:16px;">If this is an emergency, please call us directly on <strong>+447737447302</strong>.</p>
+    `;
+    customerEmail.textContent = `Thanks for getting in touch, ${fullName}!
+
+We've received your quote request and will get back to you as soon as possible.
+
+Your details:
+- Phone: ${phone}
+- Email: ${email}
+- Service Needed: ${serviceNeeded}
+- Message: ${message}
+
+If this is an emergency, please call us directly on +447737447302.`;
+
+    try {
+      await apiInstance.sendTransacEmail(customerEmail);
+    } catch (e) {
+      console.warn('Warning: failed to send confirmation email to customer:', e);
+    }
+
+    return res.status(200).json({ success: true, message: 'Message sent successfully' });
   } catch (err) {
     console.error('Contact API error:', err);
-    return res.status(500).json({ success: false, message: 'Failed to send message' });
+    const msg = err instanceof Error ? err.message : String(err);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to send message',
+      error: process.env.NODE_ENV === 'development' ? msg : undefined,
+    });
   }
 }
