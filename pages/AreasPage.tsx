@@ -21,9 +21,11 @@ const AreasPage: React.FC = () => {
             <div className="space-y-8">
               <h2 className="text-4xl font-bold text-brand-deep">Local Presence, Professional Quality</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Parker Electrical Solutions is proud to be a truly local business. We serve the following major areas and their surroundings with rapid-response emergency services and scheduled electrical works.
+                Parker Electrical Solutions is proud to be a truly local business. We serve the following major areas and – more importantly – all of Essex and London with rapid-response emergency services and scheduled electrical works.
               </p>
-              
+              <p className="text-sm text-gray-500">
+                (List is illustrative; click or call if your location isn’t mentioned – we cover the whole county.)
+              </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {BUSINESS_INFO.areas.map((area, idx) => (
                   <div key={idx} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
@@ -50,7 +52,7 @@ const AreasPage: React.FC = () => {
                     <div className="shrink-0"><Clock className="text-brand-electric" /></div>
                     <div>
                       <h4 className="font-bold">Faster Response Times</h4>
-                      <p className="text-gray-600 text-sm">Being local allows us to reach emergency call-outs in Brentwood and surrounding areas in under 60 minutes.</p>
+                      <p className="text-gray-600 text-sm">Being local allows us to reach emergency call-outs anywhere across Essex in under 60 minutes.</p>
                     </div>
                   </div>
                   <div className="flex gap-4">

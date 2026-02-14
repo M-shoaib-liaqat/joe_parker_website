@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft, Phone, ShieldCheck } from 'lucide-react';
-import { SERVICES, BUSINESS_INFO, getIcon } from '../constants';
+import { SERVICES, BUSINESS_INFO, getIcon, GALLERY_IMAGES, GalleryImage } from '../constants';
 
 const ServiceDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -12,17 +12,28 @@ const ServiceDetail: React.FC = () => {
     return <Navigate to="/" />;
   }
 
-  // Map service ID to a more relevant image
-  const getServiceImage = (id: string) => {
-    switch(id) {
-      case 'eicr': return 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=800';
-      case 'emergency': return 'https://images.unsplash.com/photo-1621905252507-b354bcadc0e4?auto=format&fit=crop&q=80&w=800';
-      case 'domestic': return 'https://images.unsplash.com/photo-1556911223-e153e9914940?auto=format&fit=crop&q=80&w=800';
-      case 'commercial': return 'https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?auto=format&fit=crop&q=80&w=800';
-      case 'ev': return 'https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&q=80&w=800';
-      case 'rewiring': return 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=800';
-      default: return '/assets/logo/logo.png';
+  // Choose hero image. prefer explicit field on service, otherwise pick from gallery
+  const getServiceImage = (serviceId: string) => {
+    const svc = SERVICES.find(s => s.id === serviceId);
+    if (svc && svc.heroImage) {
+      return svc.heroImage;
     }
+
+    // fallback to first gallery image matching category
+    const mapCat: Record<string, string> = {
+      eicr: 'Domestic',
+      emergency: 'Domestic',
+      domestic: 'Domestic',
+      commercial: 'Commercial',
+      ev: 'Commercial',
+      rewiring: 'Domestic'
+    };
+    let cat = mapCat[serviceId] || 'Domestic';
+    let imgs = GALLERY_IMAGES.filter(img => img.category === cat);
+    if (serviceId === 'emergency') {
+      imgs = GALLERY_IMAGES.filter(img => img.category === 'Domestic' || img.category === 'Commercial');
+    }
+    return imgs.length > 0 ? imgs[0].url : '/assets/logo/logo.png';
   };
 
   return (
@@ -34,6 +45,10 @@ const ServiceDetail: React.FC = () => {
             <ArrowLeft size={20} /> Back to Home
           </Link>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative mb-8 lg:mb-0">
+               <div className="absolute inset-0 bg-brand-electric rounded-3xl translate-x-4 translate-y-4 -z-10 opacity-20"></div>
+               <img src={getServiceImage(service.id)} className="rounded-3xl shadow-2xl h-[450px] w-full object-cover" alt={service.title} />
+            </div>
             <div className="space-y-6">
               <div className="bg-brand-electric w-20 h-20 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-brand-electric/20">
                 {getIcon(service.icon)}
@@ -44,6 +59,9 @@ const ServiceDetail: React.FC = () => {
               <p className="text-xl text-white/80 max-w-xl">
                 {service.longDescription}
               </p>
+              <p className="text-lg text-white/80 max-w-xl">
+                Proudly serving all areas of Essex as well as London with every job.
+              </p>
               <div className="flex flex-wrap gap-4">
                 <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-brand-orange text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center gap-3">
                   <Phone /> Call for Service
@@ -52,10 +70,6 @@ const ServiceDetail: React.FC = () => {
                   Get Free Quote
                 </Link>
               </div>
-            </div>
-            <div className="hidden lg:block relative">
-               <div className="absolute inset-0 bg-brand-electric rounded-3xl translate-x-4 translate-y-4 -z-10 opacity-20"></div>
-               <img src={getServiceImage(service.id)} className="rounded-3xl shadow-2xl h-[450px] w-full object-cover" alt={service.title} />
             </div>
           </div>
         </div>

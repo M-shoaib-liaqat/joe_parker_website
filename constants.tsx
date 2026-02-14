@@ -7,7 +7,8 @@ export const BUSINESS_INFO = {
   name: 'Parker Electrical Solutions',
   phone: '+447737447302',
   email: 'Pesolutions.ltd@hotmail.com',
-  areas: ['Brentwood', 'Harlow', 'Chelmsford', 'Basildon', 'Southend', 'Romford', 'Ilford'],
+  // primary examples; the first entry emphasises county coverage
+  areas: ['All of Essex', 'Harlow', 'Chelmsford', 'Basildon', 'Southend', 'Romford', 'Ilford'],
   established: 2014,
   niceic: true
 };
@@ -358,8 +359,8 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { 
     url: '/assets/industrial/industrial5.jpeg', 
     title: 'Industrial Installation 5', 
-    category: 'Commercial',
-    description: 'Commercial-grade electrical installation.'
+    category: 'Domestic',
+    description: 'Domestic electrical installation.'
   },
 
   // RESTAURANT/HOSPITALITY INSTALLATIONS
@@ -391,6 +392,7 @@ export const SERVICES: Service[] = [
     icon: 'FileCheck',
     description: 'NICEIC approved landlord safety testing and reports.',
     longDescription: 'Ensuring your property meets current safety regulations with thorough EICR inspections. Ideal for landlords and homeowners alike.',
+    heroImage: '/assets/domestic/domestic3.jpeg',
     seoTitle: 'EICR Certificates Essex | Landlord Electrical Safety Testing',
     metaDescription: 'NICEIC approved EICR certificates in Essex. Fast, thorough electrical testing for landlords. Same-day reports.',
     features: ['Fast Turnaround', 'Detailed Reports', 'Remedial Estimates', 'NICEIC Certified']
@@ -402,6 +404,7 @@ export const SERVICES: Service[] = [
     icon: 'Zap',
     description: 'Fast response electrical repairs when you need them most.',
     longDescription: 'Available 24/7 for all electrical emergencies in Essex and London. We aim to be with you in under 60 minutes.',
+    heroImage: '/assets/domestic/domestic9.jpeg',
     seoTitle: 'Emergency Electrician Essex | 24/7 Call Out Service',
     metaDescription: 'Trusted emergency electrician serving Essex and London. 24/7 rapid response for all power faults and repairs.',
     features: ['24/7 Availability', 'Under 60min Response', 'Fault Finding', 'Safe & Secure Repairs']
@@ -413,6 +416,7 @@ export const SERVICES: Service[] = [
     icon: 'Home',
     description: 'From extra sockets to full home automation and lighting.',
     longDescription: 'Quality workmanship for every aspect of your home\'s electrical systems.',
+    heroImage: '/assets/domestic/domestic5.jpeg',
     seoTitle: 'Domestic Electrician Essex | Residential Electrical Services',
     metaDescription: 'Professional home electrician for all residential projects in Essex. Lighting, sockets, and smart home setup.',
     features: ['House Wiring', 'Lighting Design', 'Socket Upgrades', 'Fuse Board Changes']
@@ -424,6 +428,7 @@ export const SERVICES: Service[] = [
     icon: 'Building2',
     description: 'Maintenance and installations for offices, shops, and units.',
     longDescription: 'Bespoke electrical solutions designed to keep your business running safely and efficiently.',
+    heroImage: '/assets/industrial/industrial2.jpeg',
     seoTitle: 'Commercial Electrician Essex | Business Electrical Contractors',
     metaDescription: 'Expert commercial electrical contractors for offices and businesses in Essex. Maintenance, testing, and installs.',
     features: ['Office Fit-outs', 'Maintenance Contracts', 'Emergency Lighting', 'PAT Testing']
@@ -435,6 +440,7 @@ export const SERVICES: Service[] = [
     icon: 'BatteryCharging',
     description: 'Expert installation of home and commercial EV charging points.',
     longDescription: 'Upgrade your home with a fast, safe EV charging point installed by certified professionals.',
+    heroImage: 'https://images.unsplash.com/photo-1600490819734-6311c5c6f517?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGV2JTIwY2hhcmdlcnxlbnwwfHwwfHx8MA%3D%3D',
     seoTitle: 'EV Charger Installation Essex | Home Electric Car Charging',
     metaDescription: 'OZEV certified EV charger installers in Essex. Home and commercial charging solutions.',
     features: ['Smart Chargers', 'Tethered & Socketed', 'Load Management', 'Grant Support']
@@ -446,6 +452,7 @@ export const SERVICES: Service[] = [
     icon: 'Shield',
     description: 'Full or partial house rewires with minimal disruption.',
     longDescription: 'Future-proof your home and ensure safety with a professional full or partial rewire.',
+    heroImage: 'https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/electrical-wiring/_jcr_content/root/container/container_2072089177/teaser_copy_copy_cop_688802308.coreimg.jpeg/1741675137288/electrical-wiring-6.jpeg',
     seoTitle: 'House Rewiring Essex | Full & Partial Rewiring Services',
     metaDescription: 'Expert house rewiring services in Essex. Safe, efficient, and compliant with all regulations.',
     features: ['Minimal Disruption', 'Safety Certified', 'Modern Solutions', '10-Year Guarantee']

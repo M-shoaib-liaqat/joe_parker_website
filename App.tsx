@@ -12,10 +12,21 @@ import Chatbot from './components/Chatbot';
 import { BUSINESS_INFO, SERVICES } from './constants';
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // when we land on the pseudo-path '/services', treat as a home-page hash link
+    const targetHash = hash || (pathname === '/services' ? '#services' : '');
+    if (targetHash) {
+      const elem = document.querySelector(targetHash);
+      if (elem) {
+        elem.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
   return null;
 };
 
@@ -31,7 +42,8 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/#services' },
+    // Services link should always reset the hash to the home page section
+    { name: 'Services', path: '/#services', isAnchor: true },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Areas', path: '/areas' },
     { name: 'About', path: '/about' },
@@ -50,19 +62,30 @@ const Header = () => {
             <span className="text-xs font-semibold tracking-widest text-brand-electric">
               ELECTRICAL SOLUTIONS
             </span>
+            <span className="text-sm text-gray-600 mt-0.5">Domestic & Commercial Electrical Services</span>
           </div>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="font-semibold text-brand-dark hover:text-brand-electric transition-colors"
-            >
-              {link.name}
-            </Link>
+            link.isAnchor ? (
+              <a
+                key={link.name}
+                href={link.path}
+                className="font-semibold text-brand-dark hover:text-brand-electric transition-colors"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="font-semibold text-brand-dark hover:text-brand-electric transition-colors"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <a
             href={`tel:${BUSINESS_INFO.phone}`}
@@ -83,14 +106,25 @@ const Header = () => {
       <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 transform ${isOpen ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0 pointer-events-none'}`}>
         <div className="flex flex-col p-6 gap-4">
           {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-lg font-bold text-brand-dark border-b border-gray-100 pb-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </Link>
+            link.isAnchor ? (
+              <a
+                key={link.name}
+                href={link.path}
+                className="text-lg font-bold text-brand-dark border-b border-gray-100 pb-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-lg font-bold text-brand-dark border-b border-gray-100 pb-2"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <a
             href={`tel:${BUSINESS_INFO.phone}`}
@@ -203,6 +237,9 @@ const App: React.FC = () => {
         <main className="flex-grow pt-16 lg:pt-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            {/* support legacy hash variant and user typing #services directly */}
+            <Route path="/services" element={<HomePage />} />
+            <Route path="services" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/areas" element={<AreasPage />} />

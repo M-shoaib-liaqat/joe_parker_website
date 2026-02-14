@@ -9,6 +9,13 @@ export interface Service {
   seoTitle: string;
   metaDescription: string;
   features: string[];
+  /**
+   * Optional hero image to display at the top of the service detail page.
+   * Should be a path under `/assets/...` so that it uses local images rather
+   * than external stock photos. If omitted a reasonable default will be
+   * chosen from the gallery.
+   */
+  heroImage?: string;
 }
 
 export interface Review {

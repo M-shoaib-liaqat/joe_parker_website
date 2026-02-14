@@ -84,7 +84,7 @@ const EmergencyBanner = () => (
 );
 
 const ServicesSection = () => (
-  <section id="services" className="py-24 bg-brand-light">
+  <section id="services" className="py-24 bg-brand-light scroll-mt-32">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
         <h2 className="text-4xl font-bold text-brand-deep uppercase tracking-tight">Our Professional Services</h2>
