@@ -28,6 +28,9 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, '.'),
       }
     },
+    css: {
+      postcss: path.resolve(__dirname, 'postcss.config.cjs'),
+    },
     build: {
       assetsDir: 'assets',
       outDir: 'dist',

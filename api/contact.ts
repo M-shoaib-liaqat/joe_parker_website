@@ -71,7 +71,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const customerEmail = new brevo.SendSmtpEmail();
     customerEmail.to = [{ email: email }];
     customerEmail.sender = { name: 'Parker Electrical Solutions', email: 'info@parkerelectricalsolutions.uk' };
-    customerEmail.subject = 'We've received your quote request – Parker Electrical Solutions';
+    customerEmail.subject = 'We have received your quote request – Parker Electrical Solutions';
     customerEmail.htmlContent = `
       <h2>Thanks for getting in touch, ${sanitized(fullName)}!</h2>
       <p>We've received your quote request and will get back to you as soon as possible.</p>
