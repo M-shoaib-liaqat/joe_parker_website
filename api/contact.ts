@@ -59,7 +59,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Email to business
     const businessEmail = new brevo.SendSmtpEmail();
     businessEmail.to = [{ email: businessRecipient }];
-    businessEmail.sender = { name: 'Parker Electrical Solutions', email: 'info@parkerelectricalsolutions.uk' };
+    businessEmail.sender = { name: 'Parker Electrical Solutions', email: 'pesolutions.ltd@hotmail.com' };
     businessEmail.replyTo = { email: email };
     businessEmail.subject = 'New Quote Request – Parker Electrical Solutions';
     businessEmail.htmlContent = htmlContent;
@@ -70,7 +70,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Confirmation email to customer
     const customerEmail = new brevo.SendSmtpEmail();
     customerEmail.to = [{ email: email }];
-    customerEmail.sender = { name: 'Parker Electrical Solutions', email: 'info@parkerelectricalsolutions.uk' };
+    customerEmail.sender = { name: 'Parker Electrical Solutions', email: 'pesolutions.ltd@hotmail.com' };
     customerEmail.subject = 'We have received your quote request – Parker Electrical Solutions';
     customerEmail.htmlContent = `
       <h2>Thanks for getting in touch, ${sanitized(fullName)}!</h2>
