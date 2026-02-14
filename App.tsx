@@ -54,15 +54,9 @@ const Header = () => {
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/assets/logo/logo.png" alt="Parker Electrical logo" className="h-12 w-auto object-contain" />
-          <div className="flex flex-col hidden sm:flex">
-            <span className={`font-bold text-xl leading-tight ${scrolled ? 'text-brand-deep' : 'text-brand-deep'}`}>
-              PARKER
-            </span>
-            <span className="text-xs font-semibold tracking-widest text-brand-electric">
-              ELECTRICAL SOLUTIONS
-            </span>
-            <span className="text-sm text-gray-600 mt-0.5">Domestic & Commercial Electrical Services</span>
+          <img src="/assets/logo/logo.png" alt="Parker Electrical logo" className="h-16 md:h-20 w-auto object-contain" />
+          <div className="flex flex-col">
+            <span className="text-sm text-gray-800 font-semibold">Domestic & Commercial Electrical Services</span>
           </div>
         </Link>
 
