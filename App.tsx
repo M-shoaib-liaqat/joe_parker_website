@@ -50,13 +50,19 @@ const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const linkClass = scrolled
+    ? 'font-semibold text-brand-dark hover:text-brand-electric transition-colors'
+    : 'font-semibold text-white hover:text-brand-orange transition-colors';
+
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex items-center gap-3">
           <img src="/assets/logo/logo.png" alt="Parker Electrical logo" className="h-16 md:h-20 w-auto object-contain" />
           <div className="flex flex-col">
-            <span className="text-sm text-gray-800 font-semibold">Domestic & Commercial Electrical Services</span>
+            <span className={`text-sm font-semibold transition-colors duration-300 ${scrolled ? 'text-gray-800' : 'text-white'}`}>
+              Domestic & Commercial Electrical Services
+            </span>
           </div>
         </Link>
 
@@ -67,7 +73,7 @@ const Header = () => {
               <a
                 key={link.name}
                 href={link.path}
-                className="font-semibold text-brand-dark hover:text-brand-electric transition-colors"
+                className={linkClass}
               >
                 {link.name}
               </a>
@@ -75,7 +81,7 @@ const Header = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="font-semibold text-brand-dark hover:text-brand-electric transition-colors"
+                className={linkClass}
               >
                 {link.name}
               </Link>
@@ -91,7 +97,7 @@ const Header = () => {
         </nav>
 
         {/* Mobile Nav Toggle */}
-        <button className="lg:hidden p-2 text-brand-deep" onClick={() => setIsOpen(!isOpen)}>
+        <button className={`lg:hidden p-2 transition-colors duration-300 ${scrolled ? 'text-brand-deep' : 'text-white'}`} onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>

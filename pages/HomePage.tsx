@@ -1,61 +1,96 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Star, Shield, ArrowRight, Phone, Clock, MapPin, Award, Image as ImageIcon } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES, REVIEWS, GALLERY_IMAGES, getIcon } from '../constants';
 
 const Hero = () => (
-  <section className="relative h-[85vh] min-h-[600px] flex items-center overflow-hidden bg-brand-deep">
+  <section className="relative flex items-center overflow-hidden bg-brand-deep lg:min-h-[85vh] -mt-16 lg:mt-0 pt-16 lg:pt-0">
+    {/* Background */}
     <div className="absolute inset-0 z-0">
       <img
         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1920"
-        className="w-full h-full object-cover opacity-30 scale-105 animate-pulse-slow brightness-110"
+        className="w-full h-full object-cover opacity-25 brightness-110"
         alt="High-End Architectural Electrical Lighting"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-deep via-brand-deep/80 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-deep/95 via-brand-deep/85 to-brand-deep/60"></div>
     </div>
-    <div className="container mx-auto px-4  relative z-10">
-      <div className="max-w-3xl space-y-8">
-        {/* <div className="inline-flex items-center gap-2 bg-brand-electric/20 border border-brand-electric/30 px-4 py-8 rounded-full text-brand-electric font-bold text-sm animate-bounce-in">
-          <Award size={18} />
-          NICEIC APPROVED & 10+ YEARS EXPERIENCE
-        </div> */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1]">
-          Architectural Electrical <span className="text-brand-electric">Specialists</span>
-        </h1>
-        <p className="text-xl text-gray-300 max-w-xl">
-          Enhancing homes and businesses across Essex & London with high-clarity lighting design and expert electrical engineering.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <a
-            href={`tel:${BUSINESS_INFO.phone}`}
-            className="bg-brand-orange hover:bg-orange-600 text-white px-8 py-5 rounded-lg text-xl font-bold flex items-center justify-center gap-3 transition-all shadow-2xl hover:shadow-orange-400"
-          >
-            <Phone />
-            Call Now: {BUSINESS_INFO.phone}
-          </a>
-          <Link
-            to="/gallery"
-            className="bg-white/10 hover:bg-white/20 text-white backdrop-blur border border-white/30 px-8 py-5 rounded-lg text-xl font-bold flex items-center justify-center gap-3 transition-all"
-          >
-            <ImageIcon /> Enhanced Gallery
-          </Link>
-        </div>
-        <div className="flex flex-wrap gap-8 pt-8">
-          <div className="flex items-center gap-3 text-white">
-            <CheckCircle2 className="text-brand-success" size={28} />
-            <div style={{'marginbottom': '4px'}}>
-              <p className="font-bold leading-none">Fully Insured</p>
-              <p className="text-sm text-gray-400">Public Liability Covered</p>
+
+    <div className="container mx-auto px-5 relative z-10 pb-10 pt-0 lg:py-20">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Mobile: stacked, centered. Desktop: side by side */}
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+          {/* ── TEXT SIDE ── */}
+          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-4 lg:gap-6">
+
+            {/* Headline — client-required text, styled with weight contrast */}
+            <h1 className="font-bold text-white leading-[1.1]">
+              <span className="block text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light text-white/80">
+                Domestic &amp; Commercial
+              </span>
+              <span className="block text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-white mt-1">
+                Electrical
+                <span className="text-brand-orange"> Solutions</span>
+              </span>
+            </h1>
+
+            <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-md leading-relaxed">
+              Enhancing homes and businesses across Essex &amp; London with high clarity lighting design and expert electrical engineering.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <a
+                href={`tel:${BUSINESS_INFO.phone}`}
+                className="bg-brand-orange hover:bg-orange-600 text-white px-6 py-3.5 lg:px-7 lg:py-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-brand-orange/30 text-sm sm:text-base lg:text-lg"
+              >
+                <Phone size={18} />
+                {BUSINESS_INFO.phone}
+              </a>
+              <Link
+                to="/gallery"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 lg:px-7 lg:py-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all text-sm sm:text-base lg:text-lg"
+              >
+                <ImageIcon size={18} /> Our Gallery
+              </Link>
+            </div>
+
+            {/* Trust badges */}
+            <div className="flex items-center gap-5 lg:gap-6">
+              <div className="flex items-center gap-2 text-white">
+                <CheckCircle2 className="text-brand-success flex-shrink-0" size={16} />
+                <div>
+                  <p className="font-semibold text-xs lg:text-sm leading-none">Fully Insured</p>
+                  <p className="text-xs text-gray-400 mt-0.5">Public Liability</p>
+                </div>
+              </div>
+              <div className="w-px h-7 bg-white/20"></div>
+              <div className="flex items-center gap-2 text-white">
+                <CheckCircle2 className="text-brand-success flex-shrink-0" size={16} />
+                <div>
+                  <p className="font-semibold text-xs lg:text-sm leading-none">Precision Quality</p>
+                  <p className="text-xs text-gray-400 mt-0.5">NICEIC Standards</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-3 text-white">
-            <CheckCircle2 className="text-brand-success" size={28} />
-            <div>
-              <p className="font-bold leading-none">Precision Quality</p>
-              <p className="text-sm text-gray-400">NICEIC Standards Met</p>
+
+          {/* ── LOGO CARD ── desktop: right column. Mobile: hidden (navbar has it) */}
+          <div className="hidden lg:flex flex-shrink-0 items-center justify-center">
+            <div className="relative">
+              {/* Glow ring behind card */}
+              <div className="absolute inset-0 rounded-3xl bg-brand-orange/20 blur-2xl scale-110"></div>
+              <div className="relative bg-white rounded-3xl shadow-2xl p-10 flex items-center justify-center w-72 h-72 xl:w-80 xl:h-80 border border-white/80">
+                <img
+                  src="/assets/logo/logo.png"
+                  alt="Parker Electrical Solutions Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
