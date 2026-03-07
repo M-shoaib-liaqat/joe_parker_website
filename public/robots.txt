@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow Googlebot to crawl JS and CSS files for React rendering
+User-agent: Googlebot
+Allow: /*.js$
+Allow: /*.css$
+
+# Block specific paths for all crawlers
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://www.parkerelectricalsolutions.uk/sitemap.xml
