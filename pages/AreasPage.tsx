@@ -2,10 +2,57 @@
 import React from 'react';
 import { MapPin, Phone, Clock, ChevronRight } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
+import SEO from '../components/SEO';
 
 const AreasPage: React.FC = () => {
+  const areasStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Areas We Serve | Parker Electrical Solutions | Electrician Essex & London",
+    "description": "Parker Electrical Solutions serves all of Essex and Greater London with NICEIC approved electrical services. Emergency electrician available 24/7 across Harlow, Chelmsford, Basildon, Brentwood, and East London.",
+    "url": "https://www.parkerelectricalsolutions.uk/areas",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Parker Electrical Solutions Ltd",
+      "areaServed": [
+        {
+          "@type": "Place",
+          "name": "Essex"
+        },
+        {
+          "@type": "Place",
+          "name": "Greater London"
+        },
+        {
+          "@type": "Place",
+          "name": "Harlow"
+        },
+        {
+          "@type": "Place",
+          "name": "Chelmsford"
+        },
+        {
+          "@type": "Place",
+          "name": "Basildon"
+        },
+        {
+          "@type": "Place",
+          "name": "Brentwood"
+        }
+      ]
+    }
+  };
+
   return (
-    <div className="bg-white">
+    <>
+      <SEO
+        title="Electrician Areas Essex & London | NICEIC Approved | Parker"
+        description="NICEIC approved electrician serving Harlow, Chelmsford, Basildon, Brentwood, Colchester, Romford, East London, Southend-on-Sea, and all of Essex & Greater London. Domestic & commercial electrical services. Family-run since 2014, fully insured."
+        keywords="electrician service areas Essex, emergency electrician London, NICEIC electrician Harlow, electrical services Chelmsford, commercial electrician Basildon, domestic electrician Brentwood, electrician East London"
+        canonical="/areas"
+        structuredData={areasStructuredData}
+      />
+      <div className="bg-white">
       <section className="bg-brand-deep py-32 text-white">
         <div className="container mx-auto px-4 text-center space-y-6">
           <h1 className="text-5xl font-bold">Areas We Serve</h1>
@@ -87,6 +134,7 @@ const AreasPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

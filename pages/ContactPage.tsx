@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Clock, MapPin, CheckCircle2, Loader } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
+import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -80,7 +81,35 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-brand-light min-h-screen pt-32 pb-20">
+    <>
+      <SEO
+        title="Contact NICEIC Electrician Essex | Parker Electrical Solutions"
+        description="Contact Parker Electrical Solutions for NICEIC approved electrical services in Essex & London. Get a free quote for rewires, EICR certificates, consumer unit replacements, and emergency repairs. Call +447737447302 or email Pesolutions.ltd@hotmail.com."
+        keywords="contact Parker Electrical Solutions, electrician quote Essex, free electrical quote Harlow, emergency electrician contact, NICEIC electrician Essex contact, electrical services quote London"
+        canonical="/contact"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Parker Electrical Solutions",
+          "description": "Get in touch with Essex's leading NICEIC approved electrician for free quotes and emergency electrical services",
+          "url": "https://www.parkerelectricalsolutions.uk/contact",
+          "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Parker Electrical Solutions Ltd",
+            "telephone": "+447737447302",
+            "email": "Pesolutions.ltd@hotmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "125 The Briars",
+              "addressLocality": "Harlow",
+              "addressRegion": "Essex",
+              "postalCode": "CM18 7EN",
+              "addressCountry": "GB"
+            }
+          }
+        }}
+      />
+      <div className="bg-brand-light min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h1 className="text-5xl font-bold text-brand-deep">Get Your Free Quote</h1>
@@ -265,6 +294,7 @@ const ContactPage: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

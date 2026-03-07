@@ -2,10 +2,38 @@
 import React from 'react';
 import { Award, Shield, Users, Clock, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
+  const aboutStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Parker Electrical Solutions | NICEIC Approved Electrician Essex",
+    "description": "Learn about Parker Electrical Solutions, a family-run NICEIC approved electrical contractor serving Essex and London since 2014. Meet Joe Parker and our commitment to quality electrical services.",
+    "url": "https://www.parkerelectricalsolutions.uk/about",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Parker Electrical Solutions Ltd",
+      "founder": {
+        "@type": "Person",
+        "name": "Joe Parker",
+        "jobTitle": "Lead Electrician"
+      },
+      "foundingDate": "2014",
+      "description": "Family-run NICEIC approved electrical contractor specializing in domestic and commercial electrical services across Essex and London"
+    }
+  };
+
   return (
-    <div className="bg-white">
+    <>
+      <SEO
+        title="About Parker Electrical Solutions | NICEIC Approved Electrician Essex"
+        description="Learn about Parker Electrical Solutions, a family-run NICEIC approved electrical contractor serving Essex and London since 2014. Meet Joe Parker and our commitment to quality electrical services."
+        keywords="about Parker Electrical Solutions, NICEIC approved electrician Essex, Joe Parker electrician, family run electrician Harlow, electrical contractor Essex, electrical services London"
+        canonical="/about"
+        structuredData={aboutStructuredData}
+      />
+      <div className="bg-white">
       <section className="bg-brand-deep py-32 text-white">
         <div className="container mx-auto px-4 text-center space-y-6">
             <h1 className="text-5xl md:text-7xl font-bold">About Parker Electrical</h1>
@@ -21,7 +49,11 @@ const AboutPage: React.FC = () => {
             <div className="space-y-8">
               <h2 className="text-4xl font-bold text-brand-deep">Our Commitment to Quality</h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded by lead electrician Joe Parker, Parker Electrical Solutions was established with a simple mission: to provide high-quality, safe, and reliable electrical services to our local community. Over the last decade, we have expanded from a small domestic setup into a full-service electrical contractor for both residential and commercial clients.
+                Founded by lead electrician Joe Parker, Parker Electrical Solutions was established in 2014 with a simple mission: to provide high-quality, safe, and reliable electrical services to our local Essex and London community. As a NICEIC approved contractor, we maintain the highest industry standards for electrical safety and workmanship.
+
+                Over the past decade, we have grown from a small domestic electrical service into a comprehensive electrical contracting business serving both residential and commercial clients. Our team combines traditional electrical expertise with modern installation techniques, ensuring every project meets current building regulations and safety standards.
+
+                Joe Parker brings over 15 years of hands-on electrical experience to every project, having qualified as an electrician in 2008 and achieving NICEIC approval in 2012. Our family-run approach means you deal directly with experienced professionals who understand the importance of clear communication and reliable service.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
@@ -81,6 +113,7 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

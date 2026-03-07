@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { CheckCircle2, ArrowLeft, Phone, ShieldCheck } from 'lucide-react';
 import { SERVICES, BUSINESS_INFO, getIcon, GALLERY_IMAGES, GalleryImage } from '../constants';
+import SEO from '../components/SEO';
 
 const ServiceDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -37,7 +38,53 @@ const ServiceDetail: React.FC = () => {
   };
 
   return (
-    <div className="bg-white">
+    <>
+      <SEO
+        title={service.seoTitle}
+        description={service.metaDescription}
+        keywords={`${service.title.toLowerCase()} Essex, ${service.title.toLowerCase()} Harlow, NICEIC approved ${service.title.toLowerCase()}, professional ${service.title.toLowerCase()} London, ${service.title.toLowerCase()} Chelmsford, ${service.title.toLowerCase()} Basildon`}
+        canonical={`/service/${service.slug}`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": service.title,
+          "description": service.longDescription,
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Parker Electrical Solutions Ltd",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "125 The Briars",
+              "addressLocality": "Harlow",
+              "addressRegion": "Essex",
+              "postalCode": "CM18 7EN",
+              "addressCountry": "GB"
+            }
+          },
+          "areaServed": [
+            {
+              "@type": "Place",
+              "name": "Essex"
+            },
+            {
+              "@type": "Place",
+              "name": "Greater London"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": service.title,
+            "itemListElement": service.features.map((feature, index) => ({
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": feature
+              }
+            }))
+          }
+        }}
+      />
+      <div className="bg-white">
       {/* Hero */}
       <section className="bg-brand-deep pt-32 pb-20 relative">
         <div className="container mx-auto px-4 relative z-10">
@@ -142,6 +189,7 @@ const ServiceDetail: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

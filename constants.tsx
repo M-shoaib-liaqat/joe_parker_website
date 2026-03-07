@@ -393,8 +393,8 @@ export const SERVICES: Service[] = [
     description: 'NICEIC approved landlord safety testing and reports.',
     longDescription: 'Ensuring your property meets current safety regulations with thorough EICR inspections. Ideal for landlords and homeowners alike.',
     heroImage: '/assets/domestic/domestic3.jpeg',
-    seoTitle: 'EICR Certificates Essex | Landlord Electrical Safety Testing',
-    metaDescription: 'NICEIC approved EICR certificates in Essex. Fast, thorough electrical testing for landlords. Same-day reports.',
+    seoTitle: 'EICR Certificate Essex | NICEIC Electrician | Parker Electrical',
+    metaDescription: 'EICR certificate Essex & London. NICEIC approved electrician providing Electrical Installation Condition Reports for landlords, homeowners, and businesses. Ensures electrical safety compliance with 18th Edition regulations. Fast, reliable service with free quotes.',
     features: ['Fast Turnaround', 'Detailed Reports', 'Remedial Estimates', 'NICEIC Certified']
   },
   {
@@ -405,8 +405,8 @@ export const SERVICES: Service[] = [
     description: 'Fast response electrical repairs when you need them most.',
     longDescription: 'Available 24/7 for all electrical emergencies in Essex and London. We aim to be with you in under 60 minutes.',
     heroImage: '/assets/domestic/domestic9.jpeg',
-    seoTitle: 'Emergency Electrician Essex | 24/7 Call Out Service',
-    metaDescription: 'Trusted emergency electrician serving Essex and London. 24/7 rapid response for all power faults and repairs.',
+    seoTitle: 'Emergency Electrician Essex | 24/7 NICEIC Approved | Parker',
+    metaDescription: '24/7 emergency electrician Essex & London. NICEIC approved, fully insured. Fast response for electrical faults, power outages, tripped circuits, and safety issues. Family-run business since 2014. Call +447737447302 for immediate assistance.',
     features: ['24/7 Availability', 'Under 60min Response', 'Fault Finding', 'Safe & Secure Repairs']
   },
   {
@@ -417,8 +417,8 @@ export const SERVICES: Service[] = [
     description: 'From extra sockets to full home automation and lighting.',
     longDescription: 'Quality workmanship for every aspect of your home\'s electrical systems.',
     heroImage: '/assets/domestic/domestic5.jpeg',
-    seoTitle: 'Domestic Electrician Essex | Residential Electrical Services',
-    metaDescription: 'Professional home electrician for all residential projects in Essex. Lighting, sockets, and smart home setup.',
+    seoTitle: 'Domestic Electrician Essex | NICEIC Approved | Parker Electrical',
+    metaDescription: 'Professional domestic electrician in Essex & London. NICEIC approved, fully insured. Services include full/partial rewires, consumer unit replacement, kitchen & bathroom electrical installation, additional sockets, downlights, smoke & CO detectors, and EICR certificates. Free quotes available.',
     features: ['House Wiring', 'Lighting Design', 'Socket Upgrades', 'Fuse Board Changes']
   },
   {
@@ -429,8 +429,8 @@ export const SERVICES: Service[] = [
     description: 'Maintenance and installations for offices, shops, and units.',
     longDescription: 'Bespoke electrical solutions designed to keep your business running safely and efficiently.',
     heroImage: '/assets/industrial/industrial2.jpeg',
-    seoTitle: 'Commercial Electrician Essex | Business Electrical Contractors',
-    metaDescription: 'Expert commercial electrical contractors for offices and businesses in Essex. Maintenance, testing, and installs.',
+    seoTitle: 'Commercial Electrician Essex | NICEIC Approved | Parker Electrical',
+    metaDescription: 'Commercial electrician Essex & London. NICEIC approved for office fit-outs, rewires, planned maintenance, lighting upgrades, PAT testing, fault finding, emergency services, and commercial EICR. Fully insured, family-run business since 2014. Get your free quote today.',
     features: ['Office Fit-outs', 'Maintenance Contracts', 'Emergency Lighting', 'PAT Testing']
   },
   {
@@ -441,8 +441,8 @@ export const SERVICES: Service[] = [
     description: 'Expert installation of home and commercial EV charging points.',
     longDescription: 'Upgrade your home with a fast, safe EV charging point installed by certified professionals.',
     heroImage: 'https://images.unsplash.com/photo-1600490819734-6311c5c6f517?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGV2JTIwY2hhcmdlcnxlbnwwfHwwfHx8MA%3D%3D',
-    seoTitle: 'EV Charger Installation Essex | Home Electric Car Charging',
-    metaDescription: 'OZEV certified EV charger installers in Essex. Home and commercial charging solutions.',
+    seoTitle: 'EV Charger Installation Essex | NICEIC Electrician | Parker',
+    metaDescription: 'EV charger installation Essex & London. NICEIC approved electrician for home and commercial electric vehicle charging points. Fast, safe installation with OZEV grants available. Free quotes and expert advice.',
     features: ['Smart Chargers', 'Tethered & Socketed', 'Load Management', 'Grant Support']
   },
   {
@@ -453,8 +453,8 @@ export const SERVICES: Service[] = [
     description: 'Full or partial house rewires with minimal disruption.',
     longDescription: 'Future-proof your home and ensure safety with a professional full or partial rewire.',
     heroImage: 'https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/electrical-wiring/_jcr_content/root/container/container_2072089177/teaser_copy_copy_cop_688802308.coreimg.jpeg/1741675137288/electrical-wiring-6.jpeg',
-    seoTitle: 'House Rewiring Essex | Full & Partial Rewiring Services',
-    metaDescription: 'Expert house rewiring services in Essex. Safe, efficient, and compliant with all regulations.',
+    seoTitle: 'House Rewire Essex | NICEIC Approved Electrician | Parker',
+    metaDescription: 'House rewire Essex & London. NICEIC approved electrician for full and partial rewiring services. Upgrades to 18th Edition wiring regulations, improves electrical safety and efficiency. Landlord certificates available. Free no-obligation quotes.',
     features: ['Minimal Disruption', 'Safety Certified', 'Modern Solutions', '10-Year Guarantee']
   }
 ];
@@ -482,6 +482,46 @@ export const REVIEWS: Review[] = [
     location: 'Basildon',
     service: 'EV Charger Install',
     text: 'Very professional install of my Myenergi Zappi. Clean, tidy and explained everything.',
+    stars: 5
+  },
+  {
+    id: '4',
+    name: 'Sarah Thompson',
+    location: 'Harlow',
+    service: 'Consumer Unit Replacement',
+    text: 'Needed a new consumer unit after a fault. Parker Electrical came out same day, explained everything clearly, and did a fantastic job. Fully NICEIC approved as promised.',
+    stars: 5
+  },
+  {
+    id: '5',
+    name: 'Michael Brown',
+    location: 'Romford',
+    service: 'EICR Certificate',
+    text: 'Required EICR for my rental property in Romford. Thorough inspection, detailed report, and all safety issues addressed. Highly recommend for landlords.',
+    stars: 5
+  },
+  {
+    id: '6',
+    name: 'Emma Wilson',
+    location: 'Colchester',
+    service: 'House Rewire',
+    text: 'Complete rewire of our 1930s house in Colchester. Minimal disruption, clean work, and everything working perfectly. Great communication throughout.',
+    stars: 5
+  },
+  {
+    id: '7',
+    name: 'James Patel',
+    location: 'Southend-on-Sea',
+    service: 'Commercial Fit-out',
+    text: 'Office electrical fit-out for our new premises in Southend. Professional team, on time, on budget. Will definitely use again for future projects.',
+    stars: 5
+  },
+  {
+    id: '8',
+    name: 'Lisa Chen',
+    location: 'East London',
+    service: 'Emergency Electrician',
+    text: 'Called out at 2am for a tripped circuit in our East London flat. Arrived within 45 minutes, fixed the issue quickly and safely. True emergency service.',
     stars: 5
   }
 ];

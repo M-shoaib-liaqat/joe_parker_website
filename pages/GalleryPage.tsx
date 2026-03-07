@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, Phone, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { GALLERY_IMAGES, BUSINESS_INFO, GalleryImage } from '../constants';
+import SEO from '../components/SEO';
 
 const GalleryPage: React.FC = () => {
   const [filter, setFilter] = useState<'All' | 'Domestic' | 'Commercial' | 'Lighting'>('All');
@@ -43,7 +44,31 @@ const GalleryPage: React.FC = () => {
   }, [selectedImageIndex]);
 
   return (
-    <div className="bg-white min-h-screen">
+    <>
+      <SEO
+        title="Electrical Work Gallery | Parker Electrical Solutions | NICEIC Approved Projects"
+        description="View our portfolio of professional electrical installations across Essex and London. High-quality domestic and commercial electrical work by NICEIC approved contractors. Kitchen rewires, lighting installations, and EV charger setups."
+        keywords="electrical work gallery Essex, NICEIC approved projects, domestic electrical installations Harlow, commercial electrical work London, kitchen rewire gallery, lighting installation portfolio, EV charger installation photos"
+        canonical="/gallery"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          "name": "Parker Electrical Solutions Work Gallery",
+          "description": "Portfolio of professional electrical installations and projects completed by NICEIC approved contractors",
+          "url": "https://www.parkerelectricalsolutions.uk/gallery",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Parker Electrical Solutions Ltd"
+          },
+          "image": GALLERY_IMAGES.slice(0, 5).map(img => ({
+            "@type": "ImageObject",
+            "url": `https://www.parkerelectricalsolutions.uk${img.url}`,
+            "name": img.title,
+            "description": img.description
+          }))
+        }}
+      />
+      <div className="bg-white min-h-screen">
       <section className="bg-brand-deep pt-32 pb-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
             <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover" alt="" />
@@ -184,6 +209,7 @@ const GalleryPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { Menu, X, Phone, Mail, Clock, ShieldCheck, Star, ChevronRight, MessageCircle, Image as ImageIcon } from 'lucide-react';
 import HomePage from './pages/HomePage';
 import ServiceDetail from './pages/ServiceDetail';
@@ -138,6 +139,17 @@ const Header = () => {
   );
 };
 
+{/* Mobile Sticky Call Button */}
+<div className="md:hidden fixed bottom-0 left-0 right-0 bg-brand-orange text-white py-4 px-6 z-50 shadow-lg">
+  <a
+    href={`tel:${BUSINESS_INFO.phone}`}
+    className="flex items-center justify-center gap-3 font-bold text-lg"
+  >
+    <Phone size={24} />
+    Call Now — Free Quote
+  </a>
+</div>
+
 const Footer = () => {
   return (
     <footer className="bg-brand-dark text-white pt-16 pb-8">
@@ -230,28 +242,30 @@ const FloatingCTA = () => (
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col relative">
-        <Header />
-        <main className="flex-grow pt-16 lg:pt-0">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            {/* support legacy hash variant and user typing #services directly */}
-            <Route path="/services" element={<HomePage />} />
-            <Route path="services" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/areas" element={<AreasPage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/service/:slug" element={<ServiceDetail />} />
-          </Routes>
-        </main>
-        <Footer />
-        <FloatingCTA />
-        <Chatbot />
-      </div>
-    </HashRouter>
+    <HelmetProvider>
+      <HashRouter>
+        <ScrollToTop />
+        <div className="min-h-screen flex flex-col relative">
+          <Header />
+          <main className="flex-grow pt-16 lg:pt-0">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              {/* support legacy hash variant and user typing #services directly */}
+              <Route path="/services" element={<HomePage />} />
+              <Route path="services" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/areas" element={<AreasPage />} />
+              <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/service/:slug" element={<ServiceDetail />} />
+            </Routes>
+          </main>
+          <Footer />
+          <FloatingCTA />
+          <Chatbot />
+        </div>
+      </HashRouter>
+    </HelmetProvider>
   );
 };
 

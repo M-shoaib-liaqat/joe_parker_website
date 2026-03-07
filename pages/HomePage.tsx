@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle2, Star, Shield, ArrowRight, Phone, Clock, MapPin, Award, Image as ImageIcon } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES, REVIEWS, GALLERY_IMAGES, getIcon } from '../constants';
+import SEO from '../components/SEO';
 
 const Hero = () => (
   <section className="relative flex items-center overflow-hidden bg-brand-deep lg:min-h-[85vh] -mt-16 lg:mt-0 pt-16 lg:pt-0">
@@ -36,7 +37,7 @@ const Hero = () => (
             </h1>
 
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-md leading-relaxed">
-              Enhancing homes and businesses across Essex &amp; London with high clarity lighting design and expert electrical engineering.
+              Essex's trusted NICEIC approved electrician for domestic and commercial electrical services. From emergency repairs to complete house rewiring, we deliver safe, reliable solutions across Harlow, Chelmsford, and Greater London.
             </p>
 
             {/* CTAs */}
@@ -271,31 +272,63 @@ const Testimonials = () => (
 );
 
 const HomePage: React.FC = () => {
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Parker Electrical Solutions | NICEIC Approved Electrician Essex & London",
+    "description": "Professional NICEIC approved electrician serving Essex and London. Domestic & commercial electrical services including rewiring, EICR certificates, emergency repairs, and EV charging installations.",
+    "url": "https://www.parkerelectricalsolutions.uk",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "Parker Electrical Solutions Ltd",
+      "description": "Family-run NICEIC approved electrical contractor serving Essex and London since 2014",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 The Briars",
+        "addressLocality": "Harlow",
+        "addressRegion": "Essex",
+        "postalCode": "CM18 7EN",
+        "addressCountry": "GB"
+      },
+      "telephone": "+447737447302",
+      "email": "Pesolutions.ltd@hotmail.com"
+    }
+  };
+
   return (
-    <div className="bg-white">
-      <Hero />
-      <EmergencyBanner />
-      <ServicesSection />
-      <GalleryHighlights />
-      <WhyChooseUs />
-      <Testimonials />
-      <section className="py-24 bg-brand-light">
-        <div className="container mx-auto px-4 text-center space-y-8">
-          <h2 className="text-5xl font-bold text-brand-deep tracking-tighter">Ready for an Enhancement?</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-            Join hundreds of satisfied clients in Essex and London. Get a free quote today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-             <Link to="/contact" className="bg-brand-deep text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-brand-electric transition-all shadow-xl shadow-brand-deep/20 hover:scale-105">
-               Start Your Quote
-             </Link>
-             <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-white text-brand-deep border-2 border-brand-deep px-12 py-5 rounded-2xl font-bold text-xl hover:bg-brand-light transition-all hover:scale-105">
-               Call {BUSINESS_INFO.phone}
-             </a>
+    <>
+      <SEO
+        title="NICEIC Electrician Essex | Free Quote | Parker Electrical Solutions"
+        description="Get a free no-obligation quote from NICEIC approved electrician in Essex & London. Family-run since 2014, fully insured. Domestic & commercial electrical services including rewires, EICR certificates, consumer unit replacements, and emergency repairs. Call +447737447302 today."
+        keywords="electrician Essex, NICEIC electrician Essex, emergency electrician Essex, electrician Harlow, domestic electrician Harlow, commercial electrician London, EICR certificate Essex, consumer unit replacement Essex, house rewire Essex, landlord electrical certificate Essex, fault finding electrician Essex, electrician Chelmsford, electrician Basildon, electrician Brentwood, electrician East London"
+        canonical="/"
+        structuredData={homeStructuredData}
+      />
+      <div className="bg-white">
+        <Hero />
+        <EmergencyBanner />
+        <ServicesSection />
+        <GalleryHighlights />
+        <WhyChooseUs />
+        <Testimonials />
+        <section className="py-24 bg-brand-light">
+          <div className="container mx-auto px-4 text-center space-y-8">
+            <h2 className="text-5xl font-bold text-brand-deep tracking-tighter">Ready for an Enhancement?</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+              Join hundreds of satisfied clients in Essex and London. Get a free quote today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+               <Link to="/contact" className="bg-brand-deep text-white px-12 py-5 rounded-2xl font-bold text-xl hover:bg-brand-electric transition-all shadow-xl shadow-brand-deep/20 hover:scale-105">
+                 Start Your Quote
+               </Link>
+               <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-white text-brand-deep border-2 border-brand-deep px-12 py-5 rounded-2xl font-bold text-xl hover:bg-brand-light transition-all hover:scale-105">
+                 Call {BUSINESS_INFO.phone}
+               </a>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
