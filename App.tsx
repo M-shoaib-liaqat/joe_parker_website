@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Menu, X, Phone, Mail, Clock, ShieldCheck, Star, ChevronRight, MessageCircle, Image as ImageIcon } from 'lucide-react';
 import HomePage from './pages/HomePage';
@@ -243,7 +243,7 @@ const FloatingCTA = () => (
 const App: React.FC = () => {
   return (
     <HelmetProvider>
-      <HashRouter>
+      <BrowserRouter>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col relative">
           <Header />
@@ -264,7 +264,7 @@ const App: React.FC = () => {
           <FloatingCTA />
           <Chatbot />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </HelmetProvider>
   );
 };
