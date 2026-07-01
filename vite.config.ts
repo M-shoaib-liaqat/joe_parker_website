@@ -32,6 +32,7 @@ export default defineConfig(({ mode }) => {
       postcss: path.resolve(__dirname, 'postcss.config.cjs'),
     },
     build: {
+      target: 'es2015',
       assetsDir: 'assets',
       outDir: 'dist',
       rollupOptions: {

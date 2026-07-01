@@ -9,6 +9,18 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import AreasPage from './pages/AreasPage';
 import GalleryPage from './pages/GalleryPage';
+import ElectricalServicesEssexPage from './pages/ElectricalServicesEssexPage';
+import ElectricalContractorsEssexPage from './pages/ElectricalContractorsEssexPage';
+import ElectricianHarlowPage from './pages/ElectricianHarlowPage';
+import ElectricianChelmsfordPage from './pages/ElectricianChelmsfordPage';
+import ElectricianBasildonPage from './pages/ElectricianBasildonPage';
+import ElectricianBrentwoodPage from './pages/ElectricianBrentwoodPage';
+import ElectricianEastLondonPage from './pages/ElectricianEastLondonPage';
+import EICRCertificateEssexPage from './pages/EICRCertificateEssexPage';
+import HouseRewireEssexPage from './pages/HouseRewireEssexPage';
+import ConsumerUnitReplacementEssexPage from './pages/ConsumerUnitReplacementEssexPage';
+import EVChargingEssexPage from './pages/EVChargingEssexPage';
+import EmergencyElectricianEssexPage from './pages/EmergencyElectricianEssexPage';
 import Chatbot from './components/Chatbot';
 import { BUSINESS_INFO, SERVICES } from './constants';
 
@@ -153,7 +165,7 @@ const Header = () => {
 const Footer = () => {
   return (
     <footer className="bg-brand-dark text-white pt-16 pb-8">
-      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <ShieldCheck className="text-brand-electric w-8 h-8" />
@@ -183,11 +195,29 @@ const Footer = () => {
         </div>
 
         <div>
+          <h4 className="text-lg font-bold mb-6 border-b border-brand-electric pb-2 inline-block">Areas We Cover</h4>
+          <ul className="space-y-3">
+            <li><Link to="/areas" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> All Areas We Serve</Link></li>
+            <li><Link to="/electrician-harlow" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrician Harlow</Link></li>
+            <li><Link to="/electrician-chelmsford" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrician Chelmsford</Link></li>
+            <li><Link to="/electrician-basildon" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrician Basildon</Link></li>
+            <li><Link to="/electrician-brentwood" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrician Brentwood</Link></li>
+            <li><Link to="/electrician-east-london" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrician East London</Link></li>
+          </ul>
+        </div>
+
+        <div>
           <h4 className="text-lg font-bold mb-6 border-b border-brand-electric pb-2 inline-block">Quick Links</h4>
           <ul className="space-y-3">
             <li><Link to="/gallery" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Work Gallery</Link></li>
             <li><Link to="/about" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> About Us</Link></li>
-            <li><Link to="/areas" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Areas We Serve</Link></li>
+            <li><Link to="/electrical-services-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrical Services Essex</Link></li>
+            <li><Link to="/electrical-contractors-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Electrical Contractors Essex</Link></li>
+            <li><Link to="/eicr-certificate-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> EICR Certificates Essex</Link></li>
+            <li><Link to="/house-rewire-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> House Rewiring Essex</Link></li>
+            <li><Link to="/consumer-unit-replacement-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Consumer Unit Replacement</Link></li>
+            <li><Link to="/ev-charging-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> EV Charger Installation</Link></li>
+            <li><Link to="/emergency-electrician-essex" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Emergency Electrician Essex</Link></li>
             <li><Link to="/contact" className="text-gray-400 hover:text-white flex items-center gap-2"><ChevronRight size={14} /> Get a Quote</Link></li>
           </ul>
         </div>
@@ -195,6 +225,10 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-bold mb-6 border-b border-brand-electric pb-2 inline-block">Contact Info</h4>
           <ul className="space-y-4">
+            <li>
+              <div className="font-bold text-white mb-1">Parker Electrical Solutions Ltd</div>
+              <div className="text-gray-400 text-sm">125 The Briars, Harlow, Essex, CM18 7EN</div>
+            </li>
             <li className="flex items-start gap-3">
               <Phone className="text-brand-electric shrink-0 mt-1" size={20} />
               <div>
@@ -258,6 +292,18 @@ const App: React.FC = () => {
               <Route path="/areas" element={<AreasPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/service/:slug" element={<ServiceDetail />} />
+              <Route path="/electrical-services-essex" element={<ElectricalServicesEssexPage />} />
+              <Route path="/electrical-contractors-essex" element={<ElectricalContractorsEssexPage />} />
+              <Route path="/electrician-harlow" element={<ElectricianHarlowPage />} />
+              <Route path="/electrician-chelmsford" element={<ElectricianChelmsfordPage />} />
+              <Route path="/electrician-basildon" element={<ElectricianBasildonPage />} />
+              <Route path="/electrician-brentwood" element={<ElectricianBrentwoodPage />} />
+              <Route path="/electrician-east-london" element={<ElectricianEastLondonPage />} />
+              <Route path="/eicr-certificate-essex" element={<EICRCertificateEssexPage />} />
+              <Route path="/house-rewire-essex" element={<HouseRewireEssexPage />} />
+              <Route path="/consumer-unit-replacement-essex" element={<ConsumerUnitReplacementEssexPage />} />
+              <Route path="/ev-charging-essex" element={<EVChargingEssexPage />} />
+              <Route path="/emergency-electrician-essex" element={<EmergencyElectricianEssexPage />} />
             </Routes>
           </main>
           <Footer />

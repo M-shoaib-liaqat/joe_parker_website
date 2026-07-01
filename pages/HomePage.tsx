@@ -28,11 +28,11 @@ const Hero = () => (
             {/* Headline — client-required text, styled with weight contrast */}
             <h1 className="font-bold text-white leading-[1.1]">
               <span className="block text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light text-white/80">
-                Domestic &amp; Commercial
+                Top-Rated
               </span>
               <span className="block text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-white mt-1">
-                Electrical
-                <span className="text-brand-orange"> Solutions</span>
+                Electrical Services
+                <span className="text-brand-orange"> in Essex</span>
               </span>
             </h1>
 
@@ -123,7 +123,7 @@ const ServicesSection = () => (
   <section id="services" className="py-24 bg-brand-light scroll-mt-32">
     <div className="container mx-auto px-4">
       <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-        <h2 className="text-4xl font-bold text-brand-deep uppercase tracking-tight">Our Professional Services</h2>
+        <h2 className="text-4xl font-bold text-brand-deep uppercase tracking-tight">Expert Electrical Contractors in Essex</h2>
         <div className="w-20 h-1 bg-brand-orange mx-auto"></div>
         <p className="text-gray-600 text-lg">
           Expertly delivered NICEIC approved electrical solutions for every sector.
@@ -158,7 +158,7 @@ const GalleryHighlights = () => (
     <div className="container mx-auto px-4">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
         <div className="max-w-2xl">
-          <h2 className="text-4xl font-bold text-brand-deep mb-4">Our "Enhanced" Projects</h2>
+          <h2 className="text-4xl font-bold text-brand-deep mb-4">Our "Enhanced" Essex Projects</h2>
           <div className="w-20 h-1 bg-brand-orange mb-4"></div>
           <p className="text-gray-600 text-lg">
             A showcase of high-end lighting design, industrial board upgrades, and clean domestic installs.
@@ -251,7 +251,7 @@ const Testimonials = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {REVIEWS.map(r => (
+        {REVIEWS.slice(0, 3).map(r => (
           <div key={r.id} className="bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-3xl relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-24 h-24 bg-brand-electric/10 rounded-bl-full translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform"></div>
             <div className="text-brand-orange mb-4">
@@ -271,35 +271,141 @@ const Testimonials = () => (
   </section>
 );
 
+const FAQSection = () => {
+  const faqs = [
+    {
+      q: "How much does an EICR certificate cost in Essex?",
+      a: "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits. Prices typically start from £150 for a standard 1-bedroom flat. Contact us for an exact, free quote."
+    },
+    {
+      q: "Do I need an electrician for a consumer unit replacement?",
+      a: "Yes, absolutely. A consumer unit replacement must be carried out by a qualified, competent electrician (such as a NICEIC approved contractor) in order to comply with Part P of the Building Regulations."
+    },
+    {
+      q: "How long does a house rewire take?",
+      a: "A full house rewire usually takes between 5 to 10 days depending on the property size, whether it is occupied, and the complexity of the installation."
+    },
+    {
+      q: "Do you provide emergency electrical services?",
+      a: "Yes, we provide 24/7 emergency electrical repairs across Essex and London, aiming for a response time of under 60 minutes."
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-brand-deep mb-4">Frequently Asked Questions</h2>
+          <div className="w-20 h-1 bg-brand-orange mx-auto"></div>
+        </div>
+        <div className="space-y-6">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="bg-brand-light p-6 rounded-2xl border border-gray-100 shadow-sm">
+              <h3 className="text-xl font-bold text-brand-deep mb-3">{faq.q}</h3>
+              <p className="text-gray-700 leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SEOContentBlock = () => (
+  <section className="py-24 bg-gray-50 border-t border-gray-200">
+    <div className="container mx-auto px-4 max-w-5xl">
+      <div className="prose prose-lg max-w-none text-gray-700">
+        <h2 className="text-3xl font-bold text-brand-deep mb-6">Comprehensive Electrical Services in Essex</h2>
+        <p className="mb-6">
+          At Parker Electrical Solutions, we are dedicated to providing the highest standard of <strong>electrical services in Essex</strong>. As a fully insured, NICEIC-approved contractor, we bring unparalleled expertise to both domestic households and commercial enterprises. Whether you are dealing with a sudden power outage in Harlow, planning a full house rewire in Chelmsford, or upgrading your commercial distribution boards in Basildon, our team delivers safe, compliant, and cost-effective solutions.
+        </p>
+        <h3 className="text-2xl font-bold text-brand-deep mb-4 mt-8">Why Are We The Top Choice for Electrical Contractors in Essex?</h3>
+        <p className="mb-6">
+          Finding an electrician you can trust is critical. Our family-run business has been operating since 2014, building a reputation for transparency, punctuality, and precision. We don't just "fix faults"—we engineer long-lasting electrical infrastructure. Every project, from a simple socket addition to a complex commercial EICR inspection, is executed with strict adherence to the 18th Edition wiring regulations.
+        </p>
+        <h3 className="text-2xl font-bold text-brand-deep mb-4 mt-8">Our Process</h3>
+        <p className="mb-6">
+          1. <strong>Free Consultation:</strong> We start by understanding your specific needs, offering a free, no-obligation quote tailored to your property.<br/>
+          2. <strong>Transparent Planning:</strong> For larger projects like house rewires or EV charger installations, we provide a clear timeline and breakdown of materials.<br/>
+          3. <strong>Expert Execution:</strong> Our NICEIC electricians complete the work with minimal disruption, ensuring your property remains clean and safe.<br/>
+          4. <strong>Certification:</strong> Upon completion, you receive all necessary legal certification (such as EICR or Part P compliance certificates) for your records.
+        </p>
+      </div>
+    </div>
+  </section>
+);
+
 const HomePage: React.FC = () => {
   const homeStructuredData = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Parker Electrical Solutions | NICEIC Approved Electrician Essex & London",
-    "description": "Professional NICEIC approved electrician serving Essex and London. Domestic & commercial electrical services including rewiring, EICR certificates, emergency repairs, and EV charging installations.",
-    "url": "https://www.parkerelectricalsolutions.uk",
-    "mainEntity": {
-      "@type": "LocalBusiness",
-      "name": "Parker Electrical Solutions Ltd",
-      "description": "Family-run NICEIC approved electrical contractor serving Essex and London since 2014",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "125 The Briars",
-        "addressLocality": "Harlow",
-        "addressRegion": "Essex",
-        "postalCode": "CM18 7EN",
-        "addressCountry": "GB"
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Parker Electrical Solutions | NICEIC Approved Electrician Essex & London",
+        "description": "Professional NICEIC approved electrician serving Essex and London. Domestic & commercial electrical services including rewiring, EICR certificates, emergency repairs, and EV charging installations.",
+        "url": "https://www.parkerelectricalsolutions.uk"
       },
-      "telephone": "+447737447302",
-      "email": "Pesolutions.ltd@hotmail.com"
-    }
+      {
+        "@type": "LocalBusiness",
+        "name": "Parker Electrical Solutions Ltd",
+        "image": "https://www.parkerelectricalsolutions.uk/assets/logo/logo.png",
+        "description": "Family-run NICEIC approved electrical contractor serving Essex and London since 2014",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "125 The Briars",
+          "addressLocality": "Harlow",
+          "addressRegion": "Essex",
+          "postalCode": "CM18 7EN",
+          "addressCountry": "GB"
+        },
+        "telephone": "+447737447302",
+        "email": "Pesolutions.ltd@hotmail.com"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does an EICR certificate cost in Essex?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits. Prices typically start from £150 for a standard 1-bedroom flat. Contact us for an exact, free quote."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an electrician for a consumer unit replacement?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, absolutely. A consumer unit replacement must be carried out by a qualified, competent electrician (such as a NICEIC approved contractor) in order to comply with Part P of the Building Regulations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does a house rewire take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A full house rewire usually takes between 5 to 10 days depending on the property size, whether it is occupied, and the complexity of the installation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide emergency electrical services?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we provide 24/7 emergency electrical repairs across Essex and London, aiming for a response time of under 60 minutes."
+            }
+          }
+        ]
+      }
+    ]
   };
 
   return (
     <>
       <SEO
-        title="NICEIC Electrician Essex | Free Quote | Parker Electrical Solutions"
-        description="Get a free no-obligation quote from NICEIC approved electrician in Essex & London. Family-run since 2014, fully insured. Domestic & commercial electrical services including rewires, EICR certificates, consumer unit replacements, and emergency repairs. Call +447737447302 today."
+        title="Electrical Services Essex | Domestic & Commercial | Parker Electrical"
+        description="Looking for reliable electrical services in Essex? Parker Electrical Solutions provides NICEIC-approved domestic & commercial electricians. Free quote — call today."
         keywords="electrician Essex, NICEIC electrician Essex, emergency electrician Essex, electrician Harlow, domestic electrician Harlow, commercial electrician London, EICR certificate Essex, consumer unit replacement Essex, house rewire Essex, landlord electrical certificate Essex, fault finding electrician Essex, electrician Chelmsford, electrician Basildon, electrician Brentwood, electrician East London"
         canonical="/"
         structuredData={homeStructuredData}
@@ -311,6 +417,8 @@ const HomePage: React.FC = () => {
         <GalleryHighlights />
         <WhyChooseUs />
         <Testimonials />
+        <FAQSection />
+        <SEOContentBlock />
         <section className="py-24 bg-brand-light">
           <div className="container mx-auto px-4 text-center space-y-8">
             <h2 className="text-5xl font-bold text-brand-deep tracking-tighter">Ready for an Enhancement?</h2>
@@ -324,6 +432,12 @@ const HomePage: React.FC = () => {
                <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-white text-brand-deep border-2 border-brand-deep px-12 py-5 rounded-2xl font-bold text-xl hover:bg-brand-light transition-all hover:scale-105">
                  Call {BUSINESS_INFO.phone}
                </a>
+            </div>
+            <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm md:text-base font-semibold text-brand-deep">
+              <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={20} /> NICEIC Approved Contractor</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={20} /> Family-run since 2014</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={20} /> Fully Insured</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={20} /> Free no-obligation quote</span>
             </div>
           </div>
         </section>

@@ -1,8 +1,30 @@
 
 import React from 'react';
 import { MapPin, Phone, Clock, ChevronRight } from 'lucide-react';
+import { Link as RouterLink } from 'react-router-dom';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
+
+const AREA_LINKS: Record<string, string> = {
+  'Harlow': '/electrician-harlow',
+  'Chelmsford': '/electrician-chelmsford',
+  'Basildon': '/electrician-basildon',
+  'All of Essex': '/electrical-services-essex',
+};
+
+const MORE_LOCATIONS = [
+  { name: 'Brentwood', path: '/electrician-brentwood' },
+  { name: 'East London', path: '/electrician-east-london' },
+];
+
+const ESSEX_SERVICE_LINKS = [
+  { name: 'EICR Certificates Essex', path: '/eicr-certificate-essex' },
+  { name: 'House Rewiring Essex', path: '/house-rewire-essex' },
+  { name: 'Consumer Unit Replacement Essex', path: '/consumer-unit-replacement-essex' },
+  { name: 'EV Charger Installation Essex', path: '/ev-charging-essex' },
+  { name: 'Emergency Electrician Essex', path: '/emergency-electrician-essex' },
+  { name: 'Electrical Contractors Essex', path: '/electrical-contractors-essex' },
+];
 
 const AreasPage: React.FC = () => {
   const areasStructuredData = {
@@ -74,12 +96,45 @@ const AreasPage: React.FC = () => {
                 (List is illustrative; click or call if your location isn’t mentioned – we cover the whole county.)
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {BUSINESS_INFO.areas.map((area, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
+                {BUSINESS_INFO.areas.map((area, idx) => {
+                  const path = AREA_LINKS[area];
+                  const content = (
+                    <>
+                      <MapPin className="text-brand-electric" />
+                      <span className="font-bold">{area}</span>
+                    </>
+                  );
+                  return path ? (
+                    <RouterLink key={idx} to={path} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
+                      {content}
+                    </RouterLink>
+                  ) : (
+                    <div key={idx} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
+                      {content}
+                    </div>
+                  );
+                })}
+                {MORE_LOCATIONS.map((loc) => (
+                  <RouterLink key={loc.path} to={loc.path} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
                     <MapPin className="text-brand-electric" />
-                    <span className="font-bold">{area}</span>
-                  </div>
+                    <span className="font-bold">{loc.name}</span>
+                  </RouterLink>
                 ))}
+              </div>
+
+              <div className="p-6 bg-white rounded-2xl border border-gray-100">
+                <h3 className="font-bold text-brand-deep mb-4">Popular Electrical Services Across Essex</h3>
+                <div className="flex flex-wrap gap-3">
+                  {ESSEX_SERVICE_LINKS.map((s) => (
+                    <RouterLink
+                      key={s.path}
+                      to={s.path}
+                      className="text-sm font-semibold text-brand-electric bg-brand-light hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors"
+                    >
+                      {s.name}
+                    </RouterLink>
+                  ))}
+                </div>
               </div>
 
               <div className="bg-brand-orange text-white p-8 rounded-3xl space-y-4">

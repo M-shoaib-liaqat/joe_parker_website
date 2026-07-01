@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Award, Shield, Users, Clock, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
@@ -109,6 +110,28 @@ const AboutPage: React.FC = () => {
               <h3 className="text-xl font-bold">Reliability</h3>
               <p className="text-gray-500">Showing up on time and delivering as promised.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 bg-brand-deep text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to work with a trusted Essex electrician?</h2>
+          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            Contact Parker Electrical Solutions today for a free, no-obligation quote.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact" className="bg-brand-orange hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg text-lg">
+              Get Your Free Quote
+            </Link>
+            <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-white text-brand-deep hover:bg-gray-100 px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg text-lg">
+              Call Us Now
+            </a>
+          </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-semibold text-white/90">
+            <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> NICEIC Approved</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Established 2014</span>
+            <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
           </div>
         </div>
       </section>

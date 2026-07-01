@@ -6,9 +6,39 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "react-snap",
     "preview": "vite preview",
     "server": "node --import tsx/esm server.ts",
     "dev:all": "concurrently \"npm run dev\" \"npm run server\""
+  },
+  "reactSnap": {
+    "source": "dist",
+    "include": [
+      "/",
+      "/electrical-services-essex",
+      "/electrical-contractors-essex",
+      "/electrician-harlow",
+      "/about",
+      "/contact",
+      "/areas",
+      "/gallery",
+      "/service/eicr-certificates",
+      "/service/emergency-electrician",
+      "/service/domestic-electrician",
+      "/service/commercial-electrician",
+      "/service/ev-charger-installation",
+      "/service/house-rewiring",
+      "/electrician-chelmsford",
+      "/electrician-basildon",
+      "/electrician-brentwood",
+      "/electrician-east-london",
+      "/eicr-certificate-essex",
+      "/house-rewire-essex",
+      "/consumer-unit-replacement-essex",
+      "/ev-charging-essex",
+      "/emergency-electrician-essex"
+    ],
+    "skipThirdPartyRequests": true
   },
   "dependencies": {
     "@emailjs/browser": "^4.2.0",
@@ -37,6 +67,7 @@
     "autoprefixer": "^10.4.24",
     "concurrently": "^9.0.0",
     "postcss": "^8.5.6",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^4.1.18",
     "tsx": "^4.17.0",
     "typescript": "~5.8.2",
