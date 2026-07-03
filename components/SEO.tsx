@@ -1,5 +1,9 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+// Namespace import: a plain named import can throw a hard SyntaxError under some
+// Node ESM/CJS interop setups ("does not provide an export named 'Helmet'")
+// depending on which build of the package gets resolved. This form never fails to link.
+import * as HelmetAsync from 'react-helmet-async';
+const { Helmet } = HelmetAsync;
 
 interface SEOProps {
   title?: string;

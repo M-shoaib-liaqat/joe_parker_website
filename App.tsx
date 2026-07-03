@@ -1,7 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+// Namespace import: a plain named import can throw a hard SyntaxError under some
+// Node ESM/CJS interop setups ("does not provide an export named 'HelmetProvider'")
+// depending on which build of the package gets resolved. This form never fails to link.
+import * as HelmetAsync from 'react-helmet-async';
+const { HelmetProvider } = HelmetAsync;
 import { Menu, X, Phone, Mail, Clock, ShieldCheck, Star, ChevronRight, MessageCircle, Image as ImageIcon } from 'lucide-react';
 import HomePage from './pages/HomePage';
 import ServiceDetail from './pages/ServiceDetail';

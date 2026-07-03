@@ -16,7 +16,8 @@ import { fileURLToPath } from 'node:url';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import * as HelmetAsync from 'react-helmet-async';
+const { HelmetProvider } = HelmetAsync;
 import { AppShell } from '../App';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
