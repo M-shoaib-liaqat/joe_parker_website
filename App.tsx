@@ -274,42 +274,52 @@ const FloatingCTA = () => (
   </div>
 );
 
+// Router-agnostic app content, shared by the client entry (BrowserRouter) and
+// the build-time prerender script (StaticRouter) so both render identical markup.
+export const AppShell: React.FC = () => {
+  return (
+    <>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col relative">
+        <Header />
+        <main className="flex-grow pt-16 lg:pt-0">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* support legacy hash variant and user typing #services directly */}
+            <Route path="/services" element={<HomePage />} />
+            <Route path="services" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/areas" element={<AreasPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/service/:slug" element={<ServiceDetail />} />
+            <Route path="/electrical-services-essex" element={<ElectricalServicesEssexPage />} />
+            <Route path="/electrical-contractors-essex" element={<ElectricalContractorsEssexPage />} />
+            <Route path="/electrician-harlow" element={<ElectricianHarlowPage />} />
+            <Route path="/electrician-chelmsford" element={<ElectricianChelmsfordPage />} />
+            <Route path="/electrician-basildon" element={<ElectricianBasildonPage />} />
+            <Route path="/electrician-brentwood" element={<ElectricianBrentwoodPage />} />
+            <Route path="/electrician-east-london" element={<ElectricianEastLondonPage />} />
+            <Route path="/eicr-certificate-essex" element={<EICRCertificateEssexPage />} />
+            <Route path="/house-rewire-essex" element={<HouseRewireEssexPage />} />
+            <Route path="/consumer-unit-replacement-essex" element={<ConsumerUnitReplacementEssexPage />} />
+            <Route path="/ev-charging-essex" element={<EVChargingEssexPage />} />
+            <Route path="/emergency-electrician-essex" element={<EmergencyElectricianEssexPage />} />
+          </Routes>
+        </main>
+        <Footer />
+        <FloatingCTA />
+        <Chatbot />
+      </div>
+    </>
+  );
+};
+
 const App: React.FC = () => {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <ScrollToTop />
-        <div className="min-h-screen flex flex-col relative">
-          <Header />
-          <main className="flex-grow pt-16 lg:pt-0">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              {/* support legacy hash variant and user typing #services directly */}
-              <Route path="/services" element={<HomePage />} />
-              <Route path="services" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/areas" element={<AreasPage />} />
-              <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/service/:slug" element={<ServiceDetail />} />
-              <Route path="/electrical-services-essex" element={<ElectricalServicesEssexPage />} />
-              <Route path="/electrical-contractors-essex" element={<ElectricalContractorsEssexPage />} />
-              <Route path="/electrician-harlow" element={<ElectricianHarlowPage />} />
-              <Route path="/electrician-chelmsford" element={<ElectricianChelmsfordPage />} />
-              <Route path="/electrician-basildon" element={<ElectricianBasildonPage />} />
-              <Route path="/electrician-brentwood" element={<ElectricianBrentwoodPage />} />
-              <Route path="/electrician-east-london" element={<ElectricianEastLondonPage />} />
-              <Route path="/eicr-certificate-essex" element={<EICRCertificateEssexPage />} />
-              <Route path="/house-rewire-essex" element={<HouseRewireEssexPage />} />
-              <Route path="/consumer-unit-replacement-essex" element={<ConsumerUnitReplacementEssexPage />} />
-              <Route path="/ev-charging-essex" element={<EVChargingEssexPage />} />
-              <Route path="/emergency-electrician-essex" element={<EmergencyElectricianEssexPage />} />
-            </Routes>
-          </main>
-          <Footer />
-          <FloatingCTA />
-          <Chatbot />
-        </div>
+        <AppShell />
       </BrowserRouter>
     </HelmetProvider>
   );
