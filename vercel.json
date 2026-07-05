@@ -18,6 +18,11 @@
       "source": "/home",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/service/fuse-board-replacement",
+      "destination": "/consumer-unit-replacement-essex",
+      "permanent": true
     }
   ],
   "rewrites": [
