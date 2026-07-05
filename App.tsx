@@ -20,6 +20,14 @@ import ElectricianChelmsfordPage from './pages/ElectricianChelmsfordPage';
 import ElectricianBasildonPage from './pages/ElectricianBasildonPage';
 import ElectricianBrentwoodPage from './pages/ElectricianBrentwoodPage';
 import ElectricianEastLondonPage from './pages/ElectricianEastLondonPage';
+import ElectricianSouthendPage from './pages/ElectricianSouthendPage';
+import ElectricianGraysPage from './pages/ElectricianGraysPage';
+import ElectricianShoeburynessPage from './pages/ElectricianShoeburynessPage';
+import ElectricianRayleighPage from './pages/ElectricianRayleighPage';
+import ElectricianBraintreePage from './pages/ElectricianBraintreePage';
+import ElectricianTendringPage from './pages/ElectricianTendringPage';
+import ElectricianColchesterPage from './pages/ElectricianColchesterPage';
+import ElectricianTilburyPage from './pages/ElectricianTilburyPage';
 import EICRCertificateEssexPage from './pages/EICRCertificateEssexPage';
 import HouseRewireEssexPage from './pages/HouseRewireEssexPage';
 import ConsumerUnitReplacementEssexPage from './pages/ConsumerUnitReplacementEssexPage';
@@ -61,6 +69,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     // Services link should always reset the hash to the home page section
     { name: 'Services', path: '/#services', isAnchor: true },
+    { name: 'Electrical Services Essex', path: '/electrical-services-essex' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Areas', path: '/areas' },
     { name: 'About', path: '/about' },
@@ -304,6 +313,14 @@ export const AppShell: React.FC = () => {
             <Route path="/electrician-basildon" element={<ElectricianBasildonPage />} />
             <Route path="/electrician-brentwood" element={<ElectricianBrentwoodPage />} />
             <Route path="/electrician-east-london" element={<ElectricianEastLondonPage />} />
+            <Route path="/electrician-southend" element={<ElectricianSouthendPage />} />
+            <Route path="/electrician-grays" element={<ElectricianGraysPage />} />
+            <Route path="/electrician-shoeburyness" element={<ElectricianShoeburynessPage />} />
+            <Route path="/electrician-rayleigh" element={<ElectricianRayleighPage />} />
+            <Route path="/electrician-braintree" element={<ElectricianBraintreePage />} />
+            <Route path="/electrician-tendring" element={<ElectricianTendringPage />} />
+            <Route path="/electrician-colchester" element={<ElectricianColchesterPage />} />
+            <Route path="/electrician-tilbury" element={<ElectricianTilburyPage />} />
             <Route path="/eicr-certificate-essex" element={<EICRCertificateEssexPage />} />
             <Route path="/house-rewire-essex" element={<HouseRewireEssexPage />} />
             <Route path="/consumer-unit-replacement-essex" element={<ConsumerUnitReplacementEssexPage />} />

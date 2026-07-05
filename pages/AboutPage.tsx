@@ -56,6 +56,9 @@ const AboutPage: React.FC = () => {
 
                 Joe Parker brings over 15 years of hands-on electrical experience to every project, having qualified as an electrician in 2008 and achieving NICEIC approval in 2012. Our family-run approach means you deal directly with experienced professionals who understand the importance of clear communication and reliable service.
               </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Today we offer a full range of <Link to="/electrical-services-essex" className="text-brand-electric font-semibold hover:underline">electrical services across Essex</Link>, and work as trusted <Link to="/electrical-contractors-essex" className="text-brand-electric font-semibold hover:underline">electrical contractors for commercial clients</Link> throughout the region.
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-2">
                   <h4 className="text-2xl font-bold text-brand-electric">10+ Years</h4>

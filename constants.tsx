@@ -7,8 +7,13 @@ export const BUSINESS_INFO = {
   name: 'Parker Electrical Solutions',
   phone: '+447737447302',
   email: 'Pesolutions.ltd@hotmail.com',
-  // primary examples; the first entry emphasises county coverage
-  areas: ['All of Essex', 'Harlow', 'Chelmsford', 'Basildon', 'Southend', 'Romford', 'Ilford'],
+  // Every town listed here must have a real dedicated page (see AREA_LINKS in
+  // pages/AreasPage.tsx) — this is the single source of truth for which towns
+  // are "officially" covered by their own landing page, not just served generally.
+  areas: [
+    'Harlow', 'Chelmsford', 'Basildon', 'Brentwood', 'East London',
+    'Southend', 'Grays', 'Shoeburyness', 'Rayleigh', 'Braintree', 'Tendring', 'Colchester', 'Tilbury'
+  ],
   established: 2014,
   niceic: true
 };
@@ -393,9 +398,28 @@ export const SERVICES: Service[] = [
     description: 'NICEIC approved landlord safety testing and reports.',
     longDescription: 'Ensuring your property meets current safety regulations with thorough EICR inspections. Ideal for landlords and homeowners alike.',
     heroImage: '/assets/domestic/domestic3.jpeg',
-    seoTitle: 'EICR Certificate Essex | NICEIC Electrician | Parker Electrical',
-    metaDescription: 'EICR certificate Essex & London. NICEIC approved electrician providing Electrical Installation Condition Reports for landlords, homeowners, and businesses. Ensures electrical safety compliance with 18th Edition regulations. Fast, reliable service with free quotes.',
-    features: ['Fast Turnaround', 'Detailed Reports', 'Remedial Estimates', 'NICEIC Certified']
+    seoTitle: 'What Is an EICR? Electrical Safety Certificate Explained | Parker Electrical',
+    metaDescription: 'What is an EICR (Electrical Installation Condition Report), who needs one, how often, and what the C1/C2/C3 fault codes mean. A plain-English guide from NICEIC approved electricians.',
+    keywords: 'what is an EICR, EICR meaning, electrical installation condition report explained, EICR fault codes, how often EICR needed',
+    features: ['Fast Turnaround', 'Detailed Reports', 'Remedial Estimates', 'NICEIC Certified'],
+    educationalFAQ: [
+      {
+        question: 'What is an EICR?',
+        answer: 'An Electrical Installation Condition Report (EICR) is a formal, in-depth inspection of a property’s fixed electrical installation — wiring, consumer unit, sockets, and earthing — carried out by a qualified electrician to check it’s safe to continue in use.'
+      },
+      {
+        question: 'How often do I need one?',
+        answer: 'Landlords in England must renew an EICR at least every 5 years or at each change of tenancy. Homeowners aren’t legally required to get one, but a report every 10 years (or on purchase of an older property) is widely recommended.'
+      },
+      {
+        question: 'What do the C1, C2, and C3 codes mean?',
+        answer: 'C1 means danger present — immediate remedial action required. C2 means potentially dangerous — urgent remedial action required. C3 is an improvement recommended, not a legal failure. An EICR with only C3 observations still passes as "satisfactory".'
+      },
+      {
+        question: 'What happens if my property fails?',
+        answer: 'Any C1 or C2 items must be fixed for the report to be marked "satisfactory". Your electrician will provide a written quote for the remedial work, which can usually be carried out at the same visit or scheduled separately.'
+      }
+    ]
   },
   {
     id: 'emergency',
@@ -405,9 +429,28 @@ export const SERVICES: Service[] = [
     description: 'Fast response electrical repairs when you need them most.',
     longDescription: 'Available 24/7 for all electrical emergencies in Essex and London. We aim to be with you in under 60 minutes.',
     heroImage: '/assets/domestic/domestic9.jpeg',
-    seoTitle: 'Emergency Electrician Essex | 24/7 NICEIC Approved | Parker',
-    metaDescription: '24/7 emergency electrician Essex & London. NICEIC approved, fully insured. Fast response for electrical faults, power outages, tripped circuits, and safety issues. Family-run business since 2014. Call +447737447302 for immediate assistance.',
-    features: ['24/7 Availability', 'Under 60min Response', 'Fault Finding', 'Safe & Secure Repairs']
+    seoTitle: 'What Counts as an Electrical Emergency? A Homeowner\'s Guide | Parker Electrical',
+    metaDescription: 'How to tell if you have a genuine electrical emergency, what to do while you wait for help, and when it\'s safe to just turn off the power yourself. Guidance from NICEIC approved electricians.',
+    keywords: 'electrical emergency signs, is this an electrical emergency, what to do power outage, tripped circuit breaker help, burning smell electrical socket',
+    features: ['24/7 Availability', 'Under 60min Response', 'Fault Finding', 'Safe & Secure Repairs'],
+    educationalFAQ: [
+      {
+        question: 'What actually counts as an electrical emergency?',
+        answer: 'Burning smells, sparking sockets, exposed wiring, a consumer unit that won\'t reset, or a total loss of power with no known cause are all genuine emergencies. A single tripped appliance that resets fine usually isn\'t.'
+      },
+      {
+        question: 'Is it safe to turn my own power off?',
+        answer: 'Yes — switching off at your consumer unit (fuse box) is safe and often the right first step if you smell burning or see sparking. Never touch exposed wiring or attempt repairs yourself.'
+      },
+      {
+        question: 'What should I do while waiting for an electrician?',
+        answer: 'Isolate the affected circuit if you can do so safely, keep people and pets away from the area, and avoid using water near any suspected fault. Don\'t attempt to reset a tripped breaker repeatedly.'
+      },
+      {
+        question: 'Why does my circuit breaker keep tripping?',
+        answer: 'Repeated tripping usually means a genuine fault — an overloaded circuit, a faulty appliance, or damaged wiring — rather than a one-off. It\'s a sign the circuit needs inspecting, not just resetting.'
+      }
+    ]
   },
   {
     id: 'domestic',
@@ -441,9 +484,28 @@ export const SERVICES: Service[] = [
     description: 'Expert installation of home and commercial EV charging points.',
     longDescription: 'Upgrade your home with a fast, safe EV charging point installed by certified professionals.',
     heroImage: 'https://images.unsplash.com/photo-1600490819734-6311c5c6f517?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGV2JTIwY2hhcmdlcnxlbnwwfHwwfHx8MA%3D%3D',
-    seoTitle: 'EV Charger Installation Essex | NICEIC Electrician | Parker',
-    metaDescription: 'EV charger installation Essex & London. NICEIC approved electrician for home and commercial electric vehicle charging points. Fast, safe installation with OZEV grants available. Free quotes and expert advice.',
-    features: ['Smart Chargers', 'Tethered & Socketed', 'Load Management', 'Grant Support']
+    seoTitle: 'EV Charger Installation Guide: Costs, Grants & Process | Parker Electrical',
+    metaDescription: 'Everything to know before installing a home EV charger: tethered vs untethered, typical costs, the OZEV grant, and what happens on installation day. A plain-English guide from NICEIC approved electricians.',
+    keywords: 'EV charger installation guide, tethered vs untethered EV charger, OZEV grant explained, home EV charger cost, EV charger installation process',
+    features: ['Smart Chargers', 'Tethered & Socketed', 'Load Management', 'Grant Support'],
+    educationalFAQ: [
+      {
+        question: 'Tethered or untethered — which should I choose?',
+        answer: 'Tethered chargers have a built-in cable, which is more convenient day-to-day. Untethered chargers just have a socket, so you use your car\'s own cable — more flexible if you ever change vehicles.'
+      },
+      {
+        question: 'Is there still a grant available?',
+        answer: 'The OZEV EV chargepoint grant now mainly covers flats and rental properties rather than owner-occupied homes with off-street parking — eligibility depends on your specific situation, so it\'s worth checking before you install.'
+      },
+      {
+        question: 'Do I need planning permission?',
+        answer: 'Most home EV charger installations fall under permitted development and don\'t need planning permission, though listed buildings or chargers near a highway can be exceptions.'
+      },
+      {
+        question: 'What happens on installation day?',
+        answer: 'An electrician checks your consumer unit and supply capacity, runs a dedicated circuit to the charger location, mounts and wires the unit, then tests and certifies the installation — typically completed in half a day.'
+      }
+    ]
   },
   {
     id: 'rewiring',
@@ -453,9 +515,28 @@ export const SERVICES: Service[] = [
     description: 'Full or partial house rewires with minimal disruption.',
     longDescription: 'Future-proof your home and ensure safety with a professional full or partial rewire.',
     heroImage: 'https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/electrical-wiring/_jcr_content/root/container/container_2072089177/teaser_copy_copy_cop_688802308.coreimg.jpeg/1741675137288/electrical-wiring-6.jpeg',
-    seoTitle: 'House Rewire Essex | NICEIC Approved Electrician | Parker',
-    metaDescription: 'House rewire Essex & London. NICEIC approved electrician for full and partial rewiring services. Upgrades to 18th Edition wiring regulations, improves electrical safety and efficiency. Landlord certificates available. Free no-obligation quotes.',
-    features: ['Minimal Disruption', 'Safety Certified', 'Modern Solutions', '10-Year Guarantee']
+    seoTitle: 'House Rewiring Guide: Signs, Process & Costs Explained | Parker Electrical',
+    metaDescription: 'How to tell if your house needs rewiring, the difference between a full and partial rewire, how long it takes, and whether you can stay in your home during the work. A guide from NICEIC approved electricians.',
+    keywords: 'signs house needs rewiring, full vs partial rewire, how long does a house rewire take, house rewire process explained, old wiring warning signs',
+    features: ['Minimal Disruption', 'Safety Certified', 'Modern Solutions', '10-Year Guarantee'],
+    educationalFAQ: [
+      {
+        question: 'How do I know if my house needs rewiring?',
+        answer: 'Warning signs include frequent tripped fuses, flickering lights, scorch marks around sockets, a fuse box with a wooden back or rewireable fuses, and wiring insulated in black rubber or fabric rather than modern PVC.'
+      },
+      {
+        question: 'What\'s the difference between a full and partial rewire?',
+        answer: 'A full rewire replaces every cable, socket, and switch in the property. A partial rewire targets specific circuits or rooms that have failed inspection or are being renovated, leaving safe existing wiring untouched.'
+      },
+      {
+        question: 'How long does it take, and can I stay in my home?',
+        answer: 'A full rewire on an average 3-bedroom house typically takes 5-10 days. It\'s usually more practical to stay elsewhere during the noisiest, most disruptive days, though partial rewires can often be done room-by-room while you remain in the property.'
+      },
+      {
+        question: 'Will I need any certificates afterwards?',
+        answer: 'Yes — a rewire falls under Part P of the Building Regulations, so you should receive a Minor Works or Electrical Installation Certificate confirming the work meets 18th Edition wiring regulations.'
+      }
+    ]
   }
 ];
 

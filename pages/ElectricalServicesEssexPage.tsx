@@ -112,6 +112,21 @@ const ElectricalServicesEssexPage: React.FC = () => {
                 </div>
               </div>
 
+              <div className="p-6 bg-brand-light rounded-2xl border border-gray-100">
+                <h3 className="font-bold text-brand-deep mb-4">Covering Essex Town-by-Town</h3>
+                <div className="flex flex-wrap gap-3">
+                  <RouterLink to="/electrician-harlow" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Harlow</RouterLink>
+                  <RouterLink to="/electrician-chelmsford" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Chelmsford</RouterLink>
+                  <RouterLink to="/electrician-basildon" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Basildon</RouterLink>
+                  <RouterLink to="/electrician-brentwood" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Brentwood</RouterLink>
+                  <RouterLink to="/electrician-southend" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Southend</RouterLink>
+                  <RouterLink to="/electrician-colchester" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Colchester</RouterLink>
+                  <RouterLink to="/electrician-rayleigh" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Rayleigh</RouterLink>
+                  <RouterLink to="/electrician-braintree" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Braintree</RouterLink>
+                  <RouterLink to="/areas" className="text-sm font-semibold text-white bg-brand-orange hover:bg-orange-600 px-4 py-2 rounded-full transition-colors">See All Areas</RouterLink>
+                </div>
+              </div>
+
               <h2 className="text-3xl font-bold text-brand-deep">Why Choose Our Electrical Services in Essex?</h2>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">

@@ -120,6 +120,18 @@ const ElectricalContractorsEssexPage: React.FC = () => {
                 </div>
               </div>
 
+              <div className="p-6 bg-brand-light rounded-2xl border border-gray-100">
+                <h3 className="font-bold text-brand-deep mb-4">Commercial Coverage Across Essex</h3>
+                <div className="flex flex-wrap gap-3">
+                  <RouterLink to="/electrician-east-london" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">East London</RouterLink>
+                  <RouterLink to="/electrician-grays" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Grays</RouterLink>
+                  <RouterLink to="/electrician-tilbury" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Tilbury</RouterLink>
+                  <RouterLink to="/electrician-shoeburyness" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Shoeburyness</RouterLink>
+                  <RouterLink to="/electrician-tendring" className="text-sm font-semibold text-brand-electric bg-white hover:bg-brand-electric hover:text-white px-4 py-2 rounded-full transition-colors border border-gray-100">Tendring</RouterLink>
+                  <RouterLink to="/areas" className="text-sm font-semibold text-white bg-brand-orange hover:bg-orange-600 px-4 py-2 rounded-full transition-colors">See All Areas</RouterLink>
+                </div>
+              </div>
+
               <h2 className="text-3xl font-bold text-brand-deep">Why Partner With Us?</h2>
               <p>
                 Choosing the right electrical contractors in Essex is a critical business decision. As a fully NICEIC Approved Contractor, Parker Electrical Solutions operates to the highest industry standards. We provide transparent pricing, detailed project management, and a dedicated point of contact for all commercial contracts. Our engineers are fully insured and undergo continuous training to stay ahead of the latest technological advancements and safety codes.

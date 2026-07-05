@@ -115,6 +115,8 @@ const ElectricianBrentwoodPage: React.FC = () => {
                 <li><RouterLink to="/consumer-unit-replacement-essex" className="text-brand-electric hover:underline">Consumer Unit Upgrades</RouterLink></li>
                 <li><RouterLink to="/eicr-certificate-essex" className="text-brand-electric hover:underline">EICR Landlord Checks</RouterLink></li>
                 <li><RouterLink to="/ev-charging-essex" className="text-brand-electric hover:underline">EV Charging Stations</RouterLink></li>
+                <li><RouterLink to="/electrical-contractors-essex" className="text-brand-electric hover:underline">Commercial Electrical Contractors</RouterLink></li>
+                <li><RouterLink to="/electrical-services-essex" className="text-brand-electric hover:underline">Full Essex Electrical Services</RouterLink></li>
                 <li>Smart Home Integrations</li>
                 <li>Garden & Security Lighting</li>
                 <li>Commercial PAT Testing</li>

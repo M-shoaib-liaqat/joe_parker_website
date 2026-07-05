@@ -5,17 +5,23 @@ import { Link as RouterLink } from 'react-router-dom';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 
+// Single source of truth for which towns have a real dedicated page — must stay
+// in sync with BUSINESS_INFO.areas in constants.tsx and the routes in App.tsx.
 const AREA_LINKS: Record<string, string> = {
   'Harlow': '/electrician-harlow',
   'Chelmsford': '/electrician-chelmsford',
   'Basildon': '/electrician-basildon',
-  'All of Essex': '/electrical-services-essex',
+  'Brentwood': '/electrician-brentwood',
+  'East London': '/electrician-east-london',
+  'Southend': '/electrician-southend',
+  'Grays': '/electrician-grays',
+  'Shoeburyness': '/electrician-shoeburyness',
+  'Rayleigh': '/electrician-rayleigh',
+  'Braintree': '/electrician-braintree',
+  'Tendring': '/electrician-tendring',
+  'Colchester': '/electrician-colchester',
+  'Tilbury': '/electrician-tilbury',
 };
-
-const MORE_LOCATIONS = [
-  { name: 'Brentwood', path: '/electrician-brentwood' },
-  { name: 'East London', path: '/electrician-east-london' },
-];
 
 const ESSEX_SERVICE_LINKS = [
   { name: 'EICR Certificates Essex', path: '/eicr-certificate-essex' },
@@ -60,6 +66,42 @@ const AreasPage: React.FC = () => {
         {
           "@type": "Place",
           "name": "Brentwood"
+        },
+        {
+          "@type": "Place",
+          "name": "East London"
+        },
+        {
+          "@type": "Place",
+          "name": "Southend-on-Sea"
+        },
+        {
+          "@type": "Place",
+          "name": "Grays"
+        },
+        {
+          "@type": "Place",
+          "name": "Shoeburyness"
+        },
+        {
+          "@type": "Place",
+          "name": "Rayleigh"
+        },
+        {
+          "@type": "Place",
+          "name": "Braintree"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Tendring"
+        },
+        {
+          "@type": "Place",
+          "name": "Colchester"
+        },
+        {
+          "@type": "Place",
+          "name": "Tilbury"
         }
       ]
     }
@@ -114,12 +156,6 @@ const AreasPage: React.FC = () => {
                     </div>
                   );
                 })}
-                {MORE_LOCATIONS.map((loc) => (
-                  <RouterLink key={loc.path} to={loc.path} className="flex items-center gap-3 p-4 bg-brand-light rounded-xl border border-gray-100 hover:border-brand-electric transition-colors">
-                    <MapPin className="text-brand-electric" />
-                    <span className="font-bold">{loc.name}</span>
-                  </RouterLink>
-                ))}
               </div>
 
               <div className="p-6 bg-white rounded-2xl border border-gray-100">

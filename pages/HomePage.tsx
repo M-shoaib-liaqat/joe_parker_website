@@ -25,13 +25,15 @@ const Hero = () => (
           {/* ── TEXT SIDE ── */}
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-4 lg:gap-6">
 
-            {/* Headline — client-required text, styled with weight contrast */}
+            {/* Headline — targets brand + general intent; "electrical services essex"
+                as an exact phrase is reserved for /electrical-services-essex to avoid
+                the two pages competing for the same keyword */}
             <h1 className="font-bold text-white leading-[1.1]">
               <span className="block text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light text-white/80">
-                Top-Rated
+                Parker Electrical Solutions
               </span>
               <span className="block text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-white mt-1">
-                Electrical Services
+                Trusted Electricians
                 <span className="text-brand-orange"> in Essex</span>
               </span>
             </h1>
@@ -330,6 +332,9 @@ const SEOContentBlock = () => (
           3. <strong>Expert Execution:</strong> Our NICEIC electricians complete the work with minimal disruption, ensuring your property remains clean and safe.<br/>
           4. <strong>Certification:</strong> Upon completion, you receive all necessary legal certification (such as EICR or Part P compliance certificates) for your records.
         </p>
+        <p>
+          See our full range of <Link to="/electrical-services-essex" className="text-brand-electric font-semibold hover:underline">electrical services across Essex</Link>, or if you're a business owner, visit our dedicated page for <Link to="/electrical-contractors-essex" className="text-brand-electric font-semibold hover:underline">commercial electrical contractors in Essex</Link>.
+        </p>
       </div>
     </div>
   </section>
@@ -404,8 +409,8 @@ const HomePage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Electrical Services Essex | Domestic & Commercial | Parker Electrical"
-        description="Looking for reliable electrical services in Essex? Parker Electrical Solutions provides NICEIC-approved domestic & commercial electricians. Free quote — call today."
+        title="Parker Electrical Solutions | Trusted Electrical Contractors in Essex"
+        description="Family-run NICEIC approved electrical contractor serving Essex and London since 2014. Domestic & commercial work, emergency call-outs, and free no-obligation quotes."
         keywords="electrician Essex, NICEIC electrician Essex, emergency electrician Essex, electrician Harlow, domestic electrician Harlow, commercial electrician London, EICR certificate Essex, consumer unit replacement Essex, house rewire Essex, landlord electrical certificate Essex, fault finding electrician Essex, electrician Chelmsford, electrician Basildon, electrician Brentwood, electrician East London"
         canonical="/"
         structuredData={homeStructuredData}

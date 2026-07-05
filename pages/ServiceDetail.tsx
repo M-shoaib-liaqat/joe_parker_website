@@ -42,46 +42,61 @@ const ServiceDetail: React.FC = () => {
       <SEO
         title={service.seoTitle}
         description={service.metaDescription}
-        keywords={`${service.title.toLowerCase()} Essex, ${service.title.toLowerCase()} Harlow, NICEIC approved ${service.title.toLowerCase()}, professional ${service.title.toLowerCase()} London, ${service.title.toLowerCase()} Chelmsford, ${service.title.toLowerCase()} Basildon`}
+        keywords={service.keywords ?? `${service.title.toLowerCase()} Essex, ${service.title.toLowerCase()} Harlow, NICEIC approved ${service.title.toLowerCase()}, professional ${service.title.toLowerCase()} London, ${service.title.toLowerCase()} Chelmsford, ${service.title.toLowerCase()} Basildon`}
         canonical={`/service/${service.slug}`}
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "Service",
-          "name": service.title,
-          "description": service.longDescription,
-          "provider": {
-            "@type": "LocalBusiness",
-            "name": "Parker Electrical Solutions Ltd",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "125 The Briars",
-              "addressLocality": "Harlow",
-              "addressRegion": "Essex",
-              "postalCode": "CM18 7EN",
-              "addressCountry": "GB"
-            }
-          },
-          "areaServed": [
+          "@graph": [
             {
-              "@type": "Place",
-              "name": "Essex"
-            },
-            {
-              "@type": "Place",
-              "name": "Greater London"
-            }
-          ],
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": service.title,
-            "itemListElement": service.features.map((feature, index) => ({
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": feature
+              "@type": "Service",
+              "name": service.title,
+              "description": service.longDescription,
+              "provider": {
+                "@type": "LocalBusiness",
+                "name": "Parker Electrical Solutions Ltd",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "125 The Briars",
+                  "addressLocality": "Harlow",
+                  "addressRegion": "Essex",
+                  "postalCode": "CM18 7EN",
+                  "addressCountry": "GB"
+                }
+              },
+              "areaServed": [
+                {
+                  "@type": "Place",
+                  "name": "Essex"
+                },
+                {
+                  "@type": "Place",
+                  "name": "Greater London"
+                }
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": service.title,
+                "itemListElement": service.features.map((feature, index) => ({
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": feature
+                  }
+                }))
               }
-            }))
-          }
+            },
+            ...(service.educationalFAQ ? [{
+              "@type": "FAQPage",
+              "mainEntity": service.educationalFAQ.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
+            }] : [])
+          ]
         }}
       />
       <div className="bg-white">
@@ -107,7 +122,9 @@ const ServiceDetail: React.FC = () => {
                 {service.longDescription}
               </p>
               <p className="text-lg text-white/80 max-w-xl">
-                Proudly serving all areas of Essex as well as London with every job.
+                {service.educationalFAQ
+                  ? 'A plain-English guide from our NICEIC approved electricians, based on real jobs across Essex and London.'
+                  : 'Proudly serving all areas of Essex as well as London with every job.'}
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href={`tel:${BUSINESS_INFO.phone}`} className="bg-brand-orange text-white px-8 py-4 rounded-lg font-bold text-lg flex items-center gap-3">
@@ -141,6 +158,20 @@ const ServiceDetail: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {service.educationalFAQ && (
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold text-brand-deep">Common Questions, Answered</h2>
+                  <div className="space-y-4">
+                    {service.educationalFAQ.map((faq, idx) => (
+                      <div key={idx} className="bg-brand-light p-6 rounded-2xl border border-gray-100">
+                        <h3 className="text-xl font-bold text-brand-deep mb-2">{faq.question}</h3>
+                        <p className="text-gray-700">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="space-y-6 bg-brand-dark text-white p-10 rounded-3xl">
                 <h3 className="text-2xl font-bold">Why Choose Us for this Service?</h3>

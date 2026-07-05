@@ -96,7 +96,10 @@ const ElectricianHarlowPage: React.FC = () => {
               <p>
                 Based right here in The Briars, Parker Electrical Solutions is proud to serve our local community. When you are searching for dependable <strong>electrical solutions in Harlow</strong>, you need a contractor who is not only fully qualified but also just around the corner. We provide rapid, professional, and safe electrical services for both domestic properties and local businesses in Harlow and the wider Essex area.
               </p>
-              
+              <p>
+                Harlow is also home base for our wider <RouterLink to="/electrical-services-essex" className="text-brand-electric font-semibold hover:underline">electrical services across Essex</RouterLink>, including dedicated <RouterLink to="/electrical-contractors-essex" className="text-brand-electric font-semibold hover:underline">electrical contractors for commercial projects</RouterLink> throughout the county.
+              </p>
+
               <div className="flex flex-col md:flex-row gap-8 items-center bg-gray-50 p-8 rounded-2xl border border-gray-100 my-10">
                 <div className="flex-1 space-y-4">
                   <h3 className="text-2xl font-bold text-brand-deep">Why Choose a Harlow Local?</h3>
