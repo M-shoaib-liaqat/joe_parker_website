@@ -270,6 +270,7 @@ const Footer = () => {
 
       <div className="container mx-auto px-4 mt-16 pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
         <p>© {new Date().getFullYear()} Parker Electrical Solutions. All rights reserved. NICEIC Registered. Fully Insured.</p>
+        <p className="mt-2">Website & SEO by <a href="https://www.devtimize.com" className="text-gray-400 hover:text-white transition-colors">Devtimize</a></p>
       </div>
     </footer>
   );
