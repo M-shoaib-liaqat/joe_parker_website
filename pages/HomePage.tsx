@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Star, Shield, ArrowRight, Phone, Clock, MapPin, Award, Image as ImageIcon } from 'lucide-react';
+import { CheckCircle2, Star, Shield, ArrowRight, Phone, Clock, MapPin, Award, Image as ImageIcon, MessageCircle } from 'lucide-react';
 import { BUSINESS_INFO, SERVICES, REVIEWS, GALLERY_IMAGES, getIcon } from '../constants';
 import SEO from '../components/SEO';
+import { trackEvent } from '../lib/analytics';
 
+// STAGED FOR REVIEW — not on main/production yet. Rewrites the hero to lead
+// with urgency + an instant CTA instead of brand-first copy, per Phase 3.2.
+// "electrical services essex" as an exact phrase is still reserved for
+// /electrical-services-essex to avoid the two pages competing for the same
+// keyword — the headline below deliberately doesn't use that exact phrase.
 const Hero = () => (
   <section className="relative flex items-center overflow-hidden bg-brand-deep lg:min-h-[85vh] -mt-16 lg:mt-0 pt-16 lg:pt-0">
     {/* Background */}
@@ -27,38 +33,43 @@ const Hero = () => (
           {/* ── TEXT SIDE ── */}
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left gap-4 lg:gap-6">
 
-            {/* Headline — targets brand + general intent; "electrical services essex"
-                as an exact phrase is reserved for /electrical-services-essex to avoid
-                the two pages competing for the same keyword */}
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold">
+              <Clock size={14} className="text-brand-orange" /> 24/7 Emergency Call-Outs — Essex &amp; London
+            </div>
+
             <h1 className="font-bold text-white leading-[1.1]">
-              <span className="block text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light text-white/80">
-                Parker Electrical Solutions
-              </span>
               <span className="block text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-black text-white mt-1">
-                Trusted Electricians
-                <span className="text-brand-orange"> in Essex</span>
+                No Power?
+                <span className="text-brand-orange"> We're There Fast.</span>
+              </span>
+              <span className="block text-lg sm:text-xl lg:text-3xl font-light text-white/80 mt-3">
+                Parker Electrical Solutions — NICEIC Approved
               </span>
             </h1>
 
             <p className="text-gray-300 text-sm sm:text-base lg:text-lg max-w-md leading-relaxed">
-              Essex's trusted NICEIC approved electrician for domestic and commercial electrical services. From emergency repairs to complete house rewiring, we deliver safe, reliable solutions across Harlow, Chelmsford, and Greater London.
+              Fast-response emergency electrician, plus rewiring, EICR certificates, consumer units and EV charging — for homes and businesses across Harlow, Chelmsford, and Greater London.
             </p>
 
-            {/* CTAs */}
+            {/* CTAs — Call and WhatsApp given equal visual weight (Phase 4.4) */}
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <a
                 href={`tel:${BUSINESS_INFO.phone}`}
+                onClick={() => trackEvent('click_call', { source: 'hero' })}
                 className="bg-brand-orange hover:bg-orange-600 text-white px-6 py-3.5 lg:px-7 lg:py-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all shadow-lg shadow-brand-orange/30 text-sm sm:text-base lg:text-lg"
               >
                 <Phone size={18} />
                 {BUSINESS_INFO.phone}
               </a>
-              <Link
-                to="/gallery"
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/25 px-6 py-3.5 lg:px-7 lg:py-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all text-sm sm:text-base lg:text-lg"
+              <a
+                href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\D/g, '')}?text=${encodeURIComponent('Hi, I found you on your website and need help with...')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('click_whatsapp', { source: 'hero' })}
+                className="bg-[#25D366] hover:bg-[#1ebe57] text-white px-6 py-3.5 lg:px-7 lg:py-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all shadow-lg text-sm sm:text-base lg:text-lg"
               >
-                <ImageIcon size={18} /> Our Gallery
-              </Link>
+                <MessageCircle size={18} /> WhatsApp Us
+              </a>
             </div>
 
             {/* Trust badges */}
