@@ -69,8 +69,8 @@ const EmergencyElectricianEssexPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Emergency Electrician Essex | 24/7 Fast Response | Parker"
-        description="Power outage? Sparking sockets? Parker Electrical Solutions provides a 24/7 rapid response emergency electrician service across Essex. Call us immediately."
+        title="Emergency Electrician Essex | 24/7 | Under 60 Min"
+        description="Power cut or electrical emergency in Essex? NICEIC-approved engineers on call 24/7, typically on-site within 60 minutes. Call now for immediate help."
         keywords="emergency electrician essex, 24 hour electrician essex, electrical fault finding essex, out of hours electrician essex"
         canonical="/emergency-electrician-essex"
         structuredData={structuredData}

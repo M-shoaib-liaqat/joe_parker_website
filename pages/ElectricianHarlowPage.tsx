@@ -1,9 +1,14 @@
 import React from 'react';
-import { Phone, MapPin, Clock, Shield, CheckCircle2 } from 'lucide-react';
+import { Phone, MapPin, Clock, Shield, CheckCircle2, ClipboardList, PhoneCall, Wrench, FileCheck } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
 import NearbyAreas from '../components/NearbyAreas';
+import { buildBreadcrumbSchema, buildServiceSchema } from '../components/schema';
+import QuickCTABanner from '../components/QuickCTABanner';
+import TrustSection from '../components/TrustSection';
+import LocalProofStrip from '../components/LocalProofStrip';
+import QuickQuoteForm from '../components/QuickQuoteForm';
 
 const ElectricianHarlowPage: React.FC = () => {
   const structuredData = {
@@ -30,6 +35,13 @@ const ElectricianHarlowPage: React.FC = () => {
         "areaServed": "Harlow",
         "description": "Local NICEIC approved electrician in Harlow. Fast response emergency electrical solutions, rewiring, and consumer units."
       },
+      buildServiceSchema({
+        name: 'Electrician Services in Harlow',
+        description: 'Domestic and commercial electrical work across Harlow, including rewiring, EICR testing, consumer unit upgrades, and emergency call-outs.',
+        path: '/electrician-harlow',
+        areaServed: 'Harlow',
+      }),
+      buildBreadcrumbSchema([{ name: 'Electrician Harlow', path: '/electrician-harlow' }]),
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -64,6 +76,22 @@ const ElectricianHarlowPage: React.FC = () => {
               "@type": "Answer",
               "text": "Yes, we provide free, no-obligation quotes for all local residents and businesses in Harlow. Contact us today to discuss your project."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "What areas of Harlow do you cover?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The whole of Harlow, including Old Harlow, Church Langley, Great Parndon, Staple Tye, and the Pinnacles and Templefields industrial estates, plus the surrounding CM postcodes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you rewire an older Harlow new-town house?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — a lot of Harlow's housing stock dates from the 1950s-60s new-town development, and we regularly rewire these properties, updating old wiring and fuse boards to current 18th Edition standards."
+            }
           }
         ]
       }
@@ -94,12 +122,40 @@ const ElectricianHarlowPage: React.FC = () => {
 
             {/* Content */}
             <div className="p-10 space-y-8 text-gray-700 leading-relaxed text-lg">
+              <QuickCTABanner />
               <p>
                 Based right here in The Briars, Parker Electrical Solutions is proud to serve our local community. When you are searching for dependable <strong>electrical solutions in Harlow</strong>, you need a contractor who is not only fully qualified but also just around the corner. We provide rapid, professional, and safe electrical services for both domestic properties and local businesses in Harlow and the wider Essex area.
               </p>
               <p>
                 Harlow is also home base for our wider <RouterLink to="/electrical-services-essex" className="text-brand-electric font-semibold hover:underline">electrical services across Essex</RouterLink>, including dedicated <RouterLink to="/electrical-contractors-essex" className="text-brand-electric font-semibold hover:underline">electrical contractors for commercial projects</RouterLink> throughout the county.
               </p>
+              <p>
+                Harlow's mix of 1950s-60s new-town housing, newer developments around Church Langley and Great Parndon, and the Pinnacles and Templefields industrial estates means our local jobs vary hugely — from replacing an ageing fuse board in an older terrace, to fitting EV chargers on modern driveways, to distribution board work for units on the trading estates. Being based here means we know the housing stock and the area, not just the postcode.
+              </p>
+
+              <h2 className="text-3xl font-bold text-brand-deep">What's Included With Every Job</h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100 text-center">
+                  <PhoneCall className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">1. Call or Message</p>
+                  <p className="text-sm text-gray-500 mt-1">Tell us what's needed — call, WhatsApp, or the quote form.</p>
+                </div>
+                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100 text-center">
+                  <ClipboardList className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">2. Free Quote</p>
+                  <p className="text-sm text-gray-500 mt-1">A clear, no-obligation quote before any work is booked.</p>
+                </div>
+                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100 text-center">
+                  <Wrench className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">3. The Work</p>
+                  <p className="text-sm text-gray-500 mt-1">Carried out by a NICEIC-approved electrician, tidily and safely.</p>
+                </div>
+                <div className="bg-gray-50 p-5 rounded-2xl border border-gray-100 text-center">
+                  <FileCheck className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">4. Certification</p>
+                  <p className="text-sm text-gray-500 mt-1">Signed-off paperwork/certificates where the job requires them.</p>
+                </div>
+              </div>
 
               <div className="flex flex-col md:flex-row gap-8 items-center bg-gray-50 p-8 rounded-2xl border border-gray-100 my-10">
                 <div className="flex-1 space-y-4">
@@ -163,8 +219,19 @@ const ElectricianHarlowPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Do you offer free quotes for electrical work in Harlow?</h3>
                     <p className="text-gray-700 leading-relaxed">Yes, we provide free, no-obligation quotes for all local residents and businesses in Harlow. Contact us today to discuss your project.</p>
                   </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">What areas of Harlow do you cover?</h3>
+                    <p className="text-gray-700 leading-relaxed">The whole of Harlow, including Old Harlow, Church Langley, Great Parndon, Staple Tye, and the Pinnacles and Templefields industrial estates, plus the surrounding CM postcodes.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Can you rewire an older Harlow new-town house?</h3>
+                    <p className="text-gray-700 leading-relaxed">Yes — a lot of Harlow's housing stock dates from the 1950s-60s new-town development, and we regularly rewire these properties, updating old wiring and fuse boards to current 18th Edition standards.</p>
+                  </div>
                 </div>
               </div>
+
+              <TrustSection />
+              <LocalProofStrip />
 
               {/* CTA */}
               <div className="bg-brand-deep text-white p-8 rounded-2xl text-center mt-12 shadow-lg">
@@ -183,6 +250,11 @@ const ElectricianHarlowPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Established 2014</span>
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold text-brand-deep mb-4 text-center">Get a Free Quote in 30 Seconds</h3>
+                <QuickQuoteForm defaultProblem="Something Else" />
               </div>
 
               <NearbyAreas current="Harlow" />

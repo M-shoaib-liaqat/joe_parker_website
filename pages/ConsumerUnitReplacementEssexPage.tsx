@@ -35,7 +35,7 @@ const ConsumerUnitReplacementEssexPage: React.FC = () => {
             "name": "How much does a consumer unit replacement cost in Essex?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A standard consumer unit replacement in Essex typically costs between £450 and £700, depending on the number of circuits, the size of the board, and whether any existing faults need repairing."
+              "text": "The cost of a consumer unit replacement in Essex depends on the number of circuits, the size of the board, and whether any existing faults need repairing. We provide a free, no-obligation quote so you know the exact price upfront."
             }
           },
           {
@@ -139,7 +139,7 @@ const ConsumerUnitReplacementEssexPage: React.FC = () => {
                 <div className="space-y-6">
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How much does a consumer unit replacement cost in Essex?</h3>
-                    <p className="text-gray-700">A standard consumer unit replacement in Essex typically costs between £450 and £700, depending on the number of circuits, the size of the board, and whether any existing faults need repairing.</p>
+                    <p className="text-gray-700">The cost of a consumer unit replacement in Essex depends on the number of circuits, the size of the board, and whether any existing faults need repairing. We provide a free, no-obligation quote so you know the exact price upfront.</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How long does it take to change a fuse box?</h3>

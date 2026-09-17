@@ -9,7 +9,9 @@ const Hero = () => (
     {/* Background */}
     <div className="absolute inset-0 z-0">
       <img
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1920"
+        src="/assets/hero-electrical.jpg"
+        width={800}
+        height={533}
         className="w-full h-full object-cover opacity-25 brightness-110"
         alt="High-End Architectural Electrical Lighting"
       />
@@ -87,6 +89,8 @@ const Hero = () => (
               <div className="relative bg-white rounded-3xl shadow-2xl p-10 flex items-center justify-center w-72 h-72 xl:w-80 xl:h-80 border border-white/80">
                 <img
                   src="/assets/logo/logo.png"
+                  width={750}
+                  height={750}
                   alt="Parker Electrical Solutions Logo"
                   className="w-full h-full object-contain"
                 />
@@ -174,10 +178,13 @@ const GalleryHighlights = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {GALLERY_IMAGES.slice(0, 4).map((img, i) => (
           <div key={i} className="group relative h-[400px] overflow-hidden rounded-3xl shadow-xl border border-gray-100">
-            <img 
-              src={img.url} 
-              className="w-full h-full object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 transition-all duration-700" 
-              alt={img.title} 
+            <img
+              src={img.url}
+              width={768}
+              height={1024}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 transition-all duration-700"
+              alt={img.title}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0">
               <span className="text-brand-orange text-xs font-bold uppercase tracking-widest mb-1">{img.category}</span>
@@ -229,6 +236,9 @@ const WhyChooseUs = () => (
           <div className="absolute -inset-6 bg-brand-electric/10 rounded-3xl -rotate-2 -z-10"></div>
           <img
             src="/assets/logo/logo.png"
+            width={750}
+            height={750}
+            loading="lazy"
             className="rounded-3xl shadow-2xl w-full object-cover h-[500px] brightness-105"
             alt="Lead Electrician Joe Parker"
           />
@@ -277,7 +287,7 @@ const FAQSection = () => {
   const faqs = [
     {
       q: "How much does an EICR certificate cost in Essex?",
-      a: "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits. Prices typically start from £150 for a standard 1-bedroom flat. Contact us for an exact, free quote."
+      a: "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits it has. We provide a free, no-obligation quote for every property, so you'll always know the exact price before any work is booked."
     },
     {
       q: "Do I need an electrician for a consumer unit replacement?",
@@ -364,7 +374,31 @@ const HomePage: React.FC = () => {
           "addressCountry": "GB"
         },
         "telephone": "+447737447302",
-        "email": "Pesolutions.ltd@hotmail.com"
+        "email": "Pesolutions.ltd@hotmail.com",
+        "sameAs": [
+          "https://www.facebook.com/Parkerelectricalsolution/",
+          "https://www.checkatrade.com/trades/parkerelectricalsolutions"
+        ],
+        // Sourced from the real REVIEWS data in constants.tsx (also rendered
+        // visibly further down this page) — no invented ratings.
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": (REVIEWS.reduce((sum, r) => sum + r.stars, 0) / REVIEWS.length).toFixed(1),
+          "reviewCount": REVIEWS.length,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": REVIEWS.map(r => ({
+          "@type": "Review",
+          "author": { "@type": "Person", "name": r.name },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": r.stars,
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "reviewBody": r.text
+        }))
       },
       {
         "@type": "FAQPage",
@@ -374,7 +408,7 @@ const HomePage: React.FC = () => {
             "name": "How much does an EICR certificate cost in Essex?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits. Prices typically start from £150 for a standard 1-bedroom flat. Contact us for an exact, free quote."
+              "text": "The cost of an EICR certificate in Essex depends on the size of the property and the number of circuits it has. We provide a free, no-obligation quote for every property, so you'll always know the exact price before any work is booked."
             }
           },
           {

@@ -3,6 +3,11 @@ import { Phone, CheckCircle2, Zap } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import { buildBreadcrumbSchema, buildServiceSchema } from '../components/schema';
+import QuickCTABanner from '../components/QuickCTABanner';
+import TrustSection from '../components/TrustSection';
+import LocalProofStrip from '../components/LocalProofStrip';
+import QuickQuoteForm from '../components/QuickQuoteForm';
 
 const ElectricalContractorsEssexPage: React.FC = () => {
   const structuredData = {
@@ -24,6 +29,13 @@ const ElectricalContractorsEssexPage: React.FC = () => {
         "areaServed": "Essex",
         "description": "Professional commercial electrical contractors in Essex. Industrial installations, office fit-outs, and maintenance."
       },
+      buildServiceSchema({
+        name: 'Commercial Electrical Contractors Essex',
+        description: 'Commercial and industrial electrical contracting across Essex — office fit-outs, three-phase installations, EICR testing, and planned maintenance.',
+        path: '/electrical-contractors-essex',
+        areaServed: 'Essex',
+      }),
+      buildBreadcrumbSchema([{ name: 'Electrical Contractors Essex', path: '/electrical-contractors-essex' }]),
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -58,6 +70,22 @@ const ElectricalContractorsEssexPage: React.FC = () => {
               "@type": "Answer",
               "text": "Yes, we offer bespoke planned maintenance contracts that include regular inspections, emergency lighting tests, and rapid breakdown response to minimize business downtime."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work out of hours to minimise disruption to our business?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we can schedule commercial installations and maintenance work evenings, weekends, or overnight where needed, so your operations aren't interrupted during trading hours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does commercial electrical work cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every commercial project is different in scale, so we scope and quote each one individually after a site visit or consultation. Get in touch and we'll arrange a free, no-obligation quote for your business."
+            }
           }
         ]
       }
@@ -88,10 +116,14 @@ const ElectricalContractorsEssexPage: React.FC = () => {
 
             {/* Content */}
             <div className="p-10 space-y-8 text-gray-700 leading-relaxed text-lg">
+              <QuickCTABanner />
               <p>
                 As leading <strong>electrical contractors in Essex</strong>, Parker Electrical Solutions provides robust, scalable, and safe electrical infrastructures for businesses of all sizes. From retail units and office buildings to large-scale industrial warehouses, our team of highly qualified commercial electricians is equipped to handle complex B2B projects across the county.
               </p>
-              
+              <p>
+                We work with a wide spread of Essex businesses — retail units in town centres, office tenants fitting out a new floor, and warehouse operators on the industrial estates around Grays, Tilbury, and Basildon. Each brings different constraints: retail and office jobs usually need to happen around trading hours with minimal mess, while industrial sites often involve heavier three-phase work and stricter compliance sign-off. We scope and plan for that up front, not on the day.
+              </p>
+
               <h2 className="text-3xl font-bold text-brand-deep">Comprehensive Commercial Electrical Solutions</h2>
               <p>
                 We understand that commercial electrical work requires strict adherence to deadlines, minimal disruption to your daily operations, and absolute compliance with safety regulations. Our contracting services are designed to meet the rigorous demands of the modern business environment.
@@ -157,8 +189,19 @@ const ElectricalContractorsEssexPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Do you offer ongoing commercial electrical maintenance contracts?</h3>
                     <p className="text-gray-700 leading-relaxed">Yes, we offer bespoke planned maintenance contracts that include regular inspections, emergency lighting tests, and rapid breakdown response to minimize business downtime.</p>
                   </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Do you work out of hours to minimise disruption to our business?</h3>
+                    <p className="text-gray-700 leading-relaxed">Yes, we can schedule commercial installations and maintenance work evenings, weekends, or overnight where needed, so your operations aren't interrupted during trading hours.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">How much does commercial electrical work cost?</h3>
+                    <p className="text-gray-700 leading-relaxed">Every commercial project is different in scale, so we scope and quote each one individually after a site visit or consultation. Get in touch and we'll arrange a free, no-obligation quote for your business.</p>
+                  </div>
                 </div>
               </div>
+
+              <TrustSection />
+              <LocalProofStrip />
 
               {/* CTA */}
               <div className="bg-brand-deep text-white p-8 rounded-2xl text-center mt-12 shadow-lg">
@@ -177,6 +220,11 @@ const ElectricalContractorsEssexPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Established 2014</span>
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold text-brand-deep mb-4 text-center">Get a Free Quote in 30 Seconds</h3>
+                <QuickQuoteForm defaultProblem="Commercial Electrical Work" />
               </div>
             </div>
           </div>

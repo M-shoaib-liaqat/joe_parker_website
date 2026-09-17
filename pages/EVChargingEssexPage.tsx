@@ -3,6 +3,11 @@ import { Phone, CheckCircle2, BatteryCharging, Leaf } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import { buildBreadcrumbSchema } from '../components/schema';
+import QuickCTABanner from '../components/QuickCTABanner';
+import TrustSection from '../components/TrustSection';
+import LocalProofStrip from '../components/LocalProofStrip';
+import QuickQuoteForm from '../components/QuickQuoteForm';
 
 const EVChargingEssexPage: React.FC = () => {
   const structuredData = {
@@ -27,6 +32,7 @@ const EVChargingEssexPage: React.FC = () => {
         "areaServed": "Essex",
         "description": "Professional EV charger installations for homes and businesses across Essex. Fast, smart, and safe charging solutions."
       },
+      buildBreadcrumbSchema([{ name: 'EV Charging Essex', path: '/ev-charging-essex' }]),
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -35,7 +41,7 @@ const EVChargingEssexPage: React.FC = () => {
             "name": "How much does it cost to install an EV charger at home in Essex?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The cost typically ranges between £800 and £1,200 including the charger unit and standard installation. Costs can vary depending on cable routing and your current electrical setup."
+              "text": "The cost depends on the charger unit you choose, cable routing, and your current electrical setup. We provide a free, no-obligation quote tailored to your property, with competitive rates and no hidden extras."
             }
           },
           {
@@ -60,6 +66,22 @@ const EVChargingEssexPage: React.FC = () => {
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "We are experienced in installing all major leading brands including Zappi, Pod Point, Ohme, and Tesla Wall Connectors."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get a grant towards my EV charger installation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Government EV charging grant schemes (run via OZEV, the Office for Zero Emission Vehicles) change from time to time and mainly apply to landlords, workplaces, and flat owners rather than most homeowners now. Ask us and we'll tell you what, if anything, you may currently be eligible for."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What areas of Essex do you install EV chargers in?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We install EV chargers across Essex and East London, including Harlow, Chelmsford, Basildon, Brentwood, Southend, Rayleigh, Grays, and everywhere in between."
             }
           }
         ]
@@ -89,10 +111,14 @@ const EVChargingEssexPage: React.FC = () => {
             </div>
 
             <div className="p-10 text-gray-700 leading-relaxed text-lg">
+              <QuickCTABanner />
               <p className="mb-6">
                 As the transition to electric vehicles accelerates, having a reliable, fast, and smart charging point at your property has never been more important. Relying on a standard 3-pin plug is slow and potentially dangerous over long periods. Parker Electrical Solutions is your trusted local expert for <strong>EV charger installations in Essex</strong>, providing end-to-end solutions for both residential homeowners and commercial fleets.
               </p>
-              
+              <p className="mb-6">
+                We install EV chargers on everything from period-property driveways in Chelmsford and Colchester to new-build estates around Harlow and Basildon, plus workplace and fleet charging bays for Essex businesses. Every installation includes the correct load assessment for your property's existing supply and, where required, the necessary DNO notification — so the charger is not just fitted, but signed off and legal to use.
+              </p>
+
               <div className="flex flex-col md:flex-row gap-8 items-center bg-gray-50 p-8 rounded-2xl border border-gray-100 my-10">
                 <div className="flex-1 space-y-4">
                   <h3 className="text-2xl font-bold text-brand-deep">Why Install a Dedicated EV Charger?</h3>
@@ -139,7 +165,7 @@ const EVChargingEssexPage: React.FC = () => {
                 <div className="space-y-6">
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How much does it cost to install an EV charger at home in Essex?</h3>
-                    <p className="text-gray-700">The cost typically ranges between £800 and £1,200 including the charger unit and standard installation. Costs can vary depending on cable routing and your current electrical setup.</p>
+                    <p className="text-gray-700">The cost depends on the charger unit you choose, cable routing, and your current electrical setup. We provide a free, no-obligation quote tailored to your property, with competitive rates and no hidden extras.</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Do I need a new consumer unit to install an EV charger?</h3>
@@ -153,8 +179,19 @@ const EVChargingEssexPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Which brands of EV chargers do you install?</h3>
                     <p className="text-gray-700">We are experienced in installing all major leading brands including Zappi, Pod Point, Ohme, and Tesla Wall Connectors.</p>
                   </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Can I get a grant towards my EV charger installation?</h3>
+                    <p className="text-gray-700">Government EV charging grant schemes (run via OZEV, the Office for Zero Emission Vehicles) change from time to time and mainly apply to landlords, workplaces, and flat owners rather than most homeowners now. Ask us and we'll tell you what, if anything, you may currently be eligible for.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">What areas of Essex do you install EV chargers in?</h3>
+                    <p className="text-gray-700">We install EV chargers across Essex and East London, including Harlow, Chelmsford, Basildon, Brentwood, Southend, Rayleigh, Grays, and everywhere in between.</p>
+                  </div>
                 </div>
               </div>
+
+              <TrustSection />
+              <LocalProofStrip />
 
               {/* CTA */}
               <div className="bg-brand-deep text-white p-8 rounded-2xl text-center shadow-lg">
@@ -173,6 +210,11 @@ const EVChargingEssexPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> DNO Notification Handled</span>
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold text-brand-deep mb-4 text-center">Get a Free Quote in 30 Seconds</h3>
+                <QuickQuoteForm defaultProblem="EV Charger Installation" />
               </div>
             </div>
           </div>

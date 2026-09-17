@@ -1,9 +1,14 @@
 import React from 'react';
 
-import { Phone, CheckCircle2, Shield } from 'lucide-react';
+import { Phone, CheckCircle2, Shield, ClipboardList, PhoneCall, Wrench, FileCheck } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import { buildBreadcrumbSchema, buildServiceSchema } from '../components/schema';
+import QuickCTABanner from '../components/QuickCTABanner';
+import TrustSection from '../components/TrustSection';
+import LocalProofStrip from '../components/LocalProofStrip';
+import QuickQuoteForm from '../components/QuickQuoteForm';
 
 const ElectricalServicesEssexPage: React.FC = () => {
   const structuredData = {
@@ -25,6 +30,13 @@ const ElectricalServicesEssexPage: React.FC = () => {
         "areaServed": "Essex",
         "description": "Top-rated electrical services across Essex for both domestic and commercial clients."
       },
+      buildServiceSchema({
+        name: 'Electrical Services Essex',
+        description: 'Domestic and commercial electrical services across Essex, including rewiring, EICR testing, consumer unit upgrades, EV charging, and emergency call-outs.',
+        path: '/electrical-services-essex',
+        areaServed: 'Essex',
+      }),
+      buildBreadcrumbSchema([{ name: 'Electrical Services Essex', path: '/electrical-services-essex' }]),
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -59,6 +71,22 @@ const ElectricalServicesEssexPage: React.FC = () => {
               "@type": "Answer",
               "text": "Yes! We provide free, no-obligation quotes for all electrical projects. Contact us to discuss your requirements and we will give you a transparent price breakdown."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work on both older and new-build properties in Essex?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Essex has everything from Victorian and post-war housing to brand-new developments, and we're experienced with the different wiring standards, fuse board types, and access challenges each brings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer ongoing maintenance contracts for Essex businesses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we work with a number of Essex businesses on ongoing maintenance contracts covering periodic testing, PAT testing, and emergency lighting checks, so you stay compliant year-round rather than reacting to issues as they come up."
+            }
           }
         ]
       }
@@ -68,8 +96,8 @@ const ElectricalServicesEssexPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="Electrical Services Essex | Domestic & Commercial | Parker"
-        description="Looking for reliable electrical services in Essex? Parker Electrical Solutions provides NICEIC-approved commercial contractors & domestic electricians."
+        title="Electrical Services Essex | Free Quotes | NICEIC Approved"
+        description="NICEIC-approved electrical services across Essex — domestic & commercial. Free no-obligation quotes, fully insured, fast response. Call today."
         keywords="electrical services essex, electrician essex, commercial electrical services essex, domestic electrician essex"
         canonical="/electrical-services-essex"
         structuredData={structuredData}
@@ -89,10 +117,38 @@ const ElectricalServicesEssexPage: React.FC = () => {
 
             {/* Content */}
             <div className="p-10 space-y-8 text-gray-700 leading-relaxed text-lg">
+              <QuickCTABanner />
               <p>
                 When it comes to finding reliable <strong>electrical services in Essex</strong>, you need a team that combines technical expertise with outstanding customer care. At Parker Electrical Solutions, we pride ourselves on delivering top-tier electrical work for both residential homeowners and commercial businesses throughout the entire county of Essex.
               </p>
-              
+              <p>
+                Essex is a big, varied county — Victorian terraces in Colchester, 1960s new-town housing in Harlow and Basildon, coastal properties around Southend and Rayleigh, and industrial estates dotted from Grays to Braintree. That variety means no two jobs are quite the same, and it's why we keep every electrician on our team NICEIC-certified across the full range of domestic and commercial work, rather than specialising narrowly.
+              </p>
+
+              <h2 className="text-3xl font-bold text-brand-deep">What's Included With Every Job</h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-brand-light p-5 rounded-2xl border border-gray-100 text-center">
+                  <PhoneCall className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">1. Call or Message</p>
+                  <p className="text-sm text-gray-500 mt-1">Tell us what's needed — call, WhatsApp, or the quote form.</p>
+                </div>
+                <div className="bg-brand-light p-5 rounded-2xl border border-gray-100 text-center">
+                  <ClipboardList className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">2. Free Quote</p>
+                  <p className="text-sm text-gray-500 mt-1">A clear, no-obligation quote before any work is booked.</p>
+                </div>
+                <div className="bg-brand-light p-5 rounded-2xl border border-gray-100 text-center">
+                  <Wrench className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">3. The Work</p>
+                  <p className="text-sm text-gray-500 mt-1">Carried out by a NICEIC-approved electrician, tidily and safely.</p>
+                </div>
+                <div className="bg-brand-light p-5 rounded-2xl border border-gray-100 text-center">
+                  <FileCheck className="mx-auto text-brand-orange mb-2" size={28} />
+                  <p className="font-bold text-brand-deep text-sm">4. Certification</p>
+                  <p className="text-sm text-gray-500 mt-1">Signed-off paperwork/certificates where the job requires them.</p>
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-8 my-10">
                 <div className="bg-brand-light p-6 rounded-2xl border border-gray-100">
                   <h3 className="text-2xl font-bold text-brand-deep mb-3 flex items-center gap-2">
@@ -167,8 +223,19 @@ const ElectricalServicesEssexPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Do you provide free quotes for electrical work?</h3>
                     <p className="text-gray-700 leading-relaxed">Yes! We provide free, no-obligation quotes for all electrical projects. Contact us to discuss your requirements and we will give you a transparent price breakdown.</p>
                   </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Do you work on both older and new-build properties in Essex?</h3>
+                    <p className="text-gray-700 leading-relaxed">Yes. Essex has everything from Victorian and post-war housing to brand-new developments, and we're experienced with the different wiring standards, fuse board types, and access challenges each brings.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Do you offer ongoing maintenance contracts for Essex businesses?</h3>
+                    <p className="text-gray-700 leading-relaxed">Yes, we work with a number of Essex businesses on ongoing maintenance contracts covering periodic testing, PAT testing, and emergency lighting checks, so you stay compliant year-round rather than reacting to issues as they come up.</p>
+                  </div>
                 </div>
               </div>
+
+              <TrustSection />
+              <LocalProofStrip />
 
               {/* CTA */}
               <div className="bg-brand-deep text-white p-8 rounded-2xl text-center mt-12 shadow-lg">
@@ -187,6 +254,11 @@ const ElectricalServicesEssexPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Family-run since 2014</span>
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold text-brand-deep mb-4 text-center">Get a Free Quote in 30 Seconds</h3>
+                <QuickQuoteForm />
               </div>
             </div>
           </div>

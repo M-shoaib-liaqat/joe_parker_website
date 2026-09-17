@@ -35,7 +35,7 @@ const HouseRewireEssexPage: React.FC = () => {
             "name": "How much does a house rewire cost in Essex?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The cost of a house rewire in Essex varies depending on the size of the property and your specific requirements. A standard 3-bedroom house rewire typically starts from £3,500. We provide free, accurate quotes after a site visit."
+              "text": "The cost of a house rewire in Essex varies depending on the size of the property and your specific requirements. We provide free, accurate quotes after a short site visit, so you know the full cost upfront before any work begins."
             }
           },
           {
@@ -158,7 +158,7 @@ const HouseRewireEssexPage: React.FC = () => {
                 <div className="space-y-6">
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How much does a house rewire cost in Essex?</h3>
-                    <p className="text-gray-700">The cost of a house rewire in Essex varies depending on the size of the property and your specific requirements. A standard 3-bedroom house rewire typically starts from £3,500. We provide free, accurate quotes after a site visit.</p>
+                    <p className="text-gray-700">The cost of a house rewire in Essex varies depending on the size of the property and your specific requirements. We provide free, accurate quotes after a short site visit, so you know the full cost upfront before any work begins.</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How long does a full house rewire take?</h3>

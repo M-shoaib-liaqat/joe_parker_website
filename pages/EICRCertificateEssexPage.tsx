@@ -3,6 +3,11 @@ import { Phone, CheckCircle2, FileCheck } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import { buildBreadcrumbSchema } from '../components/schema';
+import QuickCTABanner from '../components/QuickCTABanner';
+import TrustSection from '../components/TrustSection';
+import LocalProofStrip from '../components/LocalProofStrip';
+import QuickQuoteForm from '../components/QuickQuoteForm';
 
 const EICRCertificateEssexPage: React.FC = () => {
   const structuredData = {
@@ -25,8 +30,9 @@ const EICRCertificateEssexPage: React.FC = () => {
           }
         },
         "areaServed": "Essex",
-        "description": "NICEIC approved EICR certificates for landlords, homeowners, and businesses across Essex."
+        "description": "NICEIC approved EICR certificates and electrical testing for landlords, homeowners, and businesses across Essex."
       },
+      buildBreadcrumbSchema([{ name: 'EICR Certificate Essex', path: '/eicr-certificate-essex' }]),
       {
         "@type": "FAQPage",
         "mainEntity": [
@@ -35,7 +41,7 @@ const EICRCertificateEssexPage: React.FC = () => {
             "name": "How much does an EICR certificate cost in Essex?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The cost of an EICR certificate depends on the property size. Prices generally start from £150 for a small flat and increase based on the number of circuits. Contact us for a free, exact quote."
+              "text": "The cost of an EICR certificate depends on the property size and the number of circuits it has. We provide a free, no-obligation quote for every property, so you'll know the exact price before any work is booked."
             }
           },
           {
@@ -61,6 +67,22 @@ const EICRCertificateEssexPage: React.FC = () => {
               "@type": "Answer",
               "text": "If faults are found, your report will be marked as 'Unsatisfactory'. We will provide a detailed breakdown of the necessary remedial work and a quote to fix the issues and issue a 'Satisfactory' certificate."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Is an EICR the same as electrical testing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An EICR (Electrical Installation Condition Report) is the standard form of electrical testing for the fixed wiring in a property — it's the certificate landlords, homeowners, and businesses need for compliance. We also carry out related electrical testing such as PAT testing for portable appliances."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do businesses need electrical testing too, not just landlords?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Commercial and industrial premises should have periodic EICR testing as part of standard health and safety compliance, alongside PAT testing for portable equipment — insurers often ask for evidence of this."
+            }
           }
         ]
       }
@@ -70,9 +92,9 @@ const EICRCertificateEssexPage: React.FC = () => {
   return (
     <>
       <SEO
-        title="EICR Certificate Essex | Landlord Safety Checks | Parker Electrical"
-        description="Need an EICR certificate in Essex? Our NICEIC-approved electricians provide fast, reliable Electrical Installation Condition Reports for landlords and homeowners."
-        keywords="eicr certificate essex, electrical safety certificate essex, landlord electrical certificate essex, eicr test essex"
+        title="EICR Certificate Essex | Free Quote | NICEIC Approved"
+        description="Need an EICR certificate in Essex? NICEIC-approved electricians, fast turnaround, free no-obligation quotes for landlords and homeowners. Book today."
+        keywords="eicr certificate essex, electrical testing essex, electrical safety certificate essex, landlord electrical certificate essex, eicr test essex"
         canonical="/eicr-certificate-essex"
         structuredData={structuredData}
       />
@@ -89,10 +111,11 @@ const EICRCertificateEssexPage: React.FC = () => {
             </div>
 
             <div className="p-10 text-gray-700 leading-relaxed text-lg">
+              <QuickCTABanner />
               <p className="mb-6">
-                Ensuring your property's electrical infrastructure is safe and legally compliant is a critical responsibility. Whether you are a private landlord renting out a property, a business owner safeguarding your employees, or a homeowner preparing to sell, getting a professional <strong>Electrical Installation Condition Report (EICR) in Essex</strong> is essential. At Parker Electrical Solutions, our NICEIC-approved electricians deliver thorough, efficient, and fully certified EICR testing across the county.
+                Ensuring your property's electrical infrastructure is safe and legally compliant is a critical responsibility. Whether you are a private landlord renting out a property, a business owner safeguarding your employees, or a homeowner preparing to sell, getting a professional <strong>Electrical Installation Condition Report (EICR) in Essex</strong> is essential. At Parker Electrical Solutions, our NICEIC-approved electricians deliver thorough, efficient, and fully certified <strong>electrical testing</strong> across the county.
               </p>
-              
+
               <h2 className="text-3xl font-bold text-brand-deep mt-10 mb-6">What is an EICR and Why Do You Need It?</h2>
               <p className="mb-6">
                 An EICR is an in-depth inspection of your property's internal wiring, fuse board (consumer unit), and electrical accessories. The purpose is to identify any deterioration, damage, or hidden hazards that could result in electric shocks or fires. Under the current UK legislation, all private landlords are legally required to have an EICR conducted at least every 5 years or at the change of a tenancy.
@@ -140,7 +163,7 @@ const EICRCertificateEssexPage: React.FC = () => {
                 <div className="space-y-6">
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">How much does an EICR certificate cost in Essex?</h3>
-                    <p className="text-gray-700">The cost of an EICR certificate depends on the property size. Prices generally start from £150 for a small flat and increase based on the number of circuits. Contact us for a free, exact quote.</p>
+                    <p className="text-gray-700">The cost of an EICR certificate depends on the property size and the number of circuits it has. We provide a free, no-obligation quote for every property, so you'll know the exact price before any work is booked.</p>
                   </div>
                   <div className="bg-white p-6 rounded-2xl shadow-sm">
                     <h3 className="text-xl font-bold text-brand-deep mb-3">Are EICR certificates legally required for landlords in Essex?</h3>
@@ -154,8 +177,19 @@ const EICRCertificateEssexPage: React.FC = () => {
                     <h3 className="text-xl font-bold text-brand-deep mb-3">What happens if my property fails the EICR test?</h3>
                     <p className="text-gray-700">If faults are found, your report will be marked as 'Unsatisfactory'. We will provide a detailed breakdown of the necessary remedial work and a quote to fix the issues and issue a 'Satisfactory' certificate.</p>
                   </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Is an EICR the same as electrical testing?</h3>
+                    <p className="text-gray-700">An EICR (Electrical Installation Condition Report) is the standard form of electrical testing for the fixed wiring in a property — it's the certificate landlords, homeowners, and businesses need for compliance. We also carry out related electrical testing such as PAT testing for portable appliances.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 className="text-xl font-bold text-brand-deep mb-3">Do businesses need electrical testing too, not just landlords?</h3>
+                    <p className="text-gray-700">Yes. Commercial and industrial premises should have periodic EICR testing as part of standard health and safety compliance, alongside PAT testing for portable equipment — insurers often ask for evidence of this.</p>
+                  </div>
                 </div>
               </div>
+
+              <TrustSection />
+              <LocalProofStrip />
 
               {/* CTA */}
               <div className="bg-brand-deep text-white p-8 rounded-2xl text-center shadow-lg">
@@ -174,6 +208,11 @@ const EICRCertificateEssexPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Trusted Local Electricians</span>
                 </div>
+              </div>
+
+              <div className="mt-10">
+                <h3 className="text-2xl font-bold text-brand-deep mb-4 text-center">Get a Free Quote in 30 Seconds</h3>
+                <QuickQuoteForm defaultProblem="EICR Certificate" />
               </div>
             </div>
           </div>
