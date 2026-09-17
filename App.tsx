@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import * as HelmetAsync from 'react-helmet-async';
 const { HelmetProvider } = HelmetAsync;
 import { Menu, X, Phone, Mail, Clock, ShieldCheck, Star, ChevronRight, MessageCircle, Image as ImageIcon } from 'lucide-react';
+import StickyCallBar from './components/StickyCallBar';
+import WhatsAppWidget from './components/WhatsAppWidget';
+import { initGA, trackEvent } from './lib/analytics';
 import HomePage from './pages/HomePage';
 import ServiceDetail from './pages/ServiceDetail';
 import AboutPage from './pages/AboutPage';
@@ -115,6 +118,7 @@ const Header = () => {
           ))}
           <a
             href={`tel:${BUSINESS_INFO.phone}`}
+            onClick={() => trackEvent('click_call', { source: 'header_desktop' })}
             className="bg-brand-orange text-white px-6 py-2 rounded-full font-bold flex items-center gap-2 hover:bg-orange-600 transition-all shadow-lg hover:shadow-orange-200"
           >
             <Phone size={18} />
@@ -154,6 +158,7 @@ const Header = () => {
           ))}
           <a
             href={`tel:${BUSINESS_INFO.phone}`}
+            onClick={() => trackEvent('click_call', { source: 'header_mobile_menu' })}
             className="bg-brand-deep text-white p-4 rounded-lg font-bold flex items-center justify-center gap-3 mt-4"
           >
             <Phone /> {BUSINESS_INFO.phone}
@@ -163,17 +168,6 @@ const Header = () => {
     </header>
   );
 };
-
-{/* Mobile Sticky Call Button */}
-<div className="md:hidden fixed bottom-0 left-0 right-0 bg-brand-orange text-white py-4 px-6 z-50 shadow-lg">
-  <a
-    href={`tel:${BUSINESS_INFO.phone}`}
-    className="flex items-center justify-center gap-3 font-bold text-lg"
-  >
-    <Phone size={24} />
-    Call Now — Free Quote
-  </a>
-</div>
 
 const Footer = () => {
   return (
@@ -246,7 +240,7 @@ const Footer = () => {
               <Phone className="text-brand-electric shrink-0 mt-1" size={20} />
               <div>
                 <p className="font-bold">Call Us</p>
-                <a href={`tel:${BUSINESS_INFO.phone}`} className="text-gray-400 hover:text-white">{BUSINESS_INFO.phone}</a>
+                <a href={`tel:${BUSINESS_INFO.phone}`} onClick={() => trackEvent('click_call', { source: 'footer' })} className="text-gray-400 hover:text-white">{BUSINESS_INFO.phone}</a>
               </div>
             </li>
             <li className="flex items-start gap-3">
@@ -275,18 +269,6 @@ const Footer = () => {
     </footer>
   );
 };
-
-const FloatingCTA = () => (
-  <div className="fixed bottom-6 left-6 z-40 flex flex-col gap-3 lg:hidden">
-    <a
-      href={`https://wa.me/${BUSINESS_INFO.phone.replace(/\s/g, '')}`}
-      className="bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform"
-      aria-label="WhatsApp"
-    >
-      <MessageCircle size={30} />
-    </a>
-  </div>
-);
 
 // Router-agnostic app content, shared by the client entry (BrowserRouter) and
 // the build-time prerender script (StaticRouter) so both render identical markup.
@@ -330,7 +312,8 @@ export const AppShell: React.FC = () => {
           </Routes>
         </main>
         <Footer />
-        <FloatingCTA />
+        <WhatsAppWidget />
+        <StickyCallBar />
         <Chatbot />
       </div>
     </>
@@ -338,6 +321,10 @@ export const AppShell: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    initGA();
+  }, []);
+
   return (
     <HelmetProvider>
       <BrowserRouter>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Phone, Mail, Clock, MapPin, CheckCircle2, Loader } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
+import { trackEvent } from '../lib/analytics';
 
 const ContactPage: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -64,6 +65,7 @@ const ContactPage: React.FC = () => {
         throw new Error((data && data.message) || 'Failed to send message');
       }
 
+      trackEvent('form_submit', { form: 'contact_page', service: formData.service });
       setSubmitted(true);
       setFormData({
         name: '',

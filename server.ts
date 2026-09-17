@@ -65,9 +65,8 @@ function validateContactForm(data: ContactRequest): ValidationError[] {
     errors.push({ field: 'phone', error: 'Phone number is required' });
   }
 
-  if (!data.email || data.email.trim() === '') {
-    errors.push({ field: 'email', error: 'Email address is required' });
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+  // Email is optional — the 3-field quick quote widget doesn't collect it.
+  if (data.email && data.email.trim() !== '' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
     errors.push({ field: 'email', error: 'Invalid email address format' });
   }
 
@@ -191,9 +190,10 @@ Message: ${message}
       console.warn('Warning: failed to send email to owner:', e);
     }
 
-    // Confirmation email to customer
+    // Confirmation email to customer — only if they gave us an email to send it to.
+    if (email) {
     const customerEmail = new brevo.SendSmtpEmail();
-    customerEmail.to = [{ email: email! }];
+    customerEmail.to = [{ email }];
     customerEmail.sender = { name: 'Parker Electrical Solutions', email: 'pesolutions.ltd@hotmail.com' };
     customerEmail.subject = 'Weve received your quote request – Parker Electrical Solutions';
     customerEmail.htmlContent = `
@@ -223,6 +223,7 @@ If this is an emergency, please call us directly on +447737447302.`;
       await brevoApiInstance.sendTransacEmail(customerEmail);
     } catch (e) {
       console.warn('Warning: failed to send confirmation email to customer:', e);
+    }
     }
 
     res.status(200).json({
