@@ -71,7 +71,7 @@ const GalleryPage: React.FC = () => {
       <div className="bg-white min-h-screen">
       <section className="bg-brand-deep pt-32 pb-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover" alt="" />
+            <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1920" width={1920} height={800} className="w-full h-full object-cover" alt="" />
         </div>
         <div className="container mx-auto px-4 text-center space-y-6 relative z-10">
           <div className="bg-brand-electric/20 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 border border-brand-electric/30 backdrop-blur-sm">
@@ -114,9 +114,11 @@ const GalleryPage: React.FC = () => {
                 className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all cursor-zoom-in border border-gray-100"
               >
                 <div className="h-80 overflow-hidden relative">
-                  <img 
-                    src={img.url} 
+                  <img
+                    src={img.url}
                     alt={img.title}
+                    width={768}
+                    height={1024}
                     loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-105 transition-all duration-700"
                   />
@@ -169,8 +171,10 @@ const GalleryPage: React.FC = () => {
 
           <div className="max-w-6xl w-full h-full flex flex-col items-center justify-center gap-6" onClick={(e) => e.stopPropagation()}>
             <div className="relative w-full h-[70vh] flex items-center justify-center">
-              <img 
-                src={GALLERY_IMAGES[selectedImageIndex].url} 
+              <img
+                src={GALLERY_IMAGES[selectedImageIndex].url}
+                width={768}
+                height={1024}
                 className="max-w-full max-h-full object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-500"
                 alt={GALLERY_IMAGES[selectedImageIndex].title}
               />

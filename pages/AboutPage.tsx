@@ -80,6 +80,8 @@ const AboutPage: React.FC = () => {
             </div>
             <img
               src="/assets/logo/logo.png"
+              width={750}
+              height={750}
               className="rounded-3xl shadow-2xl h-[500px] w-full object-contain bg-white p-8"
               alt="Joe Parker Electrical logo"
             />

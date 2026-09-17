@@ -85,9 +85,9 @@ const ServiceDetail: React.FC = () => {
                 }))
               }
             },
-            ...(service.educationalFAQ ? [{
+            ...(service.educationalFAQ || service.localFAQ ? [{
               "@type": "FAQPage",
-              "mainEntity": service.educationalFAQ.map(faq => ({
+              "mainEntity": [...(service.educationalFAQ ?? []), ...(service.localFAQ ?? [])].map(faq => ({
                 "@type": "Question",
                 "name": faq.question,
                 "acceptedAnswer": {
@@ -109,7 +109,7 @@ const ServiceDetail: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative mb-8 lg:mb-0">
                <div className="absolute inset-0 bg-brand-electric rounded-3xl translate-x-4 translate-y-4 -z-10 opacity-20"></div>
-               <img src={getServiceImage(service.id)} className="rounded-3xl shadow-2xl h-[450px] w-full object-cover" alt={service.title} />
+               <img src={getServiceImage(service.id)} width={768} height={1024} className="rounded-3xl shadow-2xl h-[450px] w-full object-cover" alt={service.title} />
             </div>
             <div className="space-y-6">
               <div className="bg-brand-electric w-20 h-20 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-brand-electric/20">
@@ -149,6 +149,9 @@ const ServiceDetail: React.FC = () => {
                 <p className="text-lg text-gray-600">
                   Our team of NICEIC-approved electricians provide thorough, safe, and professional {service.title.toLowerCase()} across Essex and London. We pride ourselves on transparent pricing and high-quality workmanship.
                 </p>
+                {service.extraContent && service.extraContent.map((paragraph, idx) => (
+                  <p key={idx} className="text-lg text-gray-600">{paragraph}</p>
+                ))}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
                   {service.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-4 bg-brand-light p-6 rounded-xl border border-gray-100">
@@ -164,6 +167,20 @@ const ServiceDetail: React.FC = () => {
                   <h2 className="text-3xl font-bold text-brand-deep">Common Questions, Answered</h2>
                   <div className="space-y-4">
                     {service.educationalFAQ.map((faq, idx) => (
+                      <div key={idx} className="bg-brand-light p-6 rounded-2xl border border-gray-100">
+                        <h3 className="text-xl font-bold text-brand-deep mb-2">{faq.question}</h3>
+                        <p className="text-gray-700">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {service.localFAQ && (
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold text-brand-deep">Frequently Asked Questions</h2>
+                  <div className="space-y-4">
+                    {service.localFAQ.map((faq, idx) => (
                       <div key={idx} className="bg-brand-light p-6 rounded-2xl border border-gray-100">
                         <h3 className="text-xl font-bold text-brand-deep mb-2">{faq.question}</h3>
                         <p className="text-gray-700">{faq.answer}</p>

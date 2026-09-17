@@ -3,6 +3,7 @@ import { Phone, MapPin, Clock, Shield, CheckCircle2 } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import NearbyAreas from '../components/NearbyAreas';
 
 const ElectricianHarlowPage: React.FC = () => {
   const structuredData = {
@@ -119,7 +120,7 @@ const ElectricianHarlowPage: React.FC = () => {
                   </ul>
                 </div>
                 <div className="w-full md:w-1/3 rounded-xl overflow-hidden shadow-md">
-                   <img src="/assets/domestic/domestic2.jpeg" alt="Harlow Electrician" className="w-full h-full object-cover" />
+                   <img src="/assets/domestic/domestic2.jpeg" width={1200} height={1600} loading="lazy" alt="Harlow Electrician" className="w-full h-full object-cover" />
                 </div>
               </div>
 
@@ -183,6 +184,8 @@ const ElectricianHarlowPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
               </div>
+
+              <NearbyAreas current="Harlow" />
             </div>
           </div>
         </div>

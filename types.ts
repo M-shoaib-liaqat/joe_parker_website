@@ -28,6 +28,19 @@ export interface Service {
    * Only set for services that have such a counterpart page.
    */
   educationalFAQ?: { question: string; answer: string }[];
+  /**
+   * Optional extra body paragraphs, rendered after the intro paragraph.
+   * Used to deepen a service page's own location-specific content (as opposed
+   * to educationalFAQ, which shifts the page toward generic/educational
+   * framing instead).
+   */
+  extraContent?: string[];
+  /**
+   * Optional additional location/booking-focused FAQ, rendered under a plain
+   * "Frequently Asked Questions" heading. Unlike educationalFAQ, this does not
+   * switch the hero copy to the generic "educational guide" framing.
+   */
+  localFAQ?: { question: string; answer: string }[];
 }
 
 export interface Review {

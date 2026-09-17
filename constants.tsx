@@ -466,15 +466,44 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'commercial',
-    title: 'Commercial Services',
+    // Note: deliberately kept as a distinct H1/target phrase from
+    // /electrical-contractors-essex's "Electrical Contractors Essex" — this
+    // page targets day-to-day reactive/small-business work, the contractors
+    // page targets larger B2B projects and ongoing contracts. See localFAQ
+    // below, which also spells out the difference to users.
+    title: 'Commercial Electrician Essex',
     slug: 'commercial-electrician',
     icon: 'Building2',
-    description: 'Maintenance and installations for offices, shops, and units.',
-    longDescription: 'Bespoke electrical solutions designed to keep your business running safely and efficiently.',
+    description: 'Reactive and routine electrical work for shops, offices, and restaurants across Essex.',
+    longDescription: 'NICEIC approved commercial electrician for the day-to-day electrical work Essex businesses need — not just large-scale fit-outs.',
     heroImage: '/assets/industrial/industrial2.jpeg',
-    seoTitle: 'Commercial Electrician Essex | NICEIC Approved | Parker Electrical',
-    metaDescription: 'Commercial electrician Essex & London. NICEIC approved for office fit-outs, rewires, planned maintenance, lighting upgrades, PAT testing, fault finding, emergency services, and commercial EICR. Fully insured, family-run business since 2014. Get your free quote today.',
-    features: ['Office Fit-outs', 'Maintenance Contracts', 'Emergency Lighting', 'PAT Testing']
+    seoTitle: 'Commercial Electrician Essex | Shops, Offices & Restaurants | Parker Electrical',
+    metaDescription: 'Need a commercial electrician in Essex for your shop, restaurant, or office? Parker Electrical Solutions provides NICEIC approved reactive and routine electrical work for small and medium Essex businesses.',
+    keywords: 'commercial electrician essex, business electrician essex, shop electrician essex, restaurant electrician essex, office electrician essex, PAT testing essex',
+    features: ['Office Fit-outs', 'Maintenance Contracts', 'Emergency Lighting', 'PAT Testing'],
+    extraContent: [
+      'If you run a shop, restaurant, office, or small commercial unit anywhere in Essex, Parker Electrical Solutions is your commercial electrician for the day-to-day electrical work that keeps a business running safely — not just big-ticket fit-out projects. From a tripped circuit at your restaurant on a Friday night to routine PAT testing for your office equipment, we handle the jobs Essex businesses actually call about most often.',
+      'We regularly work across Essex\'s retail parks, high streets, and hospitality venues — independent shops in Chelmsford and Basildon town centres, restaurants and takeaways along the Southend and Colchester coastlines, and offices in business parks around Harlow and Brentwood. Each type of premises has its own electrical demands: retail units need reliable lighting and till circuits, restaurants need robust kitchen equipment wiring and emergency lighting, and offices need safe, tidy power and data distribution.',
+      'As a NICEIC approved contractor, we know commercial premises carry electrical safety obligations a domestic property doesn\'t — a valid commercial EICR, and PAT testing records most insurers expect for portable appliances. We provide both as part of our standard commercial electrician service, alongside fault-finding, minor works, and emergency lighting testing, so you stay compliant without booking a separate large-scale contractor for routine work.',
+    ],
+    localFAQ: [
+      {
+        question: 'Do you provide a commercial electrician service for small businesses in Essex?',
+        answer: 'Yes — alongside larger contracting projects, we act as an on-call commercial electrician for shops, restaurants, and offices across Essex, covering everything from fault-finding to routine safety testing.'
+      },
+      {
+        question: 'Do I legally need PAT testing for my Essex business?',
+        answer: 'PAT testing itself isn\'t a strict legal requirement, but the Electricity at Work Regulations 1989 require you to keep portable appliances safe, and most insurers and landlords expect regular PAT testing as evidence of that. We provide certified PAT testing as part of our commercial electrician service.'
+      },
+      {
+        question: 'How quickly can a commercial electrician reach my business in Essex?',
+        answer: 'For urgent commercial faults — a shop losing power, a restaurant kitchen circuit tripping — we aim to respond within the same working day across most of Essex, plus a 24/7 emergency callout for out-of-hours issues.'
+      },
+      {
+        question: 'What\'s the difference between this and your electrical contractors service?',
+        answer: 'This commercial electrician service covers the day-to-day electrical needs of individual shops, offices, and restaurants — reactive work, PAT testing, minor works. Our electrical contractors team handles larger-scale projects like full office fit-outs, industrial installations, and ongoing planned maintenance contracts for bigger sites.'
+      }
+    ]
   },
   {
     id: 'ev',

@@ -213,7 +213,7 @@ const AreasPage: React.FC = () => {
               <div className="rounded-3xl overflow-hidden shadow-2xl h-[400px]">
                 {/* Mock Map */}
                 <div className="w-full h-full bg-gray-200 flex items-center justify-center relative">
-                   <img src="https://picsum.photos/800/600?grayscale" className="w-full h-full object-cover opacity-50" alt="Map area" />
+                   <img src="https://picsum.photos/800/600?grayscale" width={800} height={600} loading="lazy" className="w-full h-full object-cover opacity-50" alt="Map area" />
                    <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-brand-deep/20">
                      <MapPin size={64} className="text-brand-orange animate-bounce" />
                      <p className="text-white font-bold text-2xl mt-4 drop-shadow-lg">Serving All of Essex & London</p>

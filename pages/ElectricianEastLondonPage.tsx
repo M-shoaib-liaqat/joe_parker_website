@@ -3,6 +3,7 @@ import { Phone, CheckCircle2, Shield, MapPin } from 'lucide-react';
 import { BUSINESS_INFO } from '../constants';
 import SEO from '../components/SEO';
 import { Link as RouterLink } from 'react-router-dom';
+import NearbyAreas from '../components/NearbyAreas';
 
 const ElectricianEastLondonPage: React.FC = () => {
   const structuredData = {
@@ -157,6 +158,8 @@ const ElectricianEastLondonPage: React.FC = () => {
                   <span className="flex items-center gap-2"><CheckCircle2 className="text-brand-success" size={18} /> Fully Insured</span>
                 </div>
               </div>
+
+              <NearbyAreas current="East London" />
             </div>
           </div>
         </div>

@@ -37,7 +37,17 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist',
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name]-[hash][extname]'
+          assetFileNames: 'assets/[name]-[hash][extname]',
+          // True per-route code-splitting (React.lazy/Suspense) isn't safe here:
+          // the build-time prerender script (scripts/prerender.tsx) uses
+          // ReactDOMServer.renderToString, which doesn't support Suspense and
+          // would bake the loading fallback into the static HTML instead of
+          // real content. This manualChunks split is the safe equivalent —
+          // it only changes how the output is packaged, not what renders.
+          manualChunks: {
+            vendor: ['react', 'react-dom', 'react-router-dom'],
+            icons: ['lucide-react'],
+          }
         }
       }
     }
